@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Vedenism | Nature, Knowledge and Balance</title>
+
+<meta name="description" content="Vedenism is a nature-centered and knowledge-driven movement dedicated to protecting nature, supporting education, preserving heritage, and promoting science-based awareness.">
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --green-dark: #061b14;
+  --green-main: #0b2f22;
+  --green-soft: #0f3d2e;
+  --gold: #d4af37;
+  --gold-soft: #e7c76f;
+  --cream: #f2e8d5;
+  --muted: rgba(242,232,213,0.78);
+  --line: rgba(212,175,55,0.35);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  background: var(--green-main);
+  color: var(--cream);
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  -webkit-user-drag: none;
+  user-drag: none;
+  pointer-events: none;
+}
+
+a {
+  color: inherit;
+}
+
+.section-title {
+  color: var(--gold);
+  font-size: clamp(34px, 5vw, 56px);
+  letter-spacing: 2px;
+  text-align: center;
+  margin: 0 0 18px;
+}
+
+.section-subtitle {
+  max-width: 920px;
+  margin: 0 auto 38px;
+  text-align: center;
+  color: var(--muted);
+  line-height: 1.85;
+  font-size: 18px;
+}
+
+.divider {
+  width: 180px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  margin: 22px auto;
+}
+
+.btn {
+  display: inline-block;
+  padding: 14px 24px;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  text-decoration: none;
+  letter-spacing: 1px;
+  background: transparent;
+  transition: 0.25s ease;
+}
+
+.btn:hover {
+  background: var(--gold);
+  color: var(--green-dark);
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: var(--green-dark);
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background: transparent;
+  color: var(--gold);
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+/* MUTE BUTTON */
+#muteBtn {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 9999;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  background: rgba(6, 27, 20, 0.92);
+  color: var(--gold);
+  font-size: 21px;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(212,175,55,0.25);
+}
+
+#muteBtn:hover {
+  background: var(--gold);
+  color: var(--green-dark);
+}
+
+/* INTRO */
+#intro {
+  height: 100vh;
+  background:
+    radial-gradient(circle at center, rgba(212,175,55,0.16), transparent 32%),
+    radial-gradient(circle, var(--green-soft), var(--green-dark));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+}
+
+#vinyl {
+  width: min(280px, 70vw);
+  height: min(280px, 70vw);
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  box-shadow:
+    0 0 35px rgba(212,175,55,0.45),
+    0 0 90px rgba(212,175,55,0.18);
+  transition: filter 0.25s ease, transform 0.25s ease;
+  pointer-events: auto;
+}
+
+#vinyl:hover {
+  filter: brightness(1.1);
+  transform: scale(1.03);
+}
+
+#vinyl.spinning {
+  animation: spinVinyl 1.7s ease-in-out forwards;
+}
+
+@keyframes spinVinyl {
+  0% { transform: rotate(0deg) scale(1); }
+  70% { transform: rotate(900deg) scale(1.08); }
+  100% { transform: rotate(1080deg) scale(1); }
+}
+
+#introText {
+  margin-top: 26px;
+  color: var(--gold);
+  letter-spacing: 4px;
+  font-size: 14px;
+}
+
+#introSub {
+  margin-top: 12px;
+  max-width: 650px;
+  color: var(--cream);
+  opacity: 0.86;
+  font-style: italic;
+  line-height: 1.7;
+}
+
+/* SITE */
+#site {
+  display: none;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, rgba(212,175,55,0.08), transparent 28%),
+    var(--green-main);
+}
+
+/* HEADER */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 500;
+  padding: 18px 7%;
+  background: rgba(6,27,20,0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logoText {
+  color: var(--gold);
+  font-size: 24px;
+  letter-spacing: 5px;
+  font-weight: bold;
+}
+
+nav {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--cream);
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+nav a:hover {
+  color: var(--gold);
+}
+
+/* HERO */
+.hero {
+  min-height: 88vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 90px 8%;
+  text-align: center;
+  border-bottom: 1px solid rgba(212,175,55,0.2);
+  background:
+    linear-gradient(rgba(6,27,20,0.10), rgba(6,27,20,0.78)),
+    radial-gradient(circle at center, rgba(212,175,55,0.14), transparent 35%);
+}
+
+.hero-inner {
+  max-width: 1000px;
+}
+
+.hero h1 {
+  margin: 0;
+  color: var(--gold);
+  font-size: clamp(56px, 10vw, 112px);
+  letter-spacing: clamp(5px, 1vw, 12px);
+  text-shadow: 0 0 18px rgba(212,175,55,0.22);
+}
+
+.hero .motto {
+  margin-top: 20px;
+  font-size: clamp(20px, 3vw, 30px);
+  font-style: italic;
+  color: var(--gold-soft);
+}
+
+.hero p {
+  max-width: 840px;
+  margin: 28px auto 0;
+  font-size: 18px;
+  line-height: 1.9;
+}
+
+/* SECTIONS */
+section {
+  padding: 90px 8%;
+  border-bottom: 1px solid rgba(212,175,55,0.18);
+}
+
+.text-block {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.text-block p {
+  font-size: 18px;
+  line-height: 1.95;
+  margin: 18px 0;
+}
+
+/* CARDS */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 36px;
+}
+
+.card {
+  background:
+    linear-gradient(145deg, rgba(212,175,55,0.08), rgba(6,27,20,0.42));
+  border: 1px solid rgba(212,175,55,0.45);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.22);
+  overflow: hidden;
+  min-height: 100%;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 28px 55px rgba(0,0,0,0.32);
+}
+
+.card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-bottom: 1px solid rgba(212,175,55,0.35);
+}
+
+.card-content {
+  padding: 24px;
+}
+
+.card h3 {
+  color: var(--gold);
+  font-size: 25px;
+  margin: 0 0 12px;
+}
+
+.card p {
+  color: var(--muted);
+  line-height: 1.75;
+  margin: 0;
+  font-size: 16px;
+}
+
+.caption {
+  margin-top: 12px;
+  font-size: 13px;
+  color: rgba(242,232,213,0.58);
+  font-style: italic;
+}
+
+/* FEATURED PROJECT */
+.featured {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 38px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 40px auto 0;
+}
+
+.featured-img {
+  border: 1px solid rgba(212,175,55,0.45);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.28);
+}
+
+.featured-img img {
+  width: 100%;
+  height: 430px;
+  object-fit: cover;
+}
+
+.featured-text {
+  border: 1px solid rgba(212,175,55,0.45);
+  padding: 34px;
+  background: rgba(6,27,20,0.45);
+}
+
+.featured-text h3 {
+  color: var(--gold);
+  font-size: 34px;
+  margin: 0 0 18px;
+}
+
+.featured-text p {
+  line-height: 1.85;
+  font-size: 17px;
+}
+
+/* VALUES */
+.values-list {
+  max-width: 900px;
+  margin: 30px auto 0;
+  display: grid;
+  gap: 16px;
+}
+
+.value-row {
+  border-left: 3px solid var(--gold);
+  padding: 18px 22px;
+  background: rgba(6,27,20,0.42);
+  line-height: 1.75;
+}
+
+.value-row strong {
+  color: var(--gold);
+}
+
+/* TIMELINE */
+.timeline {
+  max-width: 1000px;
+  margin: 40px auto 0;
+  display: grid;
+  gap: 18px;
+}
+
+.timeline-item {
+  border: 1px solid rgba(212,175,55,0.38);
+  background: rgba(6,27,20,0.42);
+  padding: 24px;
+}
+
+.timeline-item h3 {
+  color: var(--gold);
+  margin: 0 0 10px;
+}
+
+/* SUPPORT */
+.support {
+  background:
+    linear-gradient(135deg, rgba(212,175,55,0.12), rgba(6,27,20,0.25)),
+    var(--green-main);
+}
+
+/* CONTACT */
+.contact-box {
+  max-width: 760px;
+  margin: 35px auto 0;
+  border: 1px solid rgba(212,175,55,0.5);
+  background: rgba(6,27,20,0.45);
+  padding: 34px;
+  text-align: center;
+  line-height: 2.1;
+  font-size: 18px;
+}
+
+.contact-box strong {
+  color: var(--gold);
+}
+
+/* FOOTER */
+footer {
+  padding: 38px 8%;
+  text-align: center;
+  background: var(--green-dark);
+  border-top: 1px solid rgba(212,175,55,0.3);
+  color: rgba(242,232,213,0.75);
+}
+
+footer .footer-title {
+  color: var(--gold);
+  letter-spacing: 5px;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 980px) {
+  header {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .featured {
+    grid-template-columns: 1fr;
+  }
+
+  .featured-img img {
+    height: 300px;
+  }
+}
+
+@media (max-width: 600px) {
+  nav {
+    gap: 10px;
+  }
+
+  nav a {
+    font-size: 12px;
+  }
+
+  section {
+    padding: 70px 6%;
+  }
+
+  .hero {
+    padding: 80px 6%;
+  }
+}
+</style>
+</head>
+
+<body class="no-scroll">
+
+<button id="muteBtn" title="Mute / Unmute">🔊</button>
+<audio id="sound" src="intro.mp3"></audio>
+
+<div id="intro">
+  <img id="vinyl" src="vinyl.png" alt="Vedenism vinyl seal">
+  <div id="introText">CLICK TO BEGIN</div>
+  <div id="introSub">Guided by Nature. Empowered by Knowledge. Driven by Balance.</div>
+</div>
+
+<div id="site">
+
+<header>
+  <div class="logoText">VEDENISM</div>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#philosophy">Philosophy</a>
+    <a href="#mission">Mission</a>
+    <a href="#projects">Projects</a>
+    <a href="#tree">Tree</a>
+    <a href="#education">Education</a>
+    <a href="#support">Support</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <h1>VEDENISM</h1>
+    <div class="motto">Unity in Diversity, Harmony in Existence</div>
+    <p>
+      Vedenism is a nature-centered and knowledge-driven movement dedicated to protecting nature,
+      supporting education, preserving heritage, and promoting science-based awareness for present
+      and future generations.
+    </p>
+
+    <div class="button-row">
+      <a class="btn btn-primary" href="#mission">Explore the Mission</a>
+      <a class="btn" href="#support">Support Vedenism</a>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <h2 class="section-title">What is Vedenism?</h2>
+  <div class="divider"></div>
+
+  <div class="text-block">
+    <p>
+      Vedenism is a philosophy and movement built around the relationship between humanity,
+      nature, knowledge, and balance. It sees the protection of the natural world not as a side issue,
+      but as a central responsibility of human civilization.
+    </p>
+
+    <p>
+      At its core, Vedenism values a life guided by nature, empowered by knowledge, and driven by balance.
+      It encourages people to think clearly, act responsibly, protect living beings, support education,
+      and contribute to society through constructive action.
+    </p>
+
+    <p>
+      Vedenism does not exist only as an idea. It is meant to become visible through real projects:
+      planting trees, helping education, distributing meaningful books, promoting science-based awareness,
+      protecting animals, and preserving historical and cultural heritage.
+    </p>
+  </div>
+</section>
+
+<section id="philosophy">
+  <h2 class="section-title">Core Philosophy</h2>
+  <p class="section-subtitle">
+    Vedenism is built upon three central pillars: Nature, Knowledge, and Balance.
+    Together, they form the foundation of its worldview.
+  </p>
+
+  <div class="cards">
+    <div class="card">
+      <img src="images/nature.png" alt="Nature landscape">
+      <div class="card-content">
+        <h3>Nature</h3>
+        <p>
+          Nature is the living foundation of all existence. Vedenism promotes respect for forests,
+          rivers, animals, ecosystems, and the balance of life.
+        </p>
+        <div class="caption">Nature represents life, renewal, and responsibility.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="images/knowledge.png" alt="Stoic knowledge and books">
+      <div class="card-content">
+        <h3>Knowledge</h3>
+        <p>
+          Knowledge allows humanity to understand reality, improve society, and rise beyond ignorance.
+          Vedenism supports education, reading, science, and wisdom.
+        </p>
+        <div class="caption">Knowledge represents enlightenment and human growth.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="images/balance.png" alt="Balance between nature and progress">
+      <div class="card-content">
+        <h3>Balance</h3>
+        <p>
+          Balance means harmony between progress and preservation, individuality and community,
+          reason and emotion, humanity and nature.
+        </p>
+        <div class="caption">Balance represents harmony, responsibility, and stability.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="mission">
+  <h2 class="section-title">Association Mission</h2>
+  <p class="section-subtitle">
+    The mission of the Vedenism association is to serve society and future generations through
+    environmental, educational, cultural, and science-based projects.
+  </p>
+
+  <div class="values-list">
+    <div class="value-row">
+      <strong>Protect Nature:</strong>
+      restore damaged environments, support reforestation, and raise awareness about ecological responsibility.
+    </div>
+
+    <div class="value-row">
+      <strong>Support Education:</strong>
+      encourage literacy, distribute books, and create opportunities for learning.
+    </div>
+
+    <div class="value-row">
+      <strong>Promote Science-Based Awareness:</strong>
+      support knowledge, reason, observation, and a constructive understanding of the world.
+    </div>
+
+    <div class="value-row">
+      <strong>Protect Animals:</strong>
+      support animal welfare, wildlife protection, and ethical responsibility toward living beings.
+    </div>
+
+    <div class="value-row">
+      <strong>Preserve Heritage:</strong>
+      value historical and cultural inheritance as part of humanity’s shared memory.
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2 class="section-title">Our Missions in Action</h2>
+  <p class="section-subtitle">
+    Vedenism’s purpose becomes real through visible action. These missions represent the practical side
+    of the movement.
+  </p>
+
+  <div class="cards">
+    <div class="card">
+      <img src="images/trees.png" alt="Olive trees and reforestation">
+      <div class="card-content">
+        <h3>Tree Planting</h3>
+        <p>
+          Our first major project begins with planting trees in areas damaged by forest fires in Turkey.
+          Each tree represents renewal after destruction.
+        </p>
+        <div class="caption">Reforestation is the first step of the Tree of Knowledge Project.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="images/education.png" alt="Students in classroom">
+      <div class="card-content">
+        <h3>Education Support</h3>
+        <p>
+          Vedenism aims to support students, encourage reading, strengthen literacy, and promote access
+          to meaningful educational materials.
+        </p>
+        <div class="caption">Education creates conscious and capable future generations.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="images/animals.png" alt="Deer in forest">
+      <div class="card-content">
+        <h3>Animal Protection</h3>
+        <p>
+          Protecting animals and wildlife is part of respecting the living world. Vedenism supports
+          compassion and responsibility toward all life.
+        </p>
+        <div class="caption">Animal protection reflects ethical responsibility toward nature.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tree">
+  <h2 class="section-title">Tree of Knowledge Project</h2>
+  <p class="section-subtitle">
+    The Tree of Knowledge Project is the first symbolic and practical campaign of Vedenism.
+  </p>
+
+  <div class="featured">
+    <div class="featured-img">
+      <img src="images/trees.png" alt="Olive trees at sunset">
+    </div>
+
+    <div class="featured-text">
+      <h3>From Ashes to Wisdom</h3>
+      <p>
+        The project begins by supporting tree planting in burned areas. A forest fire destroys more than trees:
+        it harms ecosystems, animals, soil, memory, and the future of local communities.
+      </p>
+      <p>
+        By planting trees, Vedenism aims to restore nature while also spreading awareness about responsibility,
+        science, and environmental consciousness.
+      </p>
+      <p>
+        Each tree becomes a living symbol of knowledge, renewal, and hope.
+      </p>
+      <a class="btn btn-primary" href="https://buymeacoffee.com/skyheart" target="_blank">Support the Project</a>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <h2 class="section-title">Books, Literacy and Knowledge</h2>
+  <p class="section-subtitle">
+    Vedenism believes that books can shape minds, strengthen society, and help people understand life,
+    ethics, history, science, and themselves.
+  </p>
+
+  <div class="text-block">
+    <p>
+      Future educational projects may include distributing meaningful books, supporting reading campaigns,
+      helping students access educational materials, and promoting works that encourage reflection,
+      responsibility, and wisdom.
+    </p>
+
+    <p>
+      Philosophical and literary classics such as Marcus Aurelius, Stoic writings, Shakespeare,
+      and other public-domain works may be used to support education and intellectual growth.
+    </p>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <img src="images/philosophy.png" alt="Philosophy, wisdom and classical thought">>
+      <div class="card-content">
+        <h3>Philosophy</h3>
+        <p>
+          Philosophy helps people reflect on duty, discipline, ethics, mortality, resilience, and the meaning of life.
+        </p>
+        <div class="caption">Wisdom begins with reflection.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="images/education.png" alt="Education and literacy">
+      <div class="card-content">
+        <h3>Literacy</h3>
+        <p>
+          Literacy opens the door to independence, opportunity, understanding, and participation in society.
+        </p>
+        <div class="caption">Reading is one of the foundations of freedom.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="images/science.png" alt="Scientific research and knowledge">
+      <div class="card-content">
+        <h3>Science and Awareness</h3>
+        <p>
+          Science-based awareness helps society make better decisions about health, nature, technology, and the future.
+        </p>
+        <div class="caption">Knowledge must serve life, not destroy it.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="future">
+  <h2 class="section-title">Future Vision</h2>
+  <p class="section-subtitle">
+    Vedenism begins locally, but its vision is international.
+  </p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <h3>Phase I — Environmental Action</h3>
+      <p>
+        Begin with tree planting, awareness campaigns, and public environmental responsibility.
+      </p>
+    </div>
+
+    <div class="timeline-item">
+      <h3>Phase II — Literacy and Books</h3>
+      <p>
+        Expand into book distribution, reading support, educational materials, and cultural learning.
+      </p>
+    </div>
+
+    <div class="timeline-item">
+      <h3>Phase III — Science and Education</h3>
+      <p>
+        Organize workshops, science awareness programs, school support, and public knowledge projects.
+      </p>
+    </div>
+
+    <div class="timeline-item">
+      <h3>Phase IV — International Growth</h3>
+      <p>
+        Build a global identity around nature, knowledge, balance, cooperation, and future generations.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="support" class="support">
+  <h2 class="section-title">Support Vedenism</h2>
+  <p class="section-subtitle">
+    Donations help support future projects such as tree planting, educational materials,
+    book distribution, awareness campaigns, and the growth of Vedenism’s mission.
+  </p>
+
+  <div class="button-row">
+    <a class="btn btn-primary" href="https://buymeacoffee.com/skyheart" target="_blank">
+      Support the Mission
+    </a>
+  </div>
+</section>
+
+<section id="contact">
+  <h2 class="section-title">Contact</h2>
+  <p class="section-subtitle">
+    For cooperation, projects, announcements, and general communication:
+  </p>
+
+  <div class="contact-box">
+    <div><strong>Email:</strong> vedenism@hotmail.com</div>
+    <div><strong>Website:</strong> www.vedenism.org</div>
+    <div><strong>Location:</strong> Lüleburgaz, Kırklareli, Türkiye</div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-title">VEDENISM</div>
+  <div>For Nature. For Knowledge. For Humanity.</div>
+  <div style="margin-top:12px;">Unity in Diversity, Harmony in Existence</div>
+</footer>
+
+</div>
+
+<script>
+const muteBtn = document.getElementById("muteBtn");
+const sound = document.getElementById("sound");
+const vinyl = document.getElementById("vinyl");
+const intro = document.getElementById("intro");
+const site = document.getElementById("site");
+
+let muted = false;
+let started = false;
+
+muteBtn.addEventListener("click", function () {
+  muted = !muted;
+  sound.muted = muted;
+  muteBtn.textContent = muted ? "🔇" : "🔊";
+});
+
+vinyl.addEventListener("click", function () {
+  if (started) return;
+  started = true;
+
+  vinyl.classList.add("spinning");
+
+  if (!muted) {
+    sound.currentTime = 0;
+    sound.play().catch(function () {});
+  }
+
+  setTimeout(function () {
+    intro.style.display = "none";
+    site.style.display = "block";
+    document.body.classList.remove("no-scroll");
+  }, 1700);
+});
+
+/* BASIC COPY / INSPECT DETERRENTS */
+document.addEventListener("contextmenu", function(e) {
+  e.preventDefault();
+});
+
+document.addEventListener("selectstart", function(e) {
+  e.preventDefault();
+});
+
+document.addEventListener("dragstart", function(e) {
+  e.preventDefault();
+});
+
+document.addEventListener("keydown", function(e) {
+  if (
+    e.key === "F12" ||
+    (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key.toUpperCase())) ||
+    (e.ctrlKey && ["U", "S", "A"].includes(e.key.toUpperCase()))
+  ) {
+    e.preventDefault();
+  }
+});
+</script>
+
+</body>
+</html>
