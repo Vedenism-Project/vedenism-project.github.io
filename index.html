@@ -1,1115 +1,1438 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Vedenism | Nature, Knowledge and Balance</title>
-
-<meta name="description" content="Vedenism is a nature-centered and knowledge-driven movement dedicated to protecting nature, supporting education, preserving heritage, and promoting science-based awareness.">
-
-<style>
-* {
-  box-sizing: border-box;
-}
-
-:root {
-  --green-dark: #061b14;
-  --green-main: #0b2f22;
-  --green-soft: #0f3d2e;
-  --gold: #d4af37;
-  --gold-soft: #e7c76f;
-  --cream: #f2e8d5;
-  --muted: rgba(242,232,213,0.78);
-  --line: rgba(212,175,55,0.35);
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  background: var(--green-main);
-  color: var(--cream);
-  user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-}
-
-body.no-scroll {
-  overflow: hidden;
-}
-
-img {
-  max-width: 100%;
-  display: block;
-  -webkit-user-drag: none;
-  user-drag: none;
-  pointer-events: none;
-}
-
-a {
-  color: inherit;
-}
-
-.section-title {
-  color: var(--gold);
-  font-size: clamp(34px, 5vw, 56px);
-  letter-spacing: 2px;
-  text-align: center;
-  margin: 0 0 18px;
-  text-shadow: 0 0 18px rgba(212,175,55,0.18);
-}
-
-.section-subtitle {
-  max-width: 920px;
-  margin: 0 auto 38px;
-  text-align: center;
-  color: var(--muted);
-  line-height: 1.85;
-  font-size: 18px;
-}
-
-.divider {
-  width: 180px;
-  height: 1px;
-  background: linear-gradient(to right, transparent, var(--gold), transparent);
-  margin: 22px auto;
-  box-shadow: 0 0 16px rgba(212,175,55,0.35);
-}
-
-.btn {
-  display: inline-block;
-  padding: 14px 24px;
-  border: 1px solid var(--gold);
-  color: var(--gold);
-  text-decoration: none;
-  letter-spacing: 1px;
-  background: transparent;
-  transition: 0.25s ease;
-  box-shadow: 0 0 16px rgba(212,175,55,0.12);
-}
-
-.btn:hover {
-  background: var(--gold);
-  color: var(--green-dark);
-  box-shadow: 0 0 28px rgba(212,175,55,0.35);
-}
-
-.btn-primary {
-  background: var(--gold);
-  color: var(--green-dark);
-  font-weight: bold;
-}
-
-.btn-primary:hover {
-  background: transparent;
-  color: var(--gold);
-}
-
-.button-row {
-  display: flex;
-  justify-content: center;
-  gap: 14px;
-  flex-wrap: wrap;
-  margin-top: 30px;
-}
-
-/* GOOGLE TRANSLATE */
-#google_translate_element {
-  position: fixed;
-  left: 18px;
-  bottom: 18px;
-  z-index: 9999;
-  background: rgba(6,27,20,0.95);
-  border: 1px solid var(--gold);
-  padding: 6px;
-  border-radius: 8px;
-  box-shadow: 0 0 18px rgba(212,175,55,0.22);
-}
-
-.goog-te-gadget {
-  font-family: Arial, sans-serif !important;
-  font-size: 11px !important;
-  color: var(--gold) !important;
-}
-
-.goog-te-gadget span {
-  display: none !important;
-}
-
-.goog-te-combo {
-  background: var(--green-dark);
-  color: var(--gold);
-  border: 1px solid var(--gold);
-  padding: 5px;
-}
-
-/* REVEAL ANIMATION */
-.reveal {
-  opacity: 0;
-  transform: translateY(35px);
-  transition: opacity 0.9s ease, transform 0.9s ease;
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* MUTE BUTTON */
-#muteBtn {
-  position: fixed;
-  right: 18px;
-  bottom: 18px;
-  z-index: 9999;
-  width: 72px;
-  height: 42px;
-  border-radius: 24px;
-  border: 1px solid var(--gold);
-  background: rgba(6, 27, 20, 0.96);
-  color: var(--gold);
-  font-size: 12px;
-  cursor: pointer;
-  box-shadow: 0 0 20px rgba(212,175,55,0.25);
-  font-family: Arial, sans-serif;
-  letter-spacing: 1px;
-}
-
-#muteBtn:hover {
-  background: var(--gold);
-  color: var(--green-dark);
-}
-
-/* INTRO */
-#intro {
-  height: 100vh;
-  background:
-    radial-gradient(circle at center, rgba(212,175,55,0.16), transparent 32%),
-    radial-gradient(circle, var(--green-soft), var(--green-dark));
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 24px;
-}
-
-#vinyl {
-  width: min(280px, 70vw);
-  height: min(280px, 70vw);
-  border-radius: 50%;
-  object-fit: cover;
-  cursor: pointer;
-  box-shadow:
-    0 0 35px rgba(212,175,55,0.45),
-    0 0 90px rgba(212,175,55,0.18);
-  transition: filter 0.25s ease, transform 0.25s ease;
-  pointer-events: auto;
-}
-
-#vinyl:hover {
-  filter: brightness(1.1);
-  transform: scale(1.03);
-}
-
-#vinyl.spinning {
-  animation: spinVinyl 1.7s ease-in-out forwards;
-}
-
-@keyframes spinVinyl {
-  0% { transform: rotate(0deg) scale(1); }
-  70% { transform: rotate(900deg) scale(1.08); }
-  100% { transform: rotate(1080deg) scale(1); }
-}
-
-#introText {
-  margin-top: 26px;
-  color: var(--gold);
-  letter-spacing: 4px;
-  font-size: 14px;
-}
-
-#introSub {
-  margin-top: 12px;
-  max-width: 650px;
-  color: var(--cream);
-  opacity: 0.86;
-  font-style: italic;
-  line-height: 1.7;
-}
-
-/* SITE */
-#site {
-  display: none;
-  min-height: 100vh;
-  background:
-    radial-gradient(circle at top, rgba(212,175,55,0.08), transparent 28%),
-    var(--green-main);
-}
-
-/* HEADER */
-header {
-  position: sticky;
-  top: 0;
-  z-index: 500;
-  padding: 18px 7%;
-  background: rgba(6,27,20,0.92);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--line);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logoText {
-  color: var(--gold);
-  font-size: 24px;
-  letter-spacing: 5px;
-  font-weight: bold;
-  text-shadow: 0 0 14px rgba(212,175,55,0.25);
-}
-
-nav {
-  display: flex;
-  gap: 18px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-nav a {
-  text-decoration: none;
-  color: var(--cream);
-  font-size: 14px;
-  letter-spacing: 1px;
-}
-
-nav a:hover {
-  color: var(--gold);
-}
-
-/* HERO */
-.hero {
-  min-height: 88vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 90px 8%;
-  text-align: center;
-  border-bottom: 1px solid rgba(212,175,55,0.2);
-  background:
-    linear-gradient(rgba(6,27,20,0.10), rgba(6,27,20,0.78)),
-    radial-gradient(circle at center, rgba(212,175,55,0.14), transparent 35%);
-}
-
-.hero-inner {
-  max-width: 1000px;
-}
-
-.hero h1 {
-  margin: 0;
-  color: var(--gold);
-  font-size: clamp(56px, 10vw, 112px);
-  letter-spacing: clamp(5px, 1vw, 12px);
-  text-shadow:
-    0 0 18px rgba(212,175,55,0.22),
-    0 0 55px rgba(212,175,55,0.12);
-}
-
-.hero .motto {
-  margin-top: 20px;
-  font-size: clamp(20px, 3vw, 30px);
-  font-style: italic;
-  color: var(--gold-soft);
-}
-
-.hero p {
-  max-width: 840px;
-  margin: 28px auto 0;
-  font-size: 18px;
-  line-height: 1.9;
-}
-
-/* SECTIONS */
-section {
-  padding: 90px 8%;
-  border-bottom: 1px solid rgba(212,175,55,0.18);
-}
-
-.text-block {
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.text-block p {
-  font-size: 18px;
-  line-height: 1.95;
-  margin: 18px 0;
-}
-
-/* CARDS */
-.cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-top: 36px;
-}
-
-.card {
-  background:
-    linear-gradient(145deg, rgba(212,175,55,0.08), rgba(6,27,20,0.42));
-  border: 1px solid rgba(212,175,55,0.45);
-  box-shadow: 0 20px 45px rgba(0,0,0,0.22);
-  overflow: hidden;
-  min-height: 100%;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-}
-
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 28px 55px rgba(0,0,0,0.32), 0 0 30px rgba(212,175,55,0.12);
-  border-color: rgba(212,175,55,0.75);
-}
-
-.card img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border-bottom: 1px solid rgba(212,175,55,0.35);
-}
-
-.card-content {
-  padding: 24px;
-}
-
-.card h3 {
-  color: var(--gold);
-  font-size: 25px;
-  margin: 0 0 12px;
-}
-
-.card p {
-  color: var(--muted);
-  line-height: 1.75;
-  margin: 0;
-  font-size: 16px;
-}
-
-.caption {
-  margin-top: 12px;
-  font-size: 13px;
-  color: rgba(242,232,213,0.58);
-  font-style: italic;
-}
-
-/* FEATURED PROJECT */
-.featured {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 38px;
-  align-items: center;
-  max-width: 1200px;
-  margin: 40px auto 0;
-}
-
-.featured-img {
-  border: 1px solid rgba(212,175,55,0.45);
-  box-shadow: 0 25px 60px rgba(0,0,0,0.28);
-}
-
-.featured-img img {
-  width: 100%;
-  height: 430px;
-  object-fit: cover;
-}
-
-.featured-text {
-  border: 1px solid rgba(212,175,55,0.45);
-  padding: 34px;
-  background: rgba(6,27,20,0.45);
-}
-
-.featured-text h3 {
-  color: var(--gold);
-  font-size: 34px;
-  margin: 0 0 18px;
-}
-
-.featured-text p {
-  line-height: 1.85;
-  font-size: 17px;
-}
-
-/* VALUES */
-.values-list {
-  max-width: 900px;
-  margin: 30px auto 0;
-  display: grid;
-  gap: 16px;
-}
-
-.value-row {
-  border-left: 3px solid var(--gold);
-  padding: 18px 22px;
-  background: rgba(6,27,20,0.42);
-  line-height: 1.75;
-}
-
-.value-row strong {
-  color: var(--gold);
-}
-
-/* COUNTER */
-.counter-grid {
-  max-width: 1050px;
-  margin: 40px auto 0;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-}
-
-.counter-card {
-  border: 1px solid rgba(212,175,55,0.45);
-  background: rgba(6,27,20,0.52);
-  text-align: center;
-  padding: 28px 18px;
-  box-shadow: 0 0 25px rgba(0,0,0,0.18);
-}
-
-.counter-number {
-  font-size: 42px;
-  color: var(--gold);
-  text-shadow: 0 0 18px rgba(212,175,55,0.25);
-}
-
-.counter-label {
-  margin-top: 8px;
-  color: var(--muted);
-  font-size: 14px;
-  letter-spacing: 1px;
-}
-
-/* TIMELINE */
-.timeline {
-  max-width: 1000px;
-  margin: 40px auto 0;
-  display: grid;
-  gap: 18px;
-}
-
-.timeline-item {
-  border: 1px solid rgba(212,175,55,0.38);
-  background: rgba(6,27,20,0.42);
-  padding: 24px;
-}
-
-.timeline-item h3 {
-  color: var(--gold);
-  margin: 0 0 10px;
-}
-
-/* SUPPORT */
-.support {
-  background:
-    linear-gradient(135deg, rgba(212,175,55,0.12), rgba(6,27,20,0.25)),
-    var(--green-main);
-}
-
-/* CONTACT */
-.contact-box {
-  max-width: 760px;
-  margin: 35px auto 0;
-  border: 1px solid rgba(212,175,55,0.5);
-  background: rgba(6,27,20,0.45);
-  padding: 34px;
-  text-align: center;
-  line-height: 2.1;
-  font-size: 18px;
-}
-
-.contact-box strong {
-  color: var(--gold);
-}
-
-/* FOOTER */
-footer {
-  padding: 38px 8%;
-  text-align: center;
-  background: var(--green-dark);
-  border-top: 1px solid rgba(212,175,55,0.3);
-  color: rgba(242,232,213,0.75);
-}
-
-footer .footer-title {
-  color: var(--gold);
-  letter-spacing: 5px;
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-/* RESPONSIVE */
-@media (max-width: 980px) {
-  header {
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .cards,
-  .counter-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .featured {
-    grid-template-columns: 1fr;
-  }
-
-  .featured-img img {
-    height: 300px;
-  }
-}
-
-@media (max-width: 600px) {
-  nav {
-    gap: 10px;
-  }
-
-  nav a {
-    font-size: 12px;
-  }
-
-  section {
-    padding: 70px 6%;
-  }
-
-  .hero {
-    padding: 80px 6%;
-  }
-
-  #google_translate_element {
-    left: 10px;
-    bottom: 10px;
-  }
-
-  #muteBtn {
-    right: 10px;
-    bottom: 10px;
-  }
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Vedenism — Nature, Knowledge, Balance. A mission-led association concept focused on protecting nature, supporting science, education, awareness, and humanitarian values." />
+  <title>Vedenism | Nature • Knowledge • Balance</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #030805;
+      --bg-soft: #07140f;
+      --bg-card: rgba(8, 24, 17, 0.86);
+      --green: #0b2418;
+      --green-2: #123727;
+      --gold: #d4af37;
+      --gold-soft: #f2d47a;
+      --cream: #f5f0dd;
+      --muted: #c7bfa6;
+      --line: rgba(212, 175, 55, 0.38);
+      --shadow: 0 20px 70px rgba(0, 0, 0, 0.55);
+      --glow: 0 0 30px rgba(212, 175, 55, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", system-ui, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(28, 68, 45, 0.65), transparent 42%),
+        linear-gradient(180deg, #020503 0%, #07120d 45%, #030805 100%);
+      color: var(--cream);
+      overflow-x: hidden;
+      user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+      user-drag: none;
+      -webkit-user-drag: none;
+      pointer-events: none;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, a, input, textarea, select {
+      font-family: inherit;
+    }
+
+    .page-lock {
+      overflow: hidden;
+    }
+
+    /* Intro */
+    #introScreen {
+      position: fixed;
+      inset: 0;
+      z-index: 100000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(circle at center, rgba(20, 65, 42, 0.95), rgba(1, 7, 4, 0.98) 62%),
+        #020503;
+      transition: opacity 0.9s ease, visibility 0.9s ease;
+    }
+
+    #introScreen.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .intro-inner {
+      text-align: center;
+      padding: 32px;
+    }
+
+    .vinyl-wrap {
+      width: min(54vw, 260px);
+      aspect-ratio: 1;
+      margin: 0 auto 28px;
+      border-radius: 50%;
+      border: 2px solid rgba(212, 175, 55, 0.45);
+      box-shadow: 0 0 50px rgba(212, 175, 55, 0.2), inset 0 0 20px rgba(0, 0, 0, 0.6);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      animation: breathe 2.5s ease-in-out infinite;
+    }
+
+    .vinyl-wrap.spinning {
+      animation: spin 1.2s linear infinite;
+    }
+
+    .vinyl-wrap.spinning img {
+      animation: none;
+    }
+
+    .vinyl-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    .intro-title {
+      font-family: "Cinzel", serif;
+      letter-spacing: 8px;
+      color: var(--gold-soft);
+      text-shadow: var(--glow);
+      font-size: clamp(2.1rem, 7vw, 5.2rem);
+      margin-bottom: 10px;
+    }
+
+    .intro-subtitle {
+      color: var(--muted);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-size: 0.86rem;
+    }
+
+    .intro-hint {
+      margin-top: 20px;
+      color: rgba(245, 240, 221, 0.72);
+      font-size: 0.95rem;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes breathe {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.035); }
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(3, 8, 5, 0.78);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.22);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 180px;
+    }
+
+    .brand img {
+      width: 46px;
+      height: 46px;
+      object-fit: contain;
+      border-radius: 50%;
+      filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.35));
+    }
+
+    .brand span {
+      font-family: "Cinzel", serif;
+      letter-spacing: 3px;
+      font-weight: 800;
+      color: var(--gold-soft);
+    }
+
+    .desktop-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--cream);
+      font-size: 0.86rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .desktop-links a {
+      opacity: 0.82;
+      transition: 0.25s ease;
+    }
+
+    .desktop-links a:hover {
+      color: var(--gold-soft);
+      opacity: 1;
+      text-shadow: var(--glow);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .icon-btn, .menu-btn {
+      border: 1px solid rgba(212, 175, 55, 0.48);
+      background: rgba(7, 20, 15, 0.72);
+      color: var(--gold-soft);
+      border-radius: 999px;
+      padding: 10px 14px;
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .icon-btn:hover, .menu-btn:hover {
+      background: rgba(212, 175, 55, 0.12);
+      box-shadow: var(--glow);
+    }
+
+    .menu-btn {
+      display: none;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    /* Overlay Menu */
+    .overlay-menu {
+      position: fixed;
+      inset: 0;
+      z-index: 5000;
+      display: none;
+      grid-template-columns: minmax(280px, 42%) 1fr;
+      background: rgba(2, 5, 3, 0.96);
+    }
+
+    .overlay-menu.active {
+      display: grid;
+    }
+
+    .menu-left {
+      padding: 86px 38px 38px;
+      background:
+        radial-gradient(circle at top left, rgba(212, 175, 55, 0.12), transparent 35%),
+        rgba(4, 10, 7, 0.9);
+      border-right: 1px solid rgba(212, 175, 55, 0.22);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .menu-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .menu-list a {
+      font-family: "Cinzel", serif;
+      font-size: clamp(2rem, 5vw, 4.6rem);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: 2px;
+      color: rgba(245, 240, 221, 0.92);
+      transition: 0.25s ease;
+    }
+
+    .menu-list a:hover {
+      color: var(--gold-soft);
+      transform: translateX(8px);
+      text-shadow: var(--glow);
+    }
+
+    .join-box {
+      display: inline-flex;
+      align-items: center;
+      border: 3px solid var(--gold);
+      width: fit-content;
+      margin-top: 32px;
+    }
+
+    .join-box button {
+      padding: 15px 22px;
+      background: transparent;
+      color: var(--cream);
+      border: none;
+      border-left: 3px solid var(--gold);
+      font-weight: 900;
+      cursor: pointer;
+      letter-spacing: 1px;
+    }
+
+    .join-box .mini-logo {
+      width: 70px;
+      padding: 8px;
+    }
+
+    .menu-socials {
+      display: flex;
+      gap: 14px;
+      color: var(--gold-soft);
+      flex-wrap: wrap;
+      font-weight: 800;
+    }
+
+    .menu-right {
+      position: relative;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(4, 8, 5, 0.2), rgba(4, 8, 5, 0.78)),
+        url("images/nature.png") center/cover no-repeat;
+    }
+
+    .menu-right::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle, transparent 20%, rgba(0, 0, 0, 0.62) 82%);
+    }
+
+    .close-menu {
+      position: absolute;
+      right: 28px;
+      top: 28px;
+      z-index: 2;
+      width: 58px;
+      height: 58px;
+      background: var(--cream);
+      color: #020503;
+      border: none;
+      font-size: 2.4rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .menu-center-mark {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .menu-center-mark img {
+      width: min(32vw, 260px);
+      margin: 0 auto 18px;
+      filter: drop-shadow(0 0 26px rgba(212, 175, 55, 0.45));
+    }
+
+    .menu-center-mark h2 {
+      font-family: "Cinzel", serif;
+      color: var(--gold-soft);
+      font-size: clamp(2rem, 5vw, 4rem);
+      letter-spacing: 6px;
+    }
+
+    /* Utility */
+    .container {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 96px 0;
+      position: relative;
+    }
+
+    .section-title {
+      font-family: "Cinzel", serif;
+      color: var(--gold-soft);
+      font-size: clamp(2rem, 5vw, 4.2rem);
+      letter-spacing: 4px;
+      text-align: center;
+      margin-bottom: 16px;
+      text-shadow: var(--glow);
+    }
+
+    .section-kicker {
+      text-align: center;
+      color: var(--muted);
+      max-width: 790px;
+      margin: 0 auto 46px;
+      line-height: 1.8;
+      font-size: 1.04rem;
+    }
+
+    .gold-line {
+      width: 140px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 18px auto 28px;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding-top: 110px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(3, 8, 5, 0.35), rgba(3, 8, 5, 0.92)),
+        url("images/trees.png") center/cover no-repeat;
+      opacity: 0.42;
+      transform: scale(1.04);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 980px;
+      padding: 40px 0;
+    }
+
+    .hero-logo {
+      width: min(34vw, 230px);
+      margin: 0 auto 22px;
+      filter: drop-shadow(0 0 24px rgba(212, 175, 55, 0.42));
+      border-radius: 50%;
+    }
+
+    .hero h1 {
+      font-family: "Cinzel", serif;
+      font-size: clamp(3rem, 10vw, 8.6rem);
+      letter-spacing: clamp(5px, 1.5vw, 18px);
+      color: var(--gold-soft);
+      text-shadow: 0 0 28px rgba(212, 175, 55, 0.38), 0 10px 30px rgba(0, 0, 0, 0.75);
+    }
+
+    .hero-motto {
+      font-family: "Cinzel", serif;
+      font-size: clamp(1rem, 2.2vw, 1.55rem);
+      color: var(--cream);
+      margin-top: 18px;
+      letter-spacing: 1px;
+    }
+
+    .hero-values {
+      display: flex;
+      justify-content: center;
+      gap: 22px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      color: var(--gold-soft);
+      font-family: "Cinzel", serif;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    .hero-actions {
+      margin-top: 38px;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 24px;
+      border-radius: 999px;
+      border: 1px solid rgba(212, 175, 55, 0.64);
+      background: rgba(212, 175, 55, 0.12);
+      color: var(--gold-soft);
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--glow);
+      background: rgba(212, 175, 55, 0.18);
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, #b98a18, #f1d77a, #b98a18);
+      color: #06140f;
+      border: none;
+    }
+
+    /* Cards */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid rgba(212, 175, 55, 0.28);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: 0.35s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(212, 175, 55, 0.62);
+      box-shadow: var(--shadow), var(--glow);
+    }
+
+    .card-image {
+      height: 210px;
+      overflow: hidden;
+      background: var(--green);
+    }
+
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.5s ease;
+    }
+
+    .card:hover .card-image img {
+      transform: scale(1.06);
+    }
+
+    .card-content {
+      padding: 24px;
+    }
+
+    .card-content h3 {
+      font-family: "Cinzel", serif;
+      color: var(--gold-soft);
+      letter-spacing: 1.4px;
+      margin-bottom: 12px;
+      font-size: 1.22rem;
+    }
+
+    .card-content p {
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 0.97rem;
+    }
+
+    /* Split */
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 42px;
+      align-items: center;
+    }
+
+    .panel {
+      background: linear-gradient(145deg, rgba(8, 24, 17, 0.9), rgba(4, 10, 7, 0.94));
+      border: 1px solid rgba(212, 175, 55, 0.30);
+      border-radius: 28px;
+      padding: clamp(24px, 4vw, 46px);
+      box-shadow: var(--shadow);
+    }
+
+    .panel h2 {
+      font-family: "Cinzel", serif;
+      color: var(--gold-soft);
+      font-size: clamp(1.7rem, 4vw, 3.3rem);
+      margin-bottom: 18px;
+      letter-spacing: 2px;
+    }
+
+    .panel p {
+      color: var(--muted);
+      line-height: 1.85;
+      margin-bottom: 16px;
+    }
+
+    .image-frame {
+      border-radius: 30px;
+      overflow: hidden;
+      border: 1px solid rgba(212, 175, 55, 0.38);
+      box-shadow: var(--shadow), var(--glow);
+    }
+
+    .image-frame img {
+      width: 100%;
+      height: 460px;
+      object-fit: cover;
+    }
+
+    /* Tracker */
+    .tracker {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-top: 36px;
+    }
+
+    .stat {
+      text-align: center;
+      background: rgba(7, 20, 15, 0.78);
+      border: 1px solid rgba(212, 175, 55, 0.28);
+      border-radius: 22px;
+      padding: 26px 18px;
+    }
+
+    .stat strong {
+      display: block;
+      font-family: "Cinzel", serif;
+      color: var(--gold-soft);
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Store */
+    .store-showcase {
+      background:
+        radial-gradient(circle at center, rgba(212, 175, 55, 0.08), transparent 55%),
+        rgba(4, 10, 7, 0.84);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .store-image img {
+      width: 100%;
+      height: auto;
+    }
+
+    .store-content {
+      padding: 32px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .store-content h3 {
+      font-family: "Cinzel", serif;
+      color: var(--gold-soft);
+      font-size: clamp(1.6rem, 4vw, 3rem);
+      margin-bottom: 12px;
+    }
+
+    .store-content p {
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .coming-pill {
+      display: inline-flex;
+      width: fit-content;
+      margin-bottom: 14px;
+      padding: 8px 14px;
+      border: 1px solid rgba(212, 175, 55, 0.55);
+      border-radius: 999px;
+      color: var(--gold-soft);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 800;
+      font-size: 0.82rem;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(212, 175, 55, 0.24);
+      background: rgba(1, 4, 2, 0.92);
+      padding: 26px 0;
+    }
+
+    .footer-inner {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+      flex-wrap: wrap;
+      color: rgba(245, 240, 221, 0.78);
+      font-size: 0.9rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .copyright-link {
+      background: transparent;
+      border: none;
+      color: rgba(245, 240, 221, 0.78);
+      cursor: pointer;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+
+    .copyright-link:hover {
+      color: var(--gold-soft);
+      text-shadow: var(--glow);
+    }
+
+    .footer-links button,
+    .footer-links a {
+      background: transparent;
+      border: none;
+      color: rgba(245, 240, 221, 0.84);
+      cursor: pointer;
+      font-size: 0.9rem;
+      padding: 0;
+    }
+
+    .footer-links button:hover, .footer-links a:hover {
+      color: var(--gold-soft);
+    }
+
+    /* Floating */
+    .floating-tools {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 4000;
+      display: grid;
+      gap: 10px;
+    }
+
+    .floating-tools button, .floating-tools a {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: 1px solid rgba(212, 175, 55, 0.55);
+      background: rgba(7, 20, 15, 0.9);
+      color: var(--gold-soft);
+      cursor: pointer;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+      font-weight: 900;
+    }
+
+    .translate-box {
+      position: fixed;
+      right: 18px;
+      bottom: 78px;
+      left: auto;
+      z-index: 3500;
+      background: rgba(7, 20, 15, 0.92);
+      border: 1px solid rgba(212, 175, 55, 0.55);
+      border-radius: 16px;
+      padding: 10px 12px;
+      box-shadow: var(--shadow);
+    }
+
+    .translate-label {
+      display: block;
+      color: var(--gold-soft);
+      font-size: 0.72rem;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    #google_translate_element select {
+      background: #06140f;
+      color: var(--cream);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      border-radius: 8px;
+      padding: 6px;
+      max-width: 190px;
+    }
+
+    .goog-te-banner-frame.skiptranslate,
+    .goog-te-gadget-icon {
+      display: none !important;
+    }
+
+    body {
+      top: 0 !important;
+    }
+
+    .goog-te-gadget {
+      color: transparent !important;
+      font-size: 0 !important;
+    }
+
+    /* Modals */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.82);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      padding: 18px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-box {
+      width: min(92vw, 540px);
+      max-height: 86vh;
+      overflow-y: auto;
+      background: linear-gradient(145deg, #06140f, #0b2018);
+      border: 1px solid rgba(212, 175, 55, 0.65);
+      border-radius: 18px;
+      padding: 34px 28px;
+      text-align: center;
+      color: var(--cream);
+      box-shadow: 0 0 35px rgba(212, 175, 55, 0.25);
+      position: relative;
+    }
+
+    .modal-box.wide {
+      width: min(94vw, 760px);
+      text-align: left;
+    }
+
+    .modal-box h2 {
+      color: var(--gold-soft);
+      font-family: "Cinzel", serif;
+      font-size: 2rem;
+      margin-bottom: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .modal-box p, .modal-box li {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: #e8e0c8;
+      margin-bottom: 12px;
+    }
+
+    .modal-box ul {
+      padding-left: 18px;
+      margin-top: 10px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      background: transparent;
+      border: none;
+      color: var(--gold-soft);
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    .modal-button {
+      margin-top: 20px;
+      padding: 12px 26px;
+      border: 1px solid var(--gold);
+      background: transparent;
+      color: var(--gold-soft);
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 800;
+      letter-spacing: 1px;
+      transition: 0.25s ease;
+    }
+
+    .modal-button:hover {
+      background: var(--gold);
+      color: #07140f;
+      box-shadow: 0 0 18px rgba(212, 175, 55, 0.45);
+    }
+
+    /* Responsive */
+    @media (max-width: 920px) {
+      .desktop-links {
+        display: none;
+      }
+
+      .menu-btn {
+        display: inline-flex;
+      }
+
+      .cards, .tracker, .split, .store-content {
+        grid-template-columns: 1fr;
+      }
+
+      .overlay-menu {
+        grid-template-columns: 1fr;
+      }
+
+      .menu-right {
+        display: none;
+      }
+
+      .image-frame img {
+        height: 320px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .nav {
+        height: 66px;
+      }
+
+      .brand span {
+        display: none;
+      }
+
+      .section {
+        padding: 72px 0;
+      }
+
+      .hero-values {
+        letter-spacing: 2px;
+        gap: 12px;
+      }
+
+      .translate-box {
+        left: 10px;
+        bottom: 78px;
+        max-width: 190px;
+      }
+
+      .floating-tools {
+        right: 10px;
+        bottom: 10px;
+      }
+    }
+  </style>
 </head>
 
-<body class="no-scroll">
+<body class="page-lock">
+  <audio id="introAudio" src="intro.mp3" preload="auto"></audio>
 
-<div id="google_translate_element"></div>
-
-<button id="muteBtn" title="Mute / Unmute">SOUND</button>
-<audio id="sound" src="intro.mp3"></audio>
-
-<div id="intro">
-  <img id="vinyl" src="vinyl.png" alt="Vedenism vinyl seal">
-  <div id="introText">CLICK TO BEGIN</div>
-  <div id="introSub">Guided by Nature. Empowered by Knowledge. Driven by Balance.</div>
-</div>
-
-<div id="site">
-
-<header>
-  <div class="logoText">VEDENISM</div>
-  <nav>
-    <a href="#about">About</a>
-    <a href="#philosophy">Philosophy</a>
-    <a href="#mission">Mission</a>
-    <a href="#tracker">Tracker</a>
-    <a href="#projects">Projects</a>
-    <a href="#tree">Tree</a>
-    <a href="#education">Education</a>
-    <a href="#support">Support</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
-
-<main>
-
-<section class="hero reveal" id="home">
-  <div class="hero-inner">
-    <h1>VEDENISM</h1>
-    <div class="motto">Unity in Diversity, Harmony in Existence</div>
-
-    <p>
-      Vedenism is a nature-centered and knowledge-driven movement dedicated to protecting nature,
-      supporting education, preserving heritage, and promoting science-based awareness for present
-      and future generations.
-    </p>
-
-    <div class="button-row">
-      <a class="btn btn-primary" href="#mission">Explore the Mission</a>
-      <a class="btn" href="#support">Support Vedenism</a>
+  <div id="introScreen">
+    <div class="intro-inner">
+      <div class="vinyl-wrap" id="vinylButton" role="button" aria-label="Enter Vedenism website">
+        <img src="vinyl.png" alt="Vedenism vinyl intro" />
+      </div>
+      <div class="intro-title">VEDENISM</div>
+      <div class="intro-subtitle">Nature • Knowledge • Balance</div>
+      <div class="intro-hint">Click the emblem to enter</div>
     </div>
   </div>
-</section>
 
-<section id="about" class="reveal">
-  <h2 class="section-title">What is Vedenism?</h2>
-  <div class="divider"></div>
+  <header>
+    <nav class="nav">
+      <a href="#home" class="brand" aria-label="Vedenism home">
+        <img src="images/logo.png" alt="Vedenism logo" />
+        <span>VEDENISM</span>
+      </a>
 
-  <div class="text-block">
-    <p>
-      Vedenism is a philosophy and movement built around the relationship between humanity,
-      nature, knowledge, and balance. It sees the protection of the natural world not as a side issue,
-      but as a central responsibility of human civilization.
-    </p>
+      <div class="desktop-links">
+        <a href="#about">About</a>
+        <a href="#mission">Mission</a>
+        <a href="#values">Values</a>
+        <a href="#projects">Projects</a>
+        <a href="#store">Store</a>
+        <a href="#contact">Contact</a>
+      </div>
 
-    <p>
-      At its core, Vedenism values a life guided by nature, empowered by knowledge, and driven by balance.
-      It encourages people to think clearly, act responsibly, protect living beings, support education,
-      and contribute to society through constructive action.
-    </p>
+      <div class="nav-actions">
+        <button class="icon-btn" id="muteBtn" aria-label="Mute or unmute sound">🔊</button>
+        <button class="menu-btn" onclick="openMenu()">MENU</button>
+      </div>
+    </nav>
+  </header>
 
-    <p>
-      Vedenism does not exist only as an idea. It is meant to become visible through real projects:
-      planting trees, helping education, distributing meaningful books, promoting science-based awareness,
-      protecting animals, and preserving historical and cultural heritage.
-    </p>
-  </div>
-</section>
+  <div class="overlay-menu" id="overlayMenu">
+    <div class="menu-left">
+      <div>
+        <div class="menu-list">
+          <a href="#home" onclick="closeMenu()">Home</a>
+          <a href="#mission" onclick="closeMenu()">Mission</a>
+          <a href="#projects" onclick="closeMenu()">Projects</a>
+          <a href="#store" onclick="closeMenu()">Store</a>
+          <a href="#contact" onclick="closeMenu()">Contact</a>
+        </div>
 
-<section id="philosophy" class="reveal">
-  <h2 class="section-title">Core Philosophy</h2>
-  <p class="section-subtitle">
-    Vedenism is built upon three central pillars: Nature, Knowledge, and Balance.
-    Together, they form the foundation of its worldview.
-  </p>
+        <div class="join-box">
+          <img class="mini-logo" src="images/logo.png" alt="Vedenism small logo" />
+          <button onclick="openComingSoon()">JOIN NOW</button>
+          <button onclick="openComingSoon()">SIGN IN</button>
+        </div>
+      </div>
 
-  <div class="cards">
-    <div class="card">
-      <img src="images/nature.png" alt="Nature landscape">
-      <div class="card-content">
-        <h3>Nature</h3>
-        <p>
-          Nature is the living foundation of all existence. Vedenism promotes respect for forests,
-          rivers, animals, ecosystems, and the balance of life.
-        </p>
-        <div class="caption">Nature represents life, renewal, and responsibility.</div>
+      <div class="menu-socials">
+        <span>Nature</span>
+        <span>Science</span>
+        <span>Education</span>
+        <span>Humanity</span>
       </div>
     </div>
 
-    <div class="card">
-      <img src="images/knowledge.png" alt="Knowledge and learning">
-      <div class="card-content">
-        <h3>Knowledge</h3>
-        <p>
-          Knowledge allows humanity to understand reality, improve society, and rise beyond ignorance.
-          Vedenism supports education, reading, science, and wisdom.
-        </p>
-        <div class="caption">Knowledge represents enlightenment and human growth.</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="images/balance.png" alt="Balance between nature and progress">
-      <div class="card-content">
-        <h3>Balance</h3>
-        <p>
-          Balance means harmony between progress and preservation, individuality and community,
-          reason and emotion, humanity and nature.
-        </p>
-        <div class="caption">Balance represents harmony, responsibility, and stability.</div>
+    <div class="menu-right">
+      <button class="close-menu" onclick="closeMenu()" aria-label="Close menu">×</button>
+      <div class="menu-center-mark">
+        <img src="images/logo.png" alt="Vedenism emblem" />
+        <h2>VEDENISM</h2>
       </div>
     </div>
   </div>
-</section>
 
-<section id="mission" class="reveal">
-  <h2 class="section-title">Association Mission</h2>
-  <p class="section-subtitle">
-    The mission of the Vedenism association is to serve society and future generations through
-    environmental, educational, cultural, and science-based projects.
-  </p>
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-content fade-up">
+        <img class="hero-logo" src="images/logo.png" alt="Vedenism logo" />
+        <h1>VEDENISM</h1>
+        <p class="hero-motto">Unity in Diversity, Harmony in Existence</p>
+        <div class="hero-values">
+          <span>Nature</span><span>•</span><span>Knowledge</span><span>•</span><span>Balance</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn primary" href="#mission">Explore the Mission</a>
+          <a class="btn" href="https://buymeacoffee.com/skyheart" target="_blank" rel="noopener">Donate</a>
+        </div>
+      </div>
+    </section>
 
-  <div class="values-list">
-    <div class="value-row">
-      <strong>Protect Nature:</strong>
-      restore damaged environments, support reforestation, and raise awareness about ecological responsibility.
-    </div>
+    <section id="about" class="section">
+      <div class="container split">
+        <div class="panel fade-up">
+          <h2>What is Vedenism?</h2>
+          <p>Vedenism is a values-based movement built around nature, knowledge, balance, justice, harmony, and existence. Its public mission is practical: protect the natural world, support science-based awareness, strengthen education, and encourage a more responsible relationship between humanity and life.</p>
+          <p>As an association concept, Vedenism is not only a symbol or aesthetic identity. It is intended to become a civic platform for tree planting, environmental awareness, educational support, literacy-focused work, cultural development, and future humanitarian projects.</p>
+          <p>The core idea is simple: a better future requires both compassion and reason. Nature must be protected, knowledge must be shared, and society must be guided toward balance.</p>
+        </div>
+        <div class="image-frame fade-up">
+          <img src="images/nature.png" alt="Nature landscape" />
+        </div>
+      </div>
+    </section>
 
-    <div class="value-row">
-      <strong>Support Education:</strong>
-      encourage literacy, distribute books, and create opportunities for learning.
-    </div>
+    <section id="mission" class="section">
+      <div class="container">
+        <h2 class="section-title fade-up">Our Mission</h2>
+        <div class="gold-line fade-up"></div>
+        <p class="section-kicker fade-up">To protect nature, serve science, support education, and build awareness for a more balanced future.</p>
 
-    <div class="value-row">
-      <strong>Promote Science-Based Awareness:</strong>
-      support knowledge, reason, observation, and a constructive understanding of the world.
-    </div>
+        <div class="cards">
+          <article class="card fade-up">
+            <div class="card-image"><img src="images/trees.png" alt="Trees and reforestation" /></div>
+            <div class="card-content">
+              <h3>Planting Trees</h3>
+              <p>We aim to begin with tree planting projects, especially in areas damaged by wildfires. This creates visible action, public awareness, and a direct contribution to ecological recovery.</p>
+            </div>
+          </article>
 
-    <div class="value-row">
-      <strong>Protect Animals:</strong>
-      support animal welfare, wildlife protection, and ethical responsibility toward living beings.
-    </div>
+          <article class="card fade-up">
+            <div class="card-image"><img src="images/science.png" alt="Science-based awareness" /></div>
+            <div class="card-content">
+              <h3>Serving Science</h3>
+              <p>Vedenism promotes science-based awareness, responsible thinking, and public education against misinformation, ignorance, and harmful social habits.</p>
+            </div>
+          </article>
 
-    <div class="value-row">
-      <strong>Preserve Heritage:</strong>
-      value historical and cultural inheritance as part of humanity’s shared memory.
-    </div>
-  </div>
-</section>
+          <article class="card fade-up">
+            <div class="card-image"><img src="images/education.png" alt="Education support" /></div>
+            <div class="card-content">
+              <h3>Better Education</h3>
+              <p>Education is treated as a foundation for human dignity. Future projects may include book donations, literacy support, learning materials, and cultural education.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-<section id="tracker" class="reveal">
-  <h2 class="section-title">Project Tracker</h2>
-  <p class="section-subtitle">
-    A living tracker for Vedenism’s future impact. These numbers can be updated as real projects begin.
-  </p>
+    <section id="values" class="section">
+      <div class="container">
+        <h2 class="section-title fade-up">Values of Vedenism</h2>
+        <div class="gold-line fade-up"></div>
+        <p class="section-kicker fade-up">Guided by Nature. Empowered by Knowledge. Driven by Balance.</p>
 
-  <div class="counter-grid">
-    <div class="counter-card">
-      <div class="counter-number" data-target="0">0</div>
-      <div class="counter-label">TREES PLANTED</div>
-    </div>
+        <div class="cards">
+          <article class="card fade-up">
+            <div class="card-image"><img src="images/balance.png" alt="Balance and harmony" /></div>
+            <div class="card-content">
+              <h3>Balance</h3>
+              <p>Balance means avoiding extremism, protecting harmony, and making decisions with both reason and empathy.</p>
+            </div>
+          </article>
 
-    <div class="counter-card">
-      <div class="counter-number" data-target="0">0</div>
-      <div class="counter-label">BOOKS GIVEN</div>
-    </div>
+          <article class="card fade-up">
+            <div class="card-image"><img src="images/knowledge.png" alt="Knowledge and study" /></div>
+            <div class="card-content">
+              <h3>Knowledge</h3>
+              <p>Knowledge is the light that prevents society from falling into ignorance. Books, science, philosophy, and education are central to the mission.</p>
+            </div>
+          </article>
 
-    <div class="counter-card">
-      <div class="counter-number" data-target="0">0</div>
-      <div class="counter-label">VOLUNTEERS</div>
-    </div>
+          <article class="card fade-up">
+            <div class="card-image"><img src="images/animals.png" alt="Animals in forest" /></div>
+            <div class="card-content">
+              <h3>Life</h3>
+              <p>Nature and animals are not decorations of the world; they are part of the living system humanity depends on and must protect.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-    <div class="counter-card">
-      <div class="counter-number" data-target="1">0</div>
-      <div class="counter-label">ACTIVE PROJECTS</div>
-    </div>
-  </div>
-</section>
+    <section id="projects" class="section">
+      <div class="container split">
+        <div class="image-frame fade-up">
+          <img src="images/philosophy.png" alt="Philosophy and books" />
+        </div>
+        <div class="panel fade-up">
+          <h2>Project Path</h2>
+          <p><strong>Phase 1:</strong> Launch awareness through the website, cards, shirts, and a visible public identity.</p>
+          <p><strong>Phase 2:</strong> Begin nature-focused campaigns, especially tree planting in burned areas of Turkey.</p>
+          <p><strong>Phase 3:</strong> Expand toward literacy, book donations, science-based awareness, and educational support.</p>
+          <p><strong>Phase 4:</strong> Build a long-term platform that can grow internationally while keeping its roots in practical good works.</p>
 
-<section id="projects" class="reveal">
-  <h2 class="section-title">Our Missions in Action</h2>
-  <p class="section-subtitle">
-    Vedenism’s purpose becomes real through visible action. These missions represent the practical side
-    of the movement.
-  </p>
+          <div class="tracker">
+            <div class="stat"><strong id="treeCounter">0</strong><span>Trees Targeted</span></div>
+            <div class="stat"><strong>1</strong><span>Website</span></div>
+            <div class="stat"><strong>4</strong><span>Shirt Concepts</span></div>
+            <div class="stat"><strong>∞</strong><span>Future Work</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <div class="cards">
-    <div class="card">
-      <img src="images/trees.png" alt="Olive trees and reforestation">
-      <div class="card-content">
-        <h3>Tree Planting</h3>
-        <p>
-          Our first major project begins with planting trees in areas damaged by forest fires in Turkey.
-          Each tree represents renewal after destruction.
-        </p>
-        <div class="caption">Reforestation is the first step of the Tree of Knowledge Project.</div>
+    <section id="store" class="section">
+      <div class="container">
+        <h2 class="section-title fade-up">Store</h2>
+        <div class="gold-line fade-up"></div>
+        <p class="section-kicker fade-up">Donation shirts and symbolic items are planned for the future. For now, this section presents the concept and keeps the project prepared for expansion.</p>
+
+        <div class="store-showcase fade-up">
+          <div class="store-image">
+            <img src="images/donation-shirts.png" alt="Vedenism donation shirt concepts" />
+          </div>
+          <div class="store-content">
+            <div>
+              <span class="coming-pill">Coming Soon</span>
+              <h3>Vedenism Donation Shirts</h3>
+              <p>Future shirts may support environmental and educational projects. Designs are planned around forest green, black, ivory, gold print, angel emblems, and the main Vedenism symbol.</p>
+            </div>
+            <div>
+              <button class="btn primary" onclick="openComingSoon()">Join Now</button>
+              <button class="btn" onclick="openComingSoon()">Sign In</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container split">
+        <div class="panel fade-up">
+          <h2>Contact</h2>
+          <p><strong>Email:</strong> vedenism@hotmail.com</p>
+          <p><strong>Website:</strong> Vedenism Project GitHub Pages</p>
+          <p><strong>Public focus:</strong> Nature, science, education, awareness, and humanitarian work.</p>
+          <a class="btn primary" href="mailto:vedenism@hotmail.com">Send Email</a>
+        </div>
+        <div class="panel fade-up">
+          <h2>Support the Project</h2>
+          <p>Support may help future awareness work, design materials, website improvements, and eventual nature or education projects.</p>
+          <a class="btn" href="https://buymeacoffee.com/skyheart" target="_blank" rel="noopener">Donate via Buy Me a Coffee</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <button class="copyright-link" onclick="openTextModal('copyright')">© 2026 Vedenism Project. All rights reserved.</button>
+      <div class="footer-links">
+        <button onclick="openTextModal('terms')">Terms of Use</button>
+        <button onclick="openTextModal('privacy')">Privacy Policy</button>
+        <button onclick="openTextModal('cookies')">Cookies Policy</button>
+        <a href="mailto:vedenism@hotmail.com">Contact</a>
+        <button onclick="openTextModal('faq')">FAQ</button>
       </div>
     </div>
+  </footer>
 
-    <div class="card">
-      <img src="images/education.png" alt="Students in classroom">
-      <div class="card-content">
-        <h3>Education Support</h3>
-        <p>
-          Vedenism aims to support students, encourage reading, strengthen literacy, and promote access
-          to meaningful educational materials.
-        </p>
-        <div class="caption">Education creates conscious and capable future generations.</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="images/animals.png" alt="Deer in forest">
-      <div class="card-content">
-        <h3>Animal Protection</h3>
-        <p>
-          Protecting animals and wildlife is part of respecting the living world. Vedenism supports
-          compassion and responsibility toward all life.
-        </p>
-        <div class="caption">Animal protection reflects ethical responsibility toward nature.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="tree" class="reveal">
-  <h2 class="section-title">Tree of Knowledge Project</h2>
-  <p class="section-subtitle">
-    The Tree of Knowledge Project is the first symbolic and practical campaign of Vedenism.
-  </p>
-
-  <div class="featured">
-    <div class="featured-img">
-      <img src="images/trees.png" alt="Olive trees at sunset">
-    </div>
-
-    <div class="featured-text">
-      <h3>From Ashes to Wisdom</h3>
-      <p>
-        The project begins by supporting tree planting in burned areas. A forest fire destroys more than trees:
-        it harms ecosystems, animals, soil, memory, and the future of local communities.
-      </p>
-      <p>
-        By planting trees, Vedenism aims to restore nature while also spreading awareness about responsibility,
-        science, and environmental consciousness.
-      </p>
-      <p>
-        Each tree becomes a living symbol of knowledge, renewal, and hope.
-      </p>
-      <a class="btn btn-primary" href="https://buymeacoffee.com/skyheart" target="_blank">Support the Project</a>
-    </div>
-  </div>
-</section>
-
-<section id="education" class="reveal">
-  <h2 class="section-title">Books, Literacy and Knowledge</h2>
-  <p class="section-subtitle">
-    Vedenism believes that books can shape minds, strengthen society, and help people understand life,
-    ethics, history, science, and themselves.
-  </p>
-
-  <div class="text-block">
-    <p>
-      Future educational projects may include distributing meaningful books, supporting reading campaigns,
-      helping students access educational materials, and promoting works that encourage reflection,
-      responsibility, and wisdom.
-    </p>
-
-    <p>
-      Philosophical and literary classics such as Marcus Aurelius, Stoic writings, Shakespeare,
-      and other public-domain works may be used to support education and intellectual growth.
-    </p>
+  <div class="translate-box">
+    <span class="translate-label">Translate</span>
+    <div id="google_translate_element"></div>
   </div>
 
-  <div class="cards">
-    <div class="card">
-      <img src="images/philosophy.png" alt="Philosophy and classical thought">
-      <div class="card-content">
-        <h3>Philosophy</h3>
-        <p>
-          Philosophy helps people reflect on duty, discipline, ethics, mortality, resilience, and the meaning of life.
-        </p>
-        <div class="caption">Wisdom begins with reflection.</div>
-      </div>
-    </div>
+  <div class="floating-tools">
+    <a href="#home" aria-label="Back to top">↑</a>
+  </div>
 
-    <div class="card">
-      <img src="images/education.png" alt="Education and literacy">
-      <div class="card-content">
-        <h3>Literacy</h3>
-        <p>
-          Literacy opens the door to independence, opportunity, understanding, and participation in society.
-        </p>
-        <div class="caption">Reading is one of the foundations of freedom.</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="images/science.png" alt="Science and awareness">
-      <div class="card-content">
-        <h3>Science and Awareness</h3>
-        <p>
-          Science-based awareness helps society make better decisions about health, nature, technology, and the future.
-        </p>
-        <div class="caption">Knowledge must serve life, not destroy it.</div>
-      </div>
+  <div id="comingSoonModal" class="modal-overlay">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('comingSoonModal')">×</button>
+      <h2>Coming Soon</h2>
+      <p>Vedenism account features are not available yet.</p>
+      <p>In the future, this section may allow supporters to sign in, track orders, manage donations, and follow project updates.</p>
+      <button class="modal-button" onclick="closeModal('comingSoonModal')">Understood</button>
     </div>
   </div>
-</section>
 
-<section id="future" class="reveal">
-  <h2 class="section-title">Future Vision</h2>
-  <p class="section-subtitle">
-    Vedenism begins locally, but its vision is international.
-  </p>
-
-  <div class="timeline">
-    <div class="timeline-item">
-      <h3>Phase I — Environmental Action</h3>
-      <p>
-        Begin with tree planting, awareness campaigns, and public environmental responsibility.
-      </p>
-    </div>
-
-    <div class="timeline-item">
-      <h3>Phase II — Literacy and Books</h3>
-      <p>
-        Expand into book distribution, reading support, educational materials, and cultural learning.
-      </p>
-    </div>
-
-    <div class="timeline-item">
-      <h3>Phase III — Science and Education</h3>
-      <p>
-        Organize workshops, science awareness programs, school support, and public knowledge projects.
-      </p>
-    </div>
-
-    <div class="timeline-item">
-      <h3>Phase IV — International Growth</h3>
-      <p>
-        Build a global identity around nature, knowledge, balance, cooperation, and future generations.
-      </p>
+  <div id="textModal" class="modal-overlay">
+    <div class="modal-box wide">
+      <button class="modal-close" onclick="closeModal('textModal')">×</button>
+      <h2 id="textModalTitle">Information</h2>
+      <div id="textModalBody"></div>
+      <button class="modal-button" onclick="closeModal('textModal')">Close</button>
     </div>
   </div>
-</section>
 
-<section id="support" class="support reveal">
-  <h2 class="section-title">Support Vedenism</h2>
-  <p class="section-subtitle">
-    Donations help support future projects such as tree planting, educational materials,
-    book distribution, awareness campaigns, and the growth of Vedenism’s mission.
-  </p>
+  <script>
+    const introScreen = document.getElementById("introScreen");
+    const vinylButton = document.getElementById("vinylButton");
+    const introAudio = document.getElementById("introAudio");
+    const muteBtn = document.getElementById("muteBtn");
+    let muted = false;
 
-  <div class="button-row">
-    <a class="btn btn-primary" href="https://buymeacoffee.com/skyheart" target="_blank">
-      Support the Mission
-    </a>
-  </div>
-</section>
-
-<section id="contact" class="reveal">
-  <h2 class="section-title">Contact</h2>
-  <p class="section-subtitle">
-    For cooperation, projects, announcements, and general communication:
-  </p>
-
-  <div class="contact-box">
-    <div><strong>Email:</strong> vedenism@hotmail.com</div>
-    <div><strong>Website:</strong> www.vedenism.org</div>
-    <div><strong>Location:</strong> (Coming soon at your local area!) </div>
-  </div>
-</section>
-
-</main>
-
-<footer>
-  <div class="footer-title">VEDENISM</div>
-  <div>For Nature. For Knowledge. For Humanity.</div>
-  <div style="margin-top:12px;">Unity in Diversity, Harmony in Existence</div>
-</footer>
-
-</div>
-
-<script>
-const muteBtn = document.getElementById("muteBtn");
-const sound = document.getElementById("sound");
-const vinyl = document.getElementById("vinyl");
-const intro = document.getElementById("intro");
-const site = document.getElementById("site");
-
-let muted = false;
-let started = false;
-
-muteBtn.addEventListener("click", function () {
-  muted = !muted;
-  sound.muted = muted;
-  muteBtn.textContent = muted ? "Muted" : "Sound";
-});
-
-vinyl.addEventListener("click", function () {
-  if (started) return;
-  started = true;
-
-  vinyl.classList.add("spinning");
-
-  if (!muted) {
-    sound.currentTime = 0;
-    sound.play().catch(function () {});
-  }
-
-  setTimeout(function () {
-    intro.style.display = "none";
-    site.style.display = "block";
-    document.body.classList.remove("no-scroll");
-    revealOnScroll();
-    runCounters();
-  }, 1700);
-});
-
-/* REVEAL ANIMATIONS */
-const revealElements = document.querySelectorAll(".reveal");
-
-function revealOnScroll() {
-  revealElements.forEach(function(el) {
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight - 80) {
-      el.classList.add("visible");
+    function updateMuteIcons() {
+      if (!muteBtn || !introAudio) return;
+      muteBtn.textContent = muted ? "🔇" : "🔊";
+      introAudio.muted = muted;
     }
-  });
-}
 
-window.addEventListener("scroll", revealOnScroll);
+    function toggleMute() {
+      muted = !muted;
+      updateMuteIcons();
+    }
 
-/* COUNTERS */
-let countersStarted = false;
+    if (muteBtn) muteBtn.addEventListener("click", toggleMute);
 
-function runCounters() {
-  if (countersStarted) return;
+    if (vinylButton) {
+      vinylButton.addEventListener("click", async () => {
+        vinylButton.classList.add("spinning");
 
-  const tracker = document.getElementById("tracker");
-  if (!tracker) return;
+        try {
+          if (introAudio) {
+            introAudio.currentTime = 0;
+            introAudio.muted = muted;
+            await introAudio.play();
+          }
+        } catch (error) {}
 
-  const rect = tracker.getBoundingClientRect();
+        setTimeout(() => {
+          if (introScreen) introScreen.classList.add("hidden");
+          document.body.classList.remove("page-lock");
+        }, 1350);
+      });
+    }
 
-  if (rect.top < window.innerHeight) {
-    countersStarted = true;
+    function openMenu() {
+      document.getElementById("overlayMenu")?.classList.add("active");
+      document.body.classList.add("page-lock");
+    }
 
-    document.querySelectorAll(".counter-number").forEach(function(counter) {
-      const target = Number(counter.getAttribute("data-target"));
-      let current = 0;
-      const step = Math.max(1, Math.ceil(target / 60));
+    function closeMenu() {
+      document.getElementById("overlayMenu")?.classList.remove("active");
+      if (!introScreen || introScreen.classList.contains("hidden")) {
+        document.body.classList.remove("page-lock");
+      }
+    }
 
-      const interval = setInterval(function() {
-        current += step;
-        if (current >= target) {
-          current = target;
-          clearInterval(interval);
-        }
-        counter.textContent = current;
-      }, 25);
+    function openComingSoon() {
+      closeMenu();
+      document.getElementById("comingSoonModal")?.classList.add("active");
+    }
+
+    function closeModal(id) {
+      document.getElementById(id)?.classList.remove("active");
+    }
+
+    const modalContent = {
+      copyright: {
+        title: "Copyright Notice",
+        body: `<p>© 2026 Vedenism Project. All rights reserved.</p><p>The Vedenism name, emblem, logo, visual identity, written website content, shirt concepts, and related project materials are intended as protected project assets.</p><p>Unauthorized copying, impersonation, resale, or commercial use of the Vedenism identity is not permitted.</p>`
+      },
+      terms: {
+        title: "Terms of Use",
+        body: `<p>This website presents the Vedenism project, its values, visuals, future association mission, and planned public work.</p><p>Content is provided for informational and project-development purposes. Store, sign-in, account tracking, and product functions are currently marked as coming soon.</p>`
+      },
+      privacy: {
+        title: "Privacy Policy",
+        body: `<p>This static website does not currently operate a real user account system, payment system, or order tracking system.</p><p>If future forms, accounts, donations, or store functions are added, a more complete privacy policy should be published before collecting personal data.</p>`
+      },
+      cookies: {
+        title: "Cookies Policy",
+        body: `<p>This website may use third-party services such as Google Translate, which can use cookies or external scripts to provide translation features.</p><p>No custom advertising cookies are intentionally implemented in this current static version.</p>`
+      },
+      faq: {
+        title: "FAQ",
+        body: `<ul><li><strong>Is the store open?</strong> Not yet. Donation shirts are coming soon.</li><li><strong>Can I sign in?</strong> Not yet. Account features are planned for later.</li><li><strong>What is the mission?</strong> Nature protection, science-based awareness, education, tree planting, and humanitarian values.</li><li><strong>How can I support?</strong> Use the donation button or contact the project by email.</li></ul>`
+      }
+    };
+
+    function openTextModal(type) {
+      const content = modalContent[type] || modalContent.faq;
+      const title = document.getElementById("textModalTitle");
+      const body = document.getElementById("textModalBody");
+      const modal = document.getElementById("textModal");
+      if (!title || !body || !modal) return;
+      title.textContent = content.title;
+      body.innerHTML = content.body;
+      modal.classList.add("active");
+    }
+
+    document.querySelectorAll(".modal-overlay").forEach((overlay) => {
+      overlay.addEventListener("click", function(event) {
+        if (event.target === this) this.classList.remove("active");
+      });
     });
-  }
-}
 
-window.addEventListener("scroll", runCounters);
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add("visible");
+      });
+    }, { threshold: 0.12 });
 
-/* BASIC COPY / INSPECT DETERRENTS */
-document.addEventListener("contextmenu", function(e) {
-  e.preventDefault();
-});
+    document.querySelectorAll(".fade-up").forEach((el) => revealObserver.observe(el));
 
-document.addEventListener("selectstart", function(e) {
-  e.preventDefault();
-});
+    function animateCounter(id, target) {
+      const element = document.getElementById(id);
+      if (!element) return;
+      let value = 0;
+      const step = Math.max(1, Math.floor(target / 120));
+      const timer = setInterval(() => {
+        value += step;
+        if (value >= target) {
+          value = target;
+          clearInterval(timer);
+        }
+        element.textContent = value.toLocaleString();
+      }, 18);
+    }
 
-document.addEventListener("dragstart", function(e) {
-  e.preventDefault();
-});
+    const treeCounter = document.getElementById("treeCounter");
+    if (treeCounter) {
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animateCounter("treeCounter", 1000);
+            counterObserver.disconnect();
+          }
+        });
+      }, { threshold: 0.4 });
+      counterObserver.observe(treeCounter);
+    }
 
-document.addEventListener("keydown", function(e) {
-  if (
-    e.key === "F12" ||
-    (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key.toUpperCase())) ||
-    (e.ctrlKey && ["U", "S", "A"].includes(e.key.toUpperCase()))
-  ) {
-    e.preventDefault();
-  }
-});
+    document.addEventListener("contextmenu", (event) => {
+      event.preventDefault();
+      return false;
+    });
 
-/* GOOGLE TRANSLATE */
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement(
-    {
-      pageLanguage: "en",
-      includedLanguages: "tr,en,el,de,fr,es,it,nl,ar,ru,ja,zh-CN",
-      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-    },
-    "google_translate_element"
-  );
-}
-</script>
+    document.addEventListener("dragstart", (event) => {
+      event.preventDefault();
+      return false;
+    });
 
-<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    document.addEventListener("selectstart", (event) => {
+      const tag = event.target.tagName?.toLowerCase();
+      if (!["input", "textarea", "select"].includes(tag)) {
+        event.preventDefault();
+        return false;
+      }
+    });
 
+    document.addEventListener("keydown", (event) => {
+      const key = event.key.toLowerCase();
+
+      if (event.key === "Escape") {
+        closeMenu();
+        closeModal("comingSoonModal");
+        closeModal("textModal");
+      }
+
+      if (
+        event.key === "F12" ||
+        (event.ctrlKey && event.shiftKey && ["i", "j", "c"].includes(key)) ||
+        (event.ctrlKey && ["u", "s", "p"].includes(key)) ||
+        (event.metaKey && ["u", "s", "p"].includes(key))
+      ) {
+        event.preventDefault();
+        return false;
+      }
+    });
+
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: "en",
+        includedLanguages: "en,tr,de,fr,es,it,pt,ru,ar,el,ja,ko,zh-CN",
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, "google_translate_element");
+    }
+  </script>
+
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
