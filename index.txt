@@ -60,6 +60,7 @@ a {
   letter-spacing: 2px;
   text-align: center;
   margin: 0 0 18px;
+  text-shadow: 0 0 18px rgba(212,175,55,0.18);
 }
 
 .section-subtitle {
@@ -76,6 +77,7 @@ a {
   height: 1px;
   background: linear-gradient(to right, transparent, var(--gold), transparent);
   margin: 22px auto;
+  box-shadow: 0 0 16px rgba(212,175,55,0.35);
 }
 
 .btn {
@@ -87,11 +89,13 @@ a {
   letter-spacing: 1px;
   background: transparent;
   transition: 0.25s ease;
+  box-shadow: 0 0 16px rgba(212,175,55,0.12);
 }
 
 .btn:hover {
   background: var(--gold);
   color: var(--green-dark);
+  box-shadow: 0 0 28px rgba(212,175,55,0.35);
 }
 
 .btn-primary {
@@ -113,21 +117,65 @@ a {
   margin-top: 30px;
 }
 
+/* GOOGLE TRANSLATE */
+#google_translate_element {
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  z-index: 9999;
+  background: rgba(6,27,20,0.95);
+  border: 1px solid var(--gold);
+  padding: 6px;
+  border-radius: 8px;
+  box-shadow: 0 0 18px rgba(212,175,55,0.22);
+}
+
+.goog-te-gadget {
+  font-family: Arial, sans-serif !important;
+  font-size: 11px !important;
+  color: var(--gold) !important;
+}
+
+.goog-te-gadget span {
+  display: none !important;
+}
+
+.goog-te-combo {
+  background: var(--green-dark);
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  padding: 5px;
+}
+
+/* REVEAL ANIMATION */
+.reveal {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* MUTE BUTTON */
 #muteBtn {
   position: fixed;
   right: 18px;
   bottom: 18px;
   z-index: 9999;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
+  width: 72px;
+  height: 42px;
+  border-radius: 24px;
   border: 1px solid var(--gold);
-  background: rgba(6, 27, 20, 0.92);
+  background: rgba(6, 27, 20, 0.96);
   color: var(--gold);
-  font-size: 21px;
+  font-size: 12px;
   cursor: pointer;
   box-shadow: 0 0 20px rgba(212,175,55,0.25);
+  font-family: Arial, sans-serif;
+  letter-spacing: 1px;
 }
 
 #muteBtn:hover {
@@ -221,6 +269,7 @@ header {
   font-size: 24px;
   letter-spacing: 5px;
   font-weight: bold;
+  text-shadow: 0 0 14px rgba(212,175,55,0.25);
 }
 
 nav {
@@ -264,7 +313,9 @@ nav a:hover {
   color: var(--gold);
   font-size: clamp(56px, 10vw, 112px);
   letter-spacing: clamp(5px, 1vw, 12px);
-  text-shadow: 0 0 18px rgba(212,175,55,0.22);
+  text-shadow:
+    0 0 18px rgba(212,175,55,0.22),
+    0 0 55px rgba(212,175,55,0.12);
 }
 
 .hero .motto {
@@ -313,12 +364,13 @@ section {
   box-shadow: 0 20px 45px rgba(0,0,0,0.22);
   overflow: hidden;
   min-height: 100%;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 28px 55px rgba(0,0,0,0.32);
+  box-shadow: 0 28px 55px rgba(0,0,0,0.32), 0 0 30px rgba(212,175,55,0.12);
+  border-color: rgba(212,175,55,0.75);
 }
 
 .card img {
@@ -409,6 +461,36 @@ section {
   color: var(--gold);
 }
 
+/* COUNTER */
+.counter-grid {
+  max-width: 1050px;
+  margin: 40px auto 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.counter-card {
+  border: 1px solid rgba(212,175,55,0.45);
+  background: rgba(6,27,20,0.52);
+  text-align: center;
+  padding: 28px 18px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.18);
+}
+
+.counter-number {
+  font-size: 42px;
+  color: var(--gold);
+  text-shadow: 0 0 18px rgba(212,175,55,0.25);
+}
+
+.counter-label {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
 /* TIMELINE */
 .timeline {
   max-width: 1000px;
@@ -474,7 +556,8 @@ footer .footer-title {
     gap: 16px;
   }
 
-  .cards {
+  .cards,
+  .counter-grid {
     grid-template-columns: 1fr;
   }
 
@@ -503,13 +586,25 @@ footer .footer-title {
   .hero {
     padding: 80px 6%;
   }
+
+  #google_translate_element {
+    left: 10px;
+    bottom: 10px;
+  }
+
+  #muteBtn {
+    right: 10px;
+    bottom: 10px;
+  }
 }
 </style>
 </head>
 
 <body class="no-scroll">
 
-<button id="muteBtn">🔊</button>
+<div id="google_translate_element"></div>
+
+<button id="muteBtn" title="Mute / Unmute">SOUND</button>
 <audio id="sound" src="intro.mp3"></audio>
 
 <div id="intro">
@@ -526,6 +621,7 @@ footer .footer-title {
     <a href="#about">About</a>
     <a href="#philosophy">Philosophy</a>
     <a href="#mission">Mission</a>
+    <a href="#tracker">Tracker</a>
     <a href="#projects">Projects</a>
     <a href="#tree">Tree</a>
     <a href="#education">Education</a>
@@ -536,10 +632,11 @@ footer .footer-title {
 
 <main>
 
-<section class="hero" id="home">
+<section class="hero reveal" id="home">
   <div class="hero-inner">
     <h1>VEDENISM</h1>
     <div class="motto">Unity in Diversity, Harmony in Existence</div>
+
     <p>
       Vedenism is a nature-centered and knowledge-driven movement dedicated to protecting nature,
       supporting education, preserving heritage, and promoting science-based awareness for present
@@ -553,7 +650,7 @@ footer .footer-title {
   </div>
 </section>
 
-<section id="about">
+<section id="about" class="reveal">
   <h2 class="section-title">What is Vedenism?</h2>
   <div class="divider"></div>
 
@@ -578,7 +675,7 @@ footer .footer-title {
   </div>
 </section>
 
-<section id="philosophy">
+<section id="philosophy" class="reveal">
   <h2 class="section-title">Core Philosophy</h2>
   <p class="section-subtitle">
     Vedenism is built upon three central pillars: Nature, Knowledge, and Balance.
@@ -599,7 +696,7 @@ footer .footer-title {
     </div>
 
     <div class="card">
-      <img src="images/knowledge.png" alt="Stoic knowledge and books">
+      <img src="images/knowledge.png" alt="Knowledge and learning">
       <div class="card-content">
         <h3>Knowledge</h3>
         <p>
@@ -624,7 +721,7 @@ footer .footer-title {
   </div>
 </section>
 
-<section id="mission">
+<section id="mission" class="reveal">
   <h2 class="section-title">Association Mission</h2>
   <p class="section-subtitle">
     The mission of the Vedenism association is to serve society and future generations through
@@ -654,15 +751,44 @@ footer .footer-title {
 
     <div class="value-row">
       <strong>Preserve Heritage:</strong>
-      value historical and cultural inheritance as part of humanityâ€™s shared memory.
+      value historical and cultural inheritance as part of humanity’s shared memory.
     </div>
   </div>
 </section>
 
-<section id="projects">
+<section id="tracker" class="reveal">
+  <h2 class="section-title">Project Tracker</h2>
+  <p class="section-subtitle">
+    A living tracker for Vedenism’s future impact. These numbers can be updated as real projects begin.
+  </p>
+
+  <div class="counter-grid">
+    <div class="counter-card">
+      <div class="counter-number" data-target="0">0</div>
+      <div class="counter-label">TREES PLANTED</div>
+    </div>
+
+    <div class="counter-card">
+      <div class="counter-number" data-target="0">0</div>
+      <div class="counter-label">BOOKS GIVEN</div>
+    </div>
+
+    <div class="counter-card">
+      <div class="counter-number" data-target="0">0</div>
+      <div class="counter-label">VOLUNTEERS</div>
+    </div>
+
+    <div class="counter-card">
+      <div class="counter-number" data-target="1">0</div>
+      <div class="counter-label">ACTIVE PROJECTS</div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="reveal">
   <h2 class="section-title">Our Missions in Action</h2>
   <p class="section-subtitle">
-    Vedenismâ€™s purpose becomes real through visible action. These missions represent the practical side
+    Vedenism’s purpose becomes real through visible action. These missions represent the practical side
     of the movement.
   </p>
 
@@ -705,7 +831,7 @@ footer .footer-title {
   </div>
 </section>
 
-<section id="tree">
+<section id="tree" class="reveal">
   <h2 class="section-title">Tree of Knowledge Project</h2>
   <p class="section-subtitle">
     The Tree of Knowledge Project is the first symbolic and practical campaign of Vedenism.
@@ -734,7 +860,7 @@ footer .footer-title {
   </div>
 </section>
 
-<section id="education">
+<section id="education" class="reveal">
   <h2 class="section-title">Books, Literacy and Knowledge</h2>
   <p class="section-subtitle">
     Vedenism believes that books can shape minds, strengthen society, and help people understand life,
@@ -756,7 +882,7 @@ footer .footer-title {
 
   <div class="cards">
     <div class="card">
-      <img src="images/philosophy.png" alt="Philosophy, wisdom and classical thought">>
+      <img src="images/philosophy.png" alt="Philosophy and classical thought">
       <div class="card-content">
         <h3>Philosophy</h3>
         <p>
@@ -778,7 +904,7 @@ footer .footer-title {
     </div>
 
     <div class="card">
-      <img src="images/science.png" alt="Scientific research and knowledge">
+      <img src="images/science.png" alt="Science and awareness">
       <div class="card-content">
         <h3>Science and Awareness</h3>
         <p>
@@ -790,7 +916,7 @@ footer .footer-title {
   </div>
 </section>
 
-<section id="future">
+<section id="future" class="reveal">
   <h2 class="section-title">Future Vision</h2>
   <p class="section-subtitle">
     Vedenism begins locally, but its vision is international.
@@ -798,28 +924,28 @@ footer .footer-title {
 
   <div class="timeline">
     <div class="timeline-item">
-      <h3>Phase I Environmental Action</h3>
+      <h3>Phase I — Environmental Action</h3>
       <p>
         Begin with tree planting, awareness campaigns, and public environmental responsibility.
       </p>
     </div>
 
     <div class="timeline-item">
-      <h3>Phase II Literacy and Books</h3>
+      <h3>Phase II — Literacy and Books</h3>
       <p>
         Expand into book distribution, reading support, educational materials, and cultural learning.
       </p>
     </div>
 
     <div class="timeline-item">
-      <h3>Phase III Science and Education</h3>
+      <h3>Phase III — Science and Education</h3>
       <p>
         Organize workshops, science awareness programs, school support, and public knowledge projects.
       </p>
     </div>
 
     <div class="timeline-item">
-      <h3>Phase IV International Growth</h3>
+      <h3>Phase IV — International Growth</h3>
       <p>
         Build a global identity around nature, knowledge, balance, cooperation, and future generations.
       </p>
@@ -827,11 +953,11 @@ footer .footer-title {
   </div>
 </section>
 
-<section id="support" class="support">
+<section id="support" class="support reveal">
   <h2 class="section-title">Support Vedenism</h2>
   <p class="section-subtitle">
     Donations help support future projects such as tree planting, educational materials,
-    book distribution, awareness campaigns, and the growth of Vedenism's mission.
+    book distribution, awareness campaigns, and the growth of Vedenism’s mission.
   </p>
 
   <div class="button-row">
@@ -841,7 +967,7 @@ footer .footer-title {
   </div>
 </section>
 
-<section id="contact">
+<section id="contact" class="reveal">
   <h2 class="section-title">Contact</h2>
   <p class="section-subtitle">
     For cooperation, projects, announcements, and general communication:
@@ -849,9 +975,8 @@ footer .footer-title {
 
   <div class="contact-box">
     <div><strong>Email:</strong> vedenism@hotmail.com</div>
-    <div><strong>Website:</strong> vedenism-project.github.io
-</div>
-    <div><strong>Location:</strong> Luleburgaz, Kirklareli, Turkiye</div>
+    <div><strong>Website:</strong> www.vedenism.org</div>
+    <div><strong>Location:</strong> (Coming soon at your local area!) </div>
   </div>
 </section>
 
@@ -878,7 +1003,7 @@ let started = false;
 muteBtn.addEventListener("click", function () {
   muted = !muted;
   sound.muted = muted;
-  muteBtn.textContent = muted ? "🔇" : "🔊";
+  muteBtn.textContent = muted ? "Muted" : "Sound";
 });
 
 vinyl.addEventListener("click", function () {
@@ -896,8 +1021,57 @@ vinyl.addEventListener("click", function () {
     intro.style.display = "none";
     site.style.display = "block";
     document.body.classList.remove("no-scroll");
+    revealOnScroll();
+    runCounters();
   }, 1700);
 });
+
+/* REVEAL ANIMATIONS */
+const revealElements = document.querySelectorAll(".reveal");
+
+function revealOnScroll() {
+  revealElements.forEach(function(el) {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 80) {
+      el.classList.add("visible");
+    }
+  });
+}
+
+window.addEventListener("scroll", revealOnScroll);
+
+/* COUNTERS */
+let countersStarted = false;
+
+function runCounters() {
+  if (countersStarted) return;
+
+  const tracker = document.getElementById("tracker");
+  if (!tracker) return;
+
+  const rect = tracker.getBoundingClientRect();
+
+  if (rect.top < window.innerHeight) {
+    countersStarted = true;
+
+    document.querySelectorAll(".counter-number").forEach(function(counter) {
+      const target = Number(counter.getAttribute("data-target"));
+      let current = 0;
+      const step = Math.max(1, Math.ceil(target / 60));
+
+      const interval = setInterval(function() {
+        current += step;
+        if (current >= target) {
+          current = target;
+          clearInterval(interval);
+        }
+        counter.textContent = current;
+      }, 25);
+    });
+  }
+}
+
+window.addEventListener("scroll", runCounters);
 
 /* BASIC COPY / INSPECT DETERRENTS */
 document.addEventListener("contextmenu", function(e) {
@@ -921,7 +1095,21 @@ document.addEventListener("keydown", function(e) {
     e.preventDefault();
   }
 });
+
+/* GOOGLE TRANSLATE */
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement(
+    {
+      pageLanguage: "en",
+      includedLanguages: "tr,en,el,de,fr,es,it,nl,ar,ru,ja,zh-CN",
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    },
+    "google_translate_element"
+  );
+}
 </script>
+
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>
 </html>
