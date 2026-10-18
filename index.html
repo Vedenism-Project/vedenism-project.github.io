@@ -1466,10 +1466,26 @@
       });
     });
 
+    document.addEventListener("contextmenu", (event) => {
+      event.preventDefault();
+    });
+
     document.addEventListener("keydown", (event) => {
+      const key = event.key.toLowerCase();
+
       if (event.key === "Escape") {
         closeMenu();
         closeModal("textModal");
+      }
+
+      if (
+        event.key === "F12" ||
+        (event.ctrlKey && event.shiftKey && ["i", "j", "c"].includes(key)) ||
+        (event.ctrlKey && ["u", "s"].includes(key)) ||
+        (event.metaKey && event.altKey && ["i", "j", "c", "u"].includes(key)) ||
+        (event.metaKey && ["u", "s"].includes(key))
+      ) {
+        event.preventDefault();
       }
     });
 
