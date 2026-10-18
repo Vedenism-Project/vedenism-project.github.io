@@ -9,11 +9,11 @@
   <meta property="og:image" content="images/logo.png" />
   <title>Vedenism | Nature • Knowledge • Balance</title>
   <link rel="icon" href="images/logo.png" />
- 
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
- 
+
   <style>
     :root {
       --bg: #030805;
@@ -29,17 +29,17 @@
       --shadow: 0 20px 70px rgba(0, 0, 0, 0.55);
       --glow: 0 0 30px rgba(212, 175, 55, 0.28);
     }
- 
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
- 
+
     html {
       scroll-behavior: smooth;
     }
- 
+
     body {
       font-family: "Inter", system-ui, sans-serif;
       background:
@@ -48,25 +48,25 @@
       color: var(--cream);
       overflow-x: hidden;
     }
- 
+
     img {
       max-width: 100%;
       display: block;
     }
- 
+
     a {
       color: inherit;
       text-decoration: none;
     }
- 
+
     button, a, input, textarea, select {
       font-family: inherit;
     }
- 
+
     .page-lock {
       overflow: hidden;
     }
- 
+
     /* Intro */
     #introScreen {
       position: fixed;
@@ -80,18 +80,18 @@
         #020503;
       transition: opacity 0.9s ease, visibility 0.9s ease;
     }
- 
+
     #introScreen.hidden {
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
     }
- 
+
     .intro-inner {
       text-align: center;
       padding: 32px;
     }
- 
+
     .vinyl-wrap {
       width: min(54vw, 260px);
       aspect-ratio: 1;
@@ -104,22 +104,22 @@
       cursor: pointer;
       animation: breathe 2.5s ease-in-out infinite;
     }
- 
+
     .vinyl-wrap.spinning {
       animation: spin 1.2s linear infinite;
     }
- 
+
     .vinyl-wrap.spinning img {
       animation: none;
     }
- 
+
     .vinyl-wrap img {
       width: 100%;
       height: 100%;
       object-fit: contain;
       border-radius: 50%;
     }
- 
+
     .intro-title {
       font-family: "Cinzel", serif;
       letter-spacing: 8px;
@@ -128,20 +128,20 @@
       font-size: clamp(2.1rem, 7vw, 5.2rem);
       margin-bottom: 10px;
     }
- 
+
     .intro-subtitle {
       color: var(--muted);
       letter-spacing: 4px;
       text-transform: uppercase;
       font-size: 0.86rem;
     }
- 
+
     .intro-hint {
       margin-top: 20px;
       color: rgba(245, 240, 221, 0.72);
       font-size: 0.95rem;
     }
- 
+
     .skip-intro {
       margin-top: 18px;
       background: transparent;
@@ -154,16 +154,16 @@
       text-decoration: underline;
       text-underline-offset: 4px;
     }
- 
+
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
- 
+
     @keyframes breathe {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.035); }
     }
- 
+
     /* Header */
     header {
       position: fixed;
@@ -175,7 +175,7 @@
       border-bottom: 1px solid rgba(212, 175, 55, 0.22);
       backdrop-filter: blur(14px);
     }
- 
+
     .nav {
       width: min(1180px, calc(100% - 32px));
       margin: 0 auto;
@@ -185,14 +185,14 @@
       justify-content: space-between;
       gap: 22px;
     }
- 
+
     .brand {
       display: flex;
       align-items: center;
       gap: 12px;
       min-width: 180px;
     }
- 
+
     .brand img {
       width: 46px;
       height: 46px;
@@ -200,14 +200,14 @@
       border-radius: 50%;
       filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.35));
     }
- 
+
     .brand span {
       font-family: "Cinzel", serif;
       letter-spacing: 3px;
       font-weight: 800;
       color: var(--gold-soft);
     }
- 
+
     .desktop-links {
       display: flex;
       align-items: center;
@@ -217,24 +217,24 @@
       letter-spacing: 1px;
       text-transform: uppercase;
     }
- 
+
     .desktop-links a {
       opacity: 0.82;
       transition: 0.25s ease;
     }
- 
+
     .desktop-links a:hover {
       color: var(--gold-soft);
       opacity: 1;
       text-shadow: var(--glow);
     }
- 
+
     .nav-actions {
       display: flex;
       align-items: center;
       gap: 10px;
     }
- 
+
     .icon-btn, .menu-btn {
       border: 1px solid rgba(212, 175, 55, 0.48);
       background: rgba(7, 20, 15, 0.72);
@@ -244,18 +244,18 @@
       cursor: pointer;
       transition: 0.25s ease;
     }
- 
+
     .icon-btn:hover, .menu-btn:hover {
       background: rgba(212, 175, 55, 0.12);
       box-shadow: var(--glow);
     }
- 
+
     .menu-btn {
       display: none;
       font-weight: 800;
       letter-spacing: 1px;
     }
- 
+
     /* Overlay Menu */
     .overlay-menu {
       position: fixed;
@@ -265,11 +265,11 @@
       grid-template-columns: minmax(280px, 42%) 1fr;
       background: rgba(2, 5, 3, 0.96);
     }
- 
+
     .overlay-menu.active {
       display: grid;
     }
- 
+
     .menu-left {
       padding: 86px 38px 38px;
       background:
@@ -281,12 +281,12 @@
       justify-content: space-between;
       overflow-y: auto;
     }
- 
+
     .menu-list {
       display: grid;
       gap: 16px;
     }
- 
+
     .menu-list a {
       font-family: "Cinzel", serif;
       font-size: clamp(1.8rem, 4.4vw, 3.6rem);
@@ -296,13 +296,13 @@
       color: rgba(245, 240, 221, 0.92);
       transition: 0.25s ease;
     }
- 
+
     .menu-list a:hover {
       color: var(--gold-soft);
       transform: translateX(8px);
       text-shadow: var(--glow);
     }
- 
+
     .menu-socials {
       display: flex;
       gap: 14px;
@@ -311,7 +311,7 @@
       font-weight: 800;
       margin-top: 28px;
     }
- 
+
     .menu-right {
       position: relative;
       display: grid;
@@ -321,14 +321,14 @@
         linear-gradient(rgba(4, 8, 5, 0.2), rgba(4, 8, 5, 0.78)),
         url("images/nature.png") center/cover no-repeat;
     }
- 
+
     .menu-right::after {
       content: "";
       position: absolute;
       inset: 0;
       background: radial-gradient(circle, transparent 20%, rgba(0, 0, 0, 0.62) 82%);
     }
- 
+
     .close-menu {
       position: absolute;
       right: 28px;
@@ -343,37 +343,37 @@
       line-height: 1;
       cursor: pointer;
     }
- 
+
     .menu-center-mark {
       position: relative;
       z-index: 2;
       text-align: center;
     }
- 
+
     .menu-center-mark img {
       width: min(32vw, 260px);
       margin: 0 auto 18px;
       filter: drop-shadow(0 0 26px rgba(212, 175, 55, 0.45));
     }
- 
+
     .menu-center-mark h2 {
       font-family: "Cinzel", serif;
       color: var(--gold-soft);
       font-size: clamp(2rem, 5vw, 4rem);
       letter-spacing: 6px;
     }
- 
+
     /* Utility */
     .container {
       width: min(1180px, calc(100% - 32px));
       margin: 0 auto;
     }
- 
+
     .section {
       padding: 96px 0;
       position: relative;
     }
- 
+
     .section-title {
       font-family: "Cinzel", serif;
       color: var(--gold-soft);
@@ -383,7 +383,7 @@
       margin-bottom: 16px;
       text-shadow: var(--glow);
     }
- 
+
     .section-kicker {
       text-align: center;
       color: var(--muted);
@@ -392,25 +392,25 @@
       line-height: 1.8;
       font-size: 1.04rem;
     }
- 
+
     .gold-line {
       width: 140px;
       height: 1px;
       background: linear-gradient(90deg, transparent, var(--gold), transparent);
       margin: 18px auto 28px;
     }
- 
+
     .fade-up {
       opacity: 0;
       transform: translateY(32px);
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
- 
+
     .fade-up.visible {
       opacity: 1;
       transform: translateY(0);
     }
- 
+
     /* Hero */
     .hero {
       min-height: 100vh;
@@ -420,7 +420,7 @@
       position: relative;
       overflow: hidden;
     }
- 
+
     .hero::before {
       content: "";
       position: absolute;
@@ -431,7 +431,7 @@
       opacity: 0.42;
       transform: scale(1.04);
     }
- 
+
     .hero-content {
       position: relative;
       z-index: 1;
@@ -439,14 +439,14 @@
       max-width: 980px;
       padding: 40px 0;
     }
- 
+
     .hero-logo {
       width: min(34vw, 230px);
       margin: 0 auto 22px;
       filter: drop-shadow(0 0 24px rgba(212, 175, 55, 0.42));
       border-radius: 50%;
     }
- 
+
     .hero h1 {
       font-family: "Cinzel", serif;
       font-size: clamp(3rem, 10vw, 8.6rem);
@@ -454,7 +454,7 @@
       color: var(--gold-soft);
       text-shadow: 0 0 28px rgba(212, 175, 55, 0.38), 0 10px 30px rgba(0, 0, 0, 0.75);
     }
- 
+
     .hero-motto {
       font-family: "Cinzel", serif;
       font-size: clamp(1rem, 2.2vw, 1.55rem);
@@ -462,7 +462,7 @@
       margin-top: 18px;
       letter-spacing: 1px;
     }
- 
+
     .hero-line {
       max-width: 720px;
       margin: 16px auto 0;
@@ -470,7 +470,7 @@
       line-height: 1.75;
       font-size: 1.02rem;
     }
- 
+
     .hero-values {
       display: flex;
       justify-content: center;
@@ -482,7 +482,7 @@
       letter-spacing: 4px;
       text-transform: uppercase;
     }
- 
+
     .hero-actions {
       margin-top: 38px;
       display: flex;
@@ -490,7 +490,7 @@
       gap: 16px;
       flex-wrap: wrap;
     }
- 
+
     .btn {
       display: inline-flex;
       align-items: center;
@@ -507,26 +507,26 @@
       cursor: pointer;
       transition: 0.25s ease;
     }
- 
+
     .btn:hover {
       transform: translateY(-3px);
       box-shadow: var(--glow);
       background: rgba(212, 175, 55, 0.18);
     }
- 
+
     .btn.primary {
       background: linear-gradient(135deg, #b98a18, #f1d77a, #b98a18);
       color: #06140f;
       border: none;
     }
- 
+
     /* Cards */
     .cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 22px;
     }
- 
+
     .card {
       background: var(--bg-card);
       border: 1px solid rgba(212, 175, 55, 0.28);
@@ -535,34 +535,34 @@
       box-shadow: var(--shadow);
       transition: 0.35s ease;
     }
- 
+
     .card:hover {
       transform: translateY(-7px);
       border-color: rgba(212, 175, 55, 0.62);
       box-shadow: var(--shadow), var(--glow);
     }
- 
+
     .card-image {
       height: 210px;
       overflow: hidden;
       background: var(--green);
     }
- 
+
     .card-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: 0.5s ease;
     }
- 
+
     .card:hover .card-image img {
       transform: scale(1.06);
     }
- 
+
     .card-content {
       padding: 24px;
     }
- 
+
     .card-content h3 {
       font-family: "Cinzel", serif;
       color: var(--gold-soft);
@@ -570,13 +570,13 @@
       margin-bottom: 12px;
       font-size: 1.22rem;
     }
- 
+
     .card-content p {
       color: var(--muted);
       line-height: 1.75;
       font-size: 0.97rem;
     }
- 
+
     /* Split */
     .split {
       display: grid;
@@ -584,7 +584,7 @@
       gap: 42px;
       align-items: center;
     }
- 
+
     .panel {
       background: linear-gradient(145deg, rgba(8, 24, 17, 0.9), rgba(4, 10, 7, 0.94));
       border: 1px solid rgba(212, 175, 55, 0.30);
@@ -592,7 +592,7 @@
       padding: clamp(24px, 4vw, 46px);
       box-shadow: var(--shadow);
     }
- 
+
     .panel h2 {
       font-family: "Cinzel", serif;
       color: var(--gold-soft);
@@ -600,19 +600,19 @@
       margin-bottom: 18px;
       letter-spacing: 2px;
     }
- 
+
     .panel p {
       color: var(--muted);
       line-height: 1.85;
       margin-bottom: 16px;
     }
- 
+
     .panel ol {
       color: var(--muted);
       line-height: 1.85;
       margin: 0 0 16px 22px;
     }
- 
+
     .panel .quote {
       border-left: 2px solid var(--gold);
       padding-left: 16px;
@@ -621,20 +621,20 @@
       line-height: 1.7;
       margin: 8px 0 18px;
     }
- 
+
     .image-frame {
       border-radius: 30px;
       overflow: hidden;
       border: 1px solid rgba(212, 175, 55, 0.38);
       box-shadow: var(--shadow), var(--glow);
     }
- 
+
     .image-frame img {
       width: 100%;
       height: 460px;
       object-fit: cover;
     }
- 
+
     /* Tracker */
     .tracker {
       display: grid;
@@ -642,7 +642,7 @@
       gap: 18px;
       margin-top: 36px;
     }
- 
+
     .stat {
       text-align: center;
       background: rgba(7, 20, 15, 0.78);
@@ -650,7 +650,7 @@
       border-radius: 22px;
       padding: 26px 18px;
     }
- 
+
     .stat strong {
       display: block;
       font-family: "Cinzel", serif;
@@ -658,14 +658,14 @@
       font-size: 2rem;
       margin-bottom: 8px;
     }
- 
+
     .stat span {
       color: var(--muted);
       font-size: 0.9rem;
       text-transform: uppercase;
       letter-spacing: 1px;
     }
- 
+
     /* Store */
     .store-showcase {
       background:
@@ -676,12 +676,12 @@
       overflow: hidden;
       box-shadow: var(--shadow);
     }
- 
+
     .store-image img {
       width: 100%;
       height: auto;
     }
- 
+
     .store-content {
       padding: 32px;
       display: grid;
@@ -689,19 +689,19 @@
       gap: 28px;
       align-items: center;
     }
- 
+
     .store-content h3 {
       font-family: "Cinzel", serif;
       color: var(--gold-soft);
       font-size: clamp(1.6rem, 4vw, 3rem);
       margin-bottom: 12px;
     }
- 
+
     .store-content p {
       color: var(--muted);
       line-height: 1.8;
     }
- 
+
     .coming-pill {
       display: inline-flex;
       width: fit-content;
@@ -715,21 +715,21 @@
       font-weight: 800;
       font-size: 0.82rem;
     }
- 
+
     .note {
       margin-top: 18px;
       color: var(--muted);
       font-size: 0.9rem;
       line-height: 1.7;
     }
- 
+
     /* Footer */
     footer {
       border-top: 1px solid rgba(212, 175, 55, 0.24);
       background: rgba(1, 4, 2, 0.92);
       padding: 26px 0;
     }
- 
+
     .footer-inner {
       width: min(1180px, calc(100% - 32px));
       margin: 0 auto;
@@ -741,13 +741,13 @@
       color: rgba(245, 240, 221, 0.78);
       font-size: 0.9rem;
     }
- 
+
     .footer-links {
       display: flex;
       gap: 18px;
       flex-wrap: wrap;
     }
- 
+
     .copyright-link {
       background: transparent;
       border: none;
@@ -756,12 +756,12 @@
       font-size: 0.9rem;
       text-align: left;
     }
- 
+
     .copyright-link:hover {
       color: var(--gold-soft);
       text-shadow: var(--glow);
     }
- 
+
     .footer-links button,
     .footer-links a {
       background: transparent;
@@ -771,11 +771,11 @@
       font-size: 0.9rem;
       padding: 0;
     }
- 
+
     .footer-links button:hover, .footer-links a:hover {
       color: var(--gold-soft);
     }
- 
+
     /* Floating */
     .floating-tools {
       position: fixed;
@@ -785,7 +785,7 @@
       display: grid;
       gap: 10px;
     }
- 
+
     .floating-tools button, .floating-tools a {
       width: 48px;
       height: 48px;
@@ -799,7 +799,7 @@
       box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
       font-weight: 900;
     }
- 
+
     .translate-box {
       position: fixed;
       right: 18px;
@@ -812,7 +812,7 @@
       padding: 10px 12px;
       box-shadow: var(--shadow);
     }
- 
+
     .translate-label {
       display: block;
       color: var(--gold-soft);
@@ -821,7 +821,7 @@
       margin-bottom: 6px;
       text-transform: uppercase;
     }
- 
+
     #google_translate_element select {
       background: #06140f;
       color: var(--cream);
@@ -830,21 +830,21 @@
       padding: 6px;
       max-width: 190px;
     }
- 
+
     .goog-te-banner-frame.skiptranslate,
     .goog-te-gadget-icon {
       display: none !important;
     }
- 
+
     body {
       top: 0 !important;
     }
- 
+
     .goog-te-gadget {
       color: transparent !important;
       font-size: 0 !important;
     }
- 
+
     /* Modals */
     .modal-overlay {
       position: fixed;
@@ -857,11 +857,11 @@
       z-index: 99999;
       padding: 18px;
     }
- 
+
     .modal-overlay.active {
       display: flex;
     }
- 
+
     .modal-box {
       width: min(92vw, 540px);
       max-height: 86vh;
@@ -875,12 +875,12 @@
       box-shadow: 0 0 35px rgba(212, 175, 55, 0.25);
       position: relative;
     }
- 
+
     .modal-box.wide {
       width: min(94vw, 760px);
       text-align: left;
     }
- 
+
     .modal-box h2 {
       color: var(--gold-soft);
       font-family: "Cinzel", serif;
@@ -890,19 +890,19 @@
       text-transform: uppercase;
       text-align: center;
     }
- 
+
     .modal-box p, .modal-box li {
       font-size: 1rem;
       line-height: 1.75;
       color: #e8e0c8;
       margin-bottom: 12px;
     }
- 
+
     .modal-box ul {
       padding-left: 18px;
       margin-top: 10px;
     }
- 
+
     .modal-close {
       position: absolute;
       top: 12px;
@@ -913,7 +913,7 @@
       font-size: 2rem;
       cursor: pointer;
     }
- 
+
     .modal-button {
       margin-top: 20px;
       padding: 12px 26px;
@@ -926,70 +926,70 @@
       letter-spacing: 1px;
       transition: 0.25s ease;
     }
- 
+
     .modal-button:hover {
       background: var(--gold);
       color: #07140f;
       box-shadow: 0 0 18px rgba(212, 175, 55, 0.45);
     }
- 
+
     /* Responsive */
     @media (max-width: 920px) {
       .desktop-links {
         display: none;
       }
- 
+
       .menu-btn {
         display: inline-flex;
       }
- 
+
       .cards, .tracker, .split, .store-content {
         grid-template-columns: 1fr;
       }
- 
+
       .overlay-menu {
         grid-template-columns: 1fr;
       }
- 
+
       .menu-right {
         display: none;
       }
- 
+
       .image-frame img {
         height: 320px;
       }
     }
- 
+
     @media (max-width: 560px) {
       .nav {
         height: 66px;
       }
- 
+
       .brand span {
         display: none;
       }
- 
+
       .section {
         padding: 72px 0;
       }
- 
+
       .hero-values {
         letter-spacing: 2px;
         gap: 12px;
       }
- 
+
       .translate-box {
         left: 10px;
         bottom: 78px;
         max-width: 190px;
       }
- 
+
       .floating-tools {
         right: 10px;
         bottom: 10px;
       }
     }
- 
+
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .fade-up { opacity: 1; transform: none; transition: none; }
@@ -997,10 +997,10 @@
     }
   </style>
 </head>
- 
+
 <body class="page-lock">
   <audio id="introAudio" src="intro.mp3" preload="none"></audio>
- 
+
   <div id="introScreen">
     <div class="intro-inner">
       <div class="vinyl-wrap" id="vinylButton" role="button" tabindex="0" aria-label="Enter Vedenism website">
@@ -1012,14 +1012,14 @@
       <button class="skip-intro" id="skipIntro">Skip intro</button>
     </div>
   </div>
- 
+
   <header>
     <nav class="nav">
       <a href="#home" class="brand" aria-label="Vedenism home">
         <img src="images/logo.png" alt="Vedenism logo" />
         <span>VEDENISM</span>
       </a>
- 
+
       <div class="desktop-links">
         <a href="#about">About</a>
         <a href="#roots">Roots</a>
@@ -1029,14 +1029,14 @@
         <a href="#store">Store</a>
         <a href="#contact">Contact</a>
       </div>
- 
+
       <div class="nav-actions">
         <button class="icon-btn" id="muteBtn" aria-label="Mute or unmute sound">🔊</button>
         <button class="menu-btn" onclick="openMenu()">MENU</button>
       </div>
     </nav>
   </header>
- 
+
   <div class="overlay-menu" id="overlayMenu">
     <div class="menu-left">
       <div>
@@ -1051,14 +1051,14 @@
           <a href="#contact" onclick="closeMenu()">Contact</a>
         </div>
       </div>
- 
+
       <div class="menu-socials">
         <span>Justice</span>
         <span>Freedom</span>
         <span>Peace</span>
       </div>
     </div>
- 
+
     <div class="menu-right">
       <button class="close-menu" onclick="closeMenu()" aria-label="Close menu">×</button>
       <div class="menu-center-mark">
@@ -1067,7 +1067,7 @@
       </div>
     </div>
   </div>
- 
+
   <main>
     <section id="home" class="hero">
       <div class="hero-content fade-up">
@@ -1085,13 +1085,13 @@
         </div>
       </div>
     </section>
- 
+
     <section id="about" class="section">
       <div class="container split">
         <div class="panel fade-up">
           <h2>What is Vedenism?</h2>
           <p class="quote">Vedenism is a philosophical movement for justice, freedom, and peace. It is open to people of any belief or none, and it is built on one idea: heaven on earth is not waited for, it is built.</p>
-          <p>The name is V + Eden + ism. Eden is the garden of the old story, a world without cruelty, and the &ldquo;-ism&rdquo; marks it as a living philosophy. It draws on Stoic discipline and the wisdom of the Bible and other traditions, and tests everything by reason.</p>
+          <p>The name is V + Eden + ism. Eden is the garden of the old story, a world without cruelty, and the &ldquo;-ism&rdquo; marks it as a living philosophy. It is a combination of many beliefs and philosophies, including Stoicism, Buddhism, the Bible, and secular humanism, and it keeps only what holds up to reason and protects equal worth. Many of its ideas echo older traditions, and you are welcome to trace them.</p>
           <p>This association is Vedenism's practical arm. It exists to turn the philosophy into visible good works: protecting nature, serving science, and supporting education.</p>
           <p>Vedenism is not a religion. It has no required beliefs, no clergy, no fees, and no obligation to stay. Anyone may question it, criticize it, or leave at any time.</p>
         </div>
@@ -1100,13 +1100,13 @@
         </div>
       </div>
     </section>
- 
+
     <section id="roots" class="section">
       <div class="container">
         <h2 class="section-title fade-up">The Roots</h2>
         <div class="gold-line fade-up"></div>
         <p class="section-kicker fade-up">Justice is the root, Eden is the tree, freedom is the flame. These roots never change. Everything else can grow and be improved.</p>
- 
+
         <div class="cards">
           <article class="card fade-up">
             <div class="card-content">
@@ -1147,7 +1147,7 @@
         </div>
       </div>
     </section>
- 
+
     <section id="paths" class="section">
       <div class="container">
         <div class="panel fade-up">
@@ -1158,7 +1158,7 @@
         </div>
       </div>
     </section>
- 
+
     <section id="origin" class="section">
       <div class="container split">
         <div class="image-frame fade-up">
@@ -1168,18 +1168,32 @@
           <h2>Origin</h2>
           <p>Vedenism began as a child's anger at injustice. Its founder, Alexander Jacob Skyheart, saw how unfair the world could be and saw no one fixing it. He was mocked because his father was a welder. He decided not to wait for someone else.</p>
           <p>In a high school computing class he started designing a logically possible, just world, with clear rules, equal dignity, and help for people in need. Later, working a job and short of money, he printed the first beta pages of his book at his workplace. He never gave up on finishing it.</p>
+          <p>Later, after the death of his pet bird, grieving and crying out to every god he could name, he burned a piece of paper on marble. It left a V with a line or dot above it that never came off. He chose the V for the name because of the mark. Whether it was a sign, a coincidence, or grief shaping what the eye wanted to see, we leave for each person to decide.</p>
           <p class="quote">No paradise falls from the sky. Everything worth having is earned. If we want a world governed by justice, we must build it, one fair act at a time.</p>
           <p>The founder holds no special authority. If you find a contradiction or harm in his words, say so. It will be answered with reasons, and changed if you are right.</p>
         </div>
       </div>
     </section>
- 
+
+    <section id="purpose" class="section">
+      <div class="container">
+        <div class="panel fade-up">
+          <h2>Our Purpose</h2>
+          <p>Vedenism began as a philosophy of self-reflection and self-improvement. Over time it grew to ask a larger question: what kind of world should people live in? Our answer is a world at peace, where countries promote justice and ethical rules and are not corrupted by greed or fear, where the vulnerable are protected, and where nature is cared for.</p>
+          <p>We start with ourselves, because a fair society is built by people who can question themselves and learn from their mistakes. Then we work outward, by showing a better model, speaking up for it, and helping in practice.</p>
+          <p>Racism and every form of discrimination break our first root: every soul has equal worth. We oppose corruption, coercion, and harmful ideas, never people. Poverty should never decide who gets to learn, and we advocate for the young, peacefully and with evidence.</p>
+          <p>Vedenism offers free courses, mentoring, and guidance on self-improvement, discipline, and handling hardship. This is education and peer support, not therapy or medical treatment. For mental health conditions, we encourage seeing a doctor or licensed counselor.</p>
+          <p>There is no membership, no fee, and no obligation. Learning is free. Donations are voluntary, and they help us grow toward planting trees, giving away books, and supporting education.</p>
+        </div>
+      </div>
+    </section>
+
     <section id="mission" class="section">
       <div class="container">
         <h2 class="section-title fade-up">Our Mission</h2>
         <div class="gold-line fade-up"></div>
         <p class="section-kicker fade-up">To protect nature, serve science, support education, and build awareness for a more balanced future.</p>
- 
+
         <div class="cards">
           <article class="card fade-up">
             <div class="card-image"><img src="images/trees.png" alt="Trees and reforestation" loading="lazy" /></div>
@@ -1188,7 +1202,7 @@
               <p>We aim to begin with tree planting projects, especially in areas damaged by wildfires. This creates visible action, public awareness, and a direct contribution to ecological recovery.</p>
             </div>
           </article>
- 
+
           <article class="card fade-up">
             <div class="card-image"><img src="images/science.png" alt="Science-based awareness" loading="lazy" /></div>
             <div class="card-content">
@@ -1196,7 +1210,7 @@
               <p>Vedenism promotes science-based awareness, critical thinking, and public education that helps people tell evidence from misinformation, and welcomes honest questions.</p>
             </div>
           </article>
- 
+
           <article class="card fade-up">
             <div class="card-image"><img src="images/education.png" alt="Education support" loading="lazy" /></div>
             <div class="card-content">
@@ -1207,13 +1221,13 @@
         </div>
       </div>
     </section>
- 
+
     <section id="values" class="section">
       <div class="container">
         <h2 class="section-title fade-up">Values of Vedenism</h2>
         <div class="gold-line fade-up"></div>
         <p class="section-kicker fade-up">Guided by Nature. Empowered by Knowledge. Driven by Balance.</p>
- 
+
         <div class="cards">
           <article class="card fade-up">
             <div class="card-image"><img src="images/balance.png" alt="Balance and harmony" loading="lazy" /></div>
@@ -1222,7 +1236,7 @@
               <p>Balance means avoiding extremism, protecting harmony, and making decisions with both reason and empathy.</p>
             </div>
           </article>
- 
+
           <article class="card fade-up">
             <div class="card-image"><img src="images/knowledge.png" alt="Knowledge and study" loading="lazy" /></div>
             <div class="card-content">
@@ -1230,7 +1244,7 @@
               <p>Knowledge is the light that lets society question what it inherits. Books, science, philosophy, and education are central to the mission. Everyone's worth is equal, whatever they know.</p>
             </div>
           </article>
- 
+
           <article class="card fade-up">
             <div class="card-image"><img src="images/animals.png" alt="Animals in forest" loading="lazy" /></div>
             <div class="card-content">
@@ -1241,7 +1255,7 @@
         </div>
       </div>
     </section>
- 
+
     <section id="projects" class="section">
       <div class="container split">
         <div class="image-frame fade-up">
@@ -1253,7 +1267,7 @@
           <p><strong>Phase 2:</strong> Begin nature-focused campaigns, especially tree planting in burned areas of Turkey.</p>
           <p><strong>Phase 3:</strong> Expand toward literacy, book donations, science-based awareness, and educational support. Donation shirts may follow once the first project is under way.</p>
           <p><strong>Phase 4:</strong> Build a long-term platform that can grow internationally while keeping its roots in practical good works.</p>
- 
+
           <div class="tracker">
             <div class="stat"><strong id="treeCounter">0</strong><span>Trees Targeted</span></div>
             <div class="stat"><strong>1</strong><span>Website</span></div>
@@ -1263,13 +1277,13 @@
         </div>
       </div>
     </section>
- 
+
     <section id="store" class="section">
       <div class="container">
         <h2 class="section-title fade-up">Store</h2>
         <div class="gold-line fade-up"></div>
         <p class="section-kicker fade-up">Donation shirts and symbolic items are planned for the future. For now, this section presents the concept.</p>
- 
+
         <div class="store-showcase fade-up">
           <div class="store-image">
             <img src="images/donation-shirts.png" alt="Vedenism donation shirt concepts" loading="lazy" />
@@ -1287,7 +1301,7 @@
         </div>
       </div>
     </section>
- 
+
     <section id="contact" class="section">
       <div class="container split">
         <div class="panel fade-up">
@@ -1306,7 +1320,7 @@
       </div>
     </section>
   </main>
- 
+
   <footer>
     <div class="footer-inner">
       <button class="copyright-link" onclick="openTextModal('copyright')">© 2026 Vedenism Project.</button>
@@ -1316,19 +1330,20 @@
         <button onclick="openTextModal('cookies')">Cookies Policy</button>
         <a href="mailto:vedenism@hotmail.com">Contact</a>
         <button onclick="openTextModal('faq')">FAQ</button>
+        <button onclick="openTextModal('version')">Version History</button>
       </div>
     </div>
   </footer>
- 
+
   <div class="translate-box">
     <span class="translate-label">Translate</span>
     <div id="google_translate_element"></div>
   </div>
- 
+
   <div class="floating-tools">
     <a href="#home" aria-label="Back to top">↑</a>
   </div>
- 
+
   <div id="textModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="textModalTitle">
     <div class="modal-box wide">
       <button class="modal-close" onclick="closeModal('textModal')" aria-label="Close">×</button>
@@ -1337,7 +1352,7 @@
       <button class="modal-button" onclick="closeModal('textModal')">Close</button>
     </div>
   </div>
- 
+
   <script>
     const introScreen = document.getElementById("introScreen");
     const vinylButton = document.getElementById("vinylButton");
@@ -1345,25 +1360,25 @@
     const introAudio = document.getElementById("introAudio");
     const muteBtn = document.getElementById("muteBtn");
     let muted = false;
- 
+
     function updateMuteIcons() {
       if (!muteBtn || !introAudio) return;
       muteBtn.textContent = muted ? "🔇" : "🔊";
       introAudio.muted = muted;
     }
- 
+
     function toggleMute() {
       muted = !muted;
       updateMuteIcons();
     }
- 
+
     if (muteBtn) muteBtn.addEventListener("click", toggleMute);
- 
+
     function enterSite() {
       if (introScreen) introScreen.classList.add("hidden");
       document.body.classList.remove("page-lock");
     }
- 
+
     async function playAndEnter() {
       if (!vinylButton) return enterSite();
       vinylButton.classList.add("spinning");
@@ -1376,7 +1391,7 @@
       } catch (error) {}
       setTimeout(enterSite, 1350);
     }
- 
+
     if (vinylButton) {
       vinylButton.addEventListener("click", playAndEnter);
       vinylButton.addEventListener("keydown", (e) => {
@@ -1384,23 +1399,23 @@
       });
     }
     if (skipIntro) skipIntro.addEventListener("click", enterSite);
- 
+
     function openMenu() {
       document.getElementById("overlayMenu")?.classList.add("active");
       document.body.classList.add("page-lock");
     }
- 
+
     function closeMenu() {
       document.getElementById("overlayMenu")?.classList.remove("active");
       if (!introScreen || introScreen.classList.contains("hidden")) {
         document.body.classList.remove("page-lock");
       }
     }
- 
+
     function closeModal(id) {
       document.getElementById(id)?.classList.remove("active");
     }
- 
+
     const modalContent = {
       copyright: {
         title: "Copyright Notice",
@@ -1418,6 +1433,10 @@
         title: "Cookies Policy",
         body: `<p>This website does not set its own cookies. Third-party services such as Google Translate may use cookies or external scripts to provide translation features.</p><p>No advertising cookies are intentionally implemented.</p>`
       },
+      version: {
+        title: "Version History",
+        body: `<p>Vedenism grows with the people who practice it. When something changes, we say what changed and why.</p><p><strong>v1.2 (17 October 2026):</strong> Added free mentoring and courses to Our Purpose.</p><p><strong>v1.1 (17 October 2026):</strong> Added Our Purpose.</p><p><strong>v1.0 (17 October 2026):</strong> First public version, and the starting point for every later change. It sets out the three paths on belief, the fixed roots, self-discipline and growth, the definition of harm, and the amendment rule.</p><p>Later changes will be listed here, newest first.</p>`
+      },
       faq: {
         title: "FAQ",
         body: `<ul>
@@ -1429,7 +1448,7 @@
         </ul>`
       }
     };
- 
+
     function openTextModal(type) {
       const content = modalContent[type] || modalContent.faq;
       const title = document.getElementById("textModalTitle");
@@ -1440,28 +1459,28 @@
       body.innerHTML = content.body;
       modal.classList.add("active");
     }
- 
+
     document.querySelectorAll(".modal-overlay").forEach((overlay) => {
       overlay.addEventListener("click", function(event) {
         if (event.target === this) this.classList.remove("active");
       });
     });
- 
+
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
         closeMenu();
         closeModal("textModal");
       }
     });
- 
+
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) entry.target.classList.add("visible");
       });
     }, { threshold: 0.12 });
- 
+
     document.querySelectorAll(".fade-up").forEach((el) => revealObserver.observe(el));
- 
+
     function animateCounter(id, target) {
       const element = document.getElementById(id);
       if (!element) return;
@@ -1476,7 +1495,7 @@
         element.textContent = value.toLocaleString();
       }, 18);
     }
- 
+
     const treeCounter = document.getElementById("treeCounter");
     if (treeCounter) {
       const counterObserver = new IntersectionObserver((entries) => {
@@ -1489,7 +1508,7 @@
       }, { threshold: 0.4 });
       counterObserver.observe(treeCounter);
     }
- 
+
     function googleTranslateElementInit() {
       new google.translate.TranslateElement({
         pageLanguage: "en",
@@ -1499,8 +1518,7 @@
       }, "google_translate_element");
     }
   </script>
- 
+
   <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
- 
