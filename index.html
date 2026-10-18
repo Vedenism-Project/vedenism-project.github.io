@@ -52,6 +52,15 @@
     img {
       max-width: 100%;
       display: block;
+      -webkit-user-drag: none;
+      user-drag: none;
+    }
+
+    .tm {
+      font-size: 0.28em;
+      letter-spacing: 0;
+      vertical-align: super;
+      margin-left: 2px;
     }
 
     a {
@@ -1017,7 +1026,7 @@
     <nav class="nav">
       <a href="#home" class="brand" aria-label="Vedenism home">
         <img src="images/logo.png" alt="Vedenism logo" />
-        <span>VEDENISM</span>
+        <span>VEDENISM<span class="tm">™</span></span>
       </a>
 
       <div class="desktop-links">
@@ -1072,7 +1081,7 @@
     <section id="home" class="hero">
       <div class="hero-content fade-up">
         <img class="hero-logo" src="images/logo.png" alt="Vedenism logo" />
-        <h1>VEDENISM</h1>
+        <h1>VEDENISM<span class="tm">™</span></h1>
         <p class="hero-motto">Unity in Diversity, Harmony in Existence</p>
         <p class="hero-line">A philosophical movement for justice, freedom, and peace, open to people of any belief or none.</p>
         <div class="hero-values">
@@ -1323,7 +1332,7 @@
 
   <footer>
     <div class="footer-inner">
-      <button class="copyright-link" onclick="openTextModal('copyright')">© 2026 Vedenism Project.</button>
+      <button class="copyright-link" onclick="openTextModal('copyright')">© 2026 Vedenism Project. Vedenism™ and the Vedenism emblem are trademarks of the project.</button>
       <div class="footer-links">
         <button onclick="openTextModal('terms')">Terms of Use</button>
         <button onclick="openTextModal('privacy')">Privacy Policy</button>
@@ -1419,7 +1428,7 @@
     const modalContent = {
       copyright: {
         title: "Copyright Notice",
-        body: `<p>© 2026 Vedenism Project.</p><p>The Vedenism name, emblem, and logo are protected project assets. Please do not use them to impersonate the project or to sell products without permission.</p><p>The written ideas on this site are meant to be shared. You may quote them with credit to Vedenism.</p>`
+        body: `<p>© 2026 Vedenism Project.</p><p>Vedenism™ and the Vedenism emblem are claimed trademarks and protected project assets. Please do not copy, alter, or use the name or logos, including on products or in a way that suggests you represent the project, without written permission.</p><p>The written ideas on this site are meant to be shared. You may quote them with credit to Vedenism.</p>`
       },
       terms: {
         title: "Terms of Use",
@@ -1464,6 +1473,11 @@
       overlay.addEventListener("click", function(event) {
         if (event.target === this) this.classList.remove("active");
       });
+    });
+
+    document.querySelectorAll("img").forEach((img) => img.setAttribute("draggable", "false"));
+    document.addEventListener("dragstart", (event) => {
+      if (event.target && event.target.tagName === "IMG") event.preventDefault();
     });
 
     document.addEventListener("contextmenu", (event) => {
