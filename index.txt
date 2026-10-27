@@ -1,1629 +1,315 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Vedenism is a philosophical movement for justice, freedom, and peace, open to people of any belief or none. Its practical work: protecting nature, serving science, and supporting education." />
-  <meta property="og:title" content="Vedenism | Justice • Freedom • Peace" />
-  <meta property="og:description" content="A philosophical movement for justice, freedom, and peace. Heaven on earth is not waited for, it is built." />
-  <meta property="og:image" content="images/logo.png" />
-  <title>Vedenism | A Philosophical Movement for Justice, Freedom &amp; Peace</title>
-  <link rel="canonical" href="https://vedenism-project.github.io/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://vedenism-project.github.io/" />
-  <link rel="icon" href="images/logo.png" />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Vedenism",
-    "alternateName": "Vedenism Project",
-    "url": "https://vedenism-project.github.io/",
-    "logo": "https://vedenism-project.github.io/images/logo.png",
-    "description": "Vedenism is a philosophical movement for justice, freedom, and peace, built on critical thinking and open to people of any belief or none.",
-    "founder": { "@type": "Person", "name": "Alexander Jacob Skyheart" },
-    "email": "vedenism@hotmail.com",
-    "sameAs": [
-      "https://www.reddit.com/r/Vedenism/",
-      "https://buymeacoffee.com/skyheart"
-    ]
-  }
-  </script>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --bg: #030805;
-      --bg-soft: #07140f;
-      --bg-card: rgba(8, 24, 17, 0.86);
-      --green: #0b2418;
-      --green-2: #123727;
-      --gold: #d4af37;
-      --gold-soft: #f2d47a;
-      --cream: #f5f0dd;
-      --muted: #c7bfa6;
-      --line: rgba(212, 175, 55, 0.38);
-      --shadow: 0 20px 70px rgba(0, 0, 0, 0.55);
-      --glow: 0 0 30px rgba(212, 175, 55, 0.28);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: "Inter", system-ui, sans-serif;
-      background:
-        radial-gradient(circle at top, rgba(28, 68, 45, 0.65), transparent 42%),
-        linear-gradient(180deg, #020503 0%, #07120d 45%, #030805 100%);
-      color: var(--cream);
-      overflow-x: hidden;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-      -webkit-user-drag: none;
-      user-drag: none;
-    }
-
-    .tm {
-      font-size: 0.28em;
-      letter-spacing: 0;
-      vertical-align: super;
-      margin-left: 2px;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button, a, input, textarea, select {
-      font-family: inherit;
-    }
-
-    .page-lock {
-      overflow: hidden;
-    }
-
-    /* Intro */
-    #introScreen {
-      position: fixed;
-      inset: 0;
-      z-index: 100000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background:
-        radial-gradient(circle at center, rgba(20, 65, 42, 0.95), rgba(1, 7, 4, 0.98) 62%),
-        #020503;
-      transition: opacity 0.9s ease, visibility 0.9s ease;
-    }
-
-    #introScreen.hidden {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-
-    .intro-inner {
-      text-align: center;
-      padding: 32px;
-    }
-
-    .vinyl-wrap {
-      width: min(54vw, 260px);
-      aspect-ratio: 1;
-      margin: 0 auto 28px;
-      border-radius: 50%;
-      border: 2px solid rgba(212, 175, 55, 0.45);
-      box-shadow: 0 0 50px rgba(212, 175, 55, 0.2), inset 0 0 20px rgba(0, 0, 0, 0.6);
-      display: grid;
-      place-items: center;
-      cursor: pointer;
-      animation: breathe 2.5s ease-in-out infinite;
-    }
-
-    .vinyl-wrap.spinning {
-      animation: spin 1.2s linear infinite;
-    }
-
-    .vinyl-wrap.spinning img {
-      animation: none;
-    }
-
-    .vinyl-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      border-radius: 50%;
-    }
-
-    .intro-title {
-      font-family: "Cinzel", serif;
-      letter-spacing: 8px;
-      color: var(--gold-soft);
-      text-shadow: var(--glow);
-      font-size: clamp(2.1rem, 7vw, 5.2rem);
-      margin-bottom: 10px;
-    }
-
-    .intro-subtitle {
-      color: var(--muted);
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      font-size: 0.86rem;
-    }
-
-    .intro-hint {
-      margin-top: 20px;
-      color: rgba(245, 240, 221, 0.72);
-      font-size: 0.95rem;
-    }
-
-    .skip-intro {
-      margin-top: 18px;
-      background: transparent;
-      border: none;
-      color: var(--gold-soft);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      font-size: 0.8rem;
-      cursor: pointer;
-      text-decoration: underline;
-      text-underline-offset: 4px;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    @keyframes breathe {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.035); }
-    }
-
-    /* Header */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      background: rgba(3, 8, 5, 0.78);
-      border-bottom: 1px solid rgba(212, 175, 55, 0.22);
-      backdrop-filter: blur(14px);
-    }
-
-    .nav {
-      width: min(1180px, calc(100% - 32px));
-      margin: 0 auto;
-      height: 74px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 22px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 180px;
-    }
-
-    .brand img {
-      width: 46px;
-      height: 46px;
-      object-fit: contain;
-      border-radius: 50%;
-      filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.35));
-    }
-
-    .brand span {
-      font-family: "Cinzel", serif;
-      letter-spacing: 3px;
-      font-weight: 800;
-      color: var(--gold-soft);
-    }
-
-    .desktop-links {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      color: var(--cream);
-      font-size: 0.86rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    .desktop-links a {
-      opacity: 0.82;
-      transition: 0.25s ease;
-    }
-
-    .desktop-links a:hover {
-      color: var(--gold-soft);
-      opacity: 1;
-      text-shadow: var(--glow);
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .icon-btn, .menu-btn {
-      border: 1px solid rgba(212, 175, 55, 0.48);
-      background: rgba(7, 20, 15, 0.72);
-      color: var(--gold-soft);
-      border-radius: 999px;
-      padding: 10px 14px;
-      cursor: pointer;
-      transition: 0.25s ease;
-    }
-
-    .icon-btn:hover, .menu-btn:hover {
-      background: rgba(212, 175, 55, 0.12);
-      box-shadow: var(--glow);
-    }
-
-    .menu-btn {
-      display: none;
-      font-weight: 800;
-      letter-spacing: 1px;
-    }
-
-    /* Overlay Menu */
-    .overlay-menu {
-      position: fixed;
-      inset: 0;
-      z-index: 5000;
-      display: none;
-      grid-template-columns: minmax(280px, 42%) 1fr;
-      background: rgba(2, 5, 3, 0.96);
-    }
-
-    .overlay-menu.active {
-      display: grid;
-    }
-
-    .menu-left {
-      padding: 86px 38px 38px;
-      background:
-        radial-gradient(circle at top left, rgba(212, 175, 55, 0.12), transparent 35%),
-        rgba(4, 10, 7, 0.9);
-      border-right: 1px solid rgba(212, 175, 55, 0.22);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      overflow-y: auto;
-    }
-
-    .menu-list {
-      display: grid;
-      gap: 16px;
-    }
-
-    .menu-list a {
-      font-family: "Cinzel", serif;
-      font-size: clamp(1.8rem, 4.4vw, 3.6rem);
-      font-weight: 900;
-      line-height: 0.95;
-      letter-spacing: 2px;
-      color: rgba(245, 240, 221, 0.92);
-      transition: 0.25s ease;
-    }
-
-    .menu-list a:hover {
-      color: var(--gold-soft);
-      transform: translateX(8px);
-      text-shadow: var(--glow);
-    }
-
-    .menu-socials {
-      display: flex;
-      gap: 14px;
-      color: var(--gold-soft);
-      flex-wrap: wrap;
-      font-weight: 800;
-      margin-top: 28px;
-    }
-
-    .menu-right {
-      position: relative;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      background:
-        linear-gradient(rgba(4, 8, 5, 0.2), rgba(4, 8, 5, 0.78)),
-        url("images/nature.png") center/cover no-repeat;
-    }
-
-    .menu-right::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle, transparent 20%, rgba(0, 0, 0, 0.62) 82%);
-    }
-
-    .close-menu {
-      position: absolute;
-      right: 28px;
-      top: 28px;
-      z-index: 2;
-      width: 58px;
-      height: 58px;
-      background: var(--cream);
-      color: #020503;
-      border: none;
-      font-size: 2.4rem;
-      line-height: 1;
-      cursor: pointer;
-    }
-
-    .menu-center-mark {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-    }
-
-    .menu-center-mark img {
-      width: min(32vw, 260px);
-      margin: 0 auto 18px;
-      filter: drop-shadow(0 0 26px rgba(212, 175, 55, 0.45));
-    }
-
-    .menu-center-mark h2 {
-      font-family: "Cinzel", serif;
-      color: var(--gold-soft);
-      font-size: clamp(2rem, 5vw, 4rem);
-      letter-spacing: 6px;
-    }
-
-    /* Utility */
-    .container {
-      width: min(1180px, calc(100% - 32px));
-      margin: 0 auto;
-    }
-
-    .section {
-      padding: 96px 0;
-      position: relative;
-    }
-
-    .section-title {
-      font-family: "Cinzel", serif;
-      color: var(--gold-soft);
-      font-size: clamp(2rem, 5vw, 4.2rem);
-      letter-spacing: 4px;
-      text-align: center;
-      margin-bottom: 16px;
-      text-shadow: var(--glow);
-    }
-
-    .section-kicker {
-      text-align: center;
-      color: var(--muted);
-      max-width: 790px;
-      margin: 0 auto 46px;
-      line-height: 1.8;
-      font-size: 1.04rem;
-    }
-
-    .gold-line {
-      width: 140px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      margin: 18px auto 28px;
-    }
-
-    .fade-up {
-      opacity: 0;
-      transform: translateY(32px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-
-    .fade-up.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Hero */
-    .hero {
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding-top: 110px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(rgba(3, 8, 5, 0.35), rgba(3, 8, 5, 0.92)),
-        url("images/trees.png") center/cover no-repeat;
-      opacity: 0.42;
-      transform: scale(1.04);
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      max-width: 980px;
-      padding: 40px 0;
-    }
-
-    .hero-logo {
-      width: min(34vw, 230px);
-      margin: 0 auto 22px;
-      filter: drop-shadow(0 0 24px rgba(212, 175, 55, 0.42));
-      border-radius: 50%;
-    }
-
-    .hero h1 {
-      font-family: "Cinzel", serif;
-      font-size: clamp(3rem, 10vw, 8.6rem);
-      letter-spacing: clamp(5px, 1.5vw, 18px);
-      color: var(--gold-soft);
-      text-shadow: 0 0 28px rgba(212, 175, 55, 0.38), 0 10px 30px rgba(0, 0, 0, 0.75);
-    }
-
-    .hero-motto {
-      font-family: "Cinzel", serif;
-      font-size: clamp(1rem, 2.2vw, 1.55rem);
-      color: var(--cream);
-      margin-top: 18px;
-      letter-spacing: 1px;
-    }
-
-    .hero-line {
-      max-width: 720px;
-      margin: 16px auto 0;
-      color: var(--muted);
-      line-height: 1.75;
-      font-size: 1.02rem;
-    }
-
-    .hero-values {
-      display: flex;
-      justify-content: center;
-      gap: 22px;
-      flex-wrap: wrap;
-      margin-top: 24px;
-      color: var(--gold-soft);
-      font-family: "Cinzel", serif;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-    }
-
-    .hero-actions {
-      margin-top: 38px;
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 14px 24px;
-      border-radius: 999px;
-      border: 1px solid rgba(212, 175, 55, 0.64);
-      background: rgba(212, 175, 55, 0.12);
-      color: var(--gold-soft);
-      font-weight: 800;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: 0.25s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--glow);
-      background: rgba(212, 175, 55, 0.18);
-    }
-
-    .btn.primary {
-      background: linear-gradient(135deg, #b98a18, #f1d77a, #b98a18);
-      color: #06140f;
-      border: none;
-    }
-
-    /* Cards */
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
-
-    .card {
-      background: var(--bg-card);
-      border: 1px solid rgba(212, 175, 55, 0.28);
-      border-radius: 24px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: 0.35s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-7px);
-      border-color: rgba(212, 175, 55, 0.62);
-      box-shadow: var(--shadow), var(--glow);
-    }
-
-    .card-image {
-      height: 210px;
-      overflow: hidden;
-      background: var(--green);
-    }
-
-    .card-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: 0.5s ease;
-    }
-
-    .card:hover .card-image img {
-      transform: scale(1.06);
-    }
-
-    .card-content {
-      padding: 24px;
-    }
-
-    .card-content h3 {
-      font-family: "Cinzel", serif;
-      color: var(--gold-soft);
-      letter-spacing: 1.4px;
-      margin-bottom: 12px;
-      font-size: 1.22rem;
-    }
-
-    .card-content p {
-      color: var(--muted);
-      line-height: 1.75;
-      font-size: 0.97rem;
-    }
-
-    /* Split */
-    .split {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 42px;
-      align-items: center;
-    }
-
-    .panel {
-      background: linear-gradient(145deg, rgba(8, 24, 17, 0.9), rgba(4, 10, 7, 0.94));
-      border: 1px solid rgba(212, 175, 55, 0.30);
-      border-radius: 28px;
-      padding: clamp(24px, 4vw, 46px);
-      box-shadow: var(--shadow);
-    }
-
-    .panel h2 {
-      font-family: "Cinzel", serif;
-      color: var(--gold-soft);
-      font-size: clamp(1.7rem, 4vw, 3.3rem);
-      margin-bottom: 18px;
-      letter-spacing: 2px;
-    }
-
-    .panel p {
-      color: var(--muted);
-      line-height: 1.85;
-      margin-bottom: 16px;
-    }
-
-    .panel ol {
-      color: var(--muted);
-      line-height: 1.85;
-      margin: 0 0 16px 22px;
-    }
-
-    .panel .quote {
-      border-left: 2px solid var(--gold);
-      padding-left: 16px;
-      color: var(--cream);
-      font-family: "Cinzel", serif;
-      line-height: 1.7;
-      margin: 8px 0 18px;
-    }
-
-    .image-frame {
-      border-radius: 30px;
-      overflow: hidden;
-      border: 1px solid rgba(212, 175, 55, 0.38);
-      box-shadow: var(--shadow), var(--glow);
-    }
-
-    .image-frame img {
-      width: 100%;
-      height: 460px;
-      object-fit: cover;
-    }
-
-    /* Tracker */
-    .tracker {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-      margin-top: 36px;
-    }
-
-    .stat {
-      text-align: center;
-      background: rgba(7, 20, 15, 0.78);
-      border: 1px solid rgba(212, 175, 55, 0.28);
-      border-radius: 22px;
-      padding: 26px 18px;
-    }
-
-    .stat strong {
-      display: block;
-      font-family: "Cinzel", serif;
-      color: var(--gold-soft);
-      font-size: 2rem;
-      margin-bottom: 8px;
-    }
-
-    .stat span {
-      color: var(--muted);
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    /* Store */
-    .store-showcase {
-      background:
-        radial-gradient(circle at center, rgba(212, 175, 55, 0.08), transparent 55%),
-        rgba(4, 10, 7, 0.84);
-      border: 1px solid rgba(212, 175, 55, 0.3);
-      border-radius: 28px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-    }
-
-    .store-image img {
-      width: 100%;
-      height: auto;
-    }
-
-    .store-content {
-      padding: 32px;
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 28px;
-      align-items: center;
-    }
-
-    .store-content h3 {
-      font-family: "Cinzel", serif;
-      color: var(--gold-soft);
-      font-size: clamp(1.6rem, 4vw, 3rem);
-      margin-bottom: 12px;
-    }
-
-    .store-content p {
-      color: var(--muted);
-      line-height: 1.8;
-    }
-
-    .coming-pill {
-      display: inline-flex;
-      width: fit-content;
-      margin-bottom: 14px;
-      padding: 8px 14px;
-      border: 1px solid rgba(212, 175, 55, 0.55);
-      border-radius: 999px;
-      color: var(--gold-soft);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      font-weight: 800;
-      font-size: 0.82rem;
-    }
-
-    .note {
-      margin-top: 18px;
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.7;
-    }
-
-    /* Footer */
-    footer {
-      border-top: 1px solid rgba(212, 175, 55, 0.24);
-      background: rgba(1, 4, 2, 0.92);
-      padding: 26px 0;
-    }
-
-    .footer-inner {
-      width: min(1180px, calc(100% - 32px));
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 22px;
-      flex-wrap: wrap;
-      color: rgba(245, 240, 221, 0.78);
-      font-size: 0.9rem;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    .copyright-link {
-      background: transparent;
-      border: none;
-      color: rgba(245, 240, 221, 0.78);
-      cursor: pointer;
-      font-size: 0.9rem;
-      text-align: left;
-    }
-
-    .copyright-link:hover {
-      color: var(--gold-soft);
-      text-shadow: var(--glow);
-    }
-
-    .footer-links button,
-    .footer-links a {
-      background: transparent;
-      border: none;
-      color: rgba(245, 240, 221, 0.84);
-      cursor: pointer;
-      font-size: 0.9rem;
-      padding: 0;
-    }
-
-    .footer-links button:hover, .footer-links a:hover {
-      color: var(--gold-soft);
-    }
-
-    /* Floating */
-    .floating-tools {
-      position: fixed;
-      right: 18px;
-      bottom: 18px;
-      z-index: 4000;
-      display: grid;
-      gap: 10px;
-    }
-
-    .floating-tools button, .floating-tools a {
-      width: 48px;
-      height: 48px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      border: 1px solid rgba(212, 175, 55, 0.55);
-      background: rgba(7, 20, 15, 0.9);
-      color: var(--gold-soft);
-      cursor: pointer;
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
-      font-weight: 900;
-    }
-
-    .translate-box {
-      position: fixed;
-      right: 18px;
-      bottom: 78px;
-      left: auto;
-      z-index: 3500;
-      background: rgba(7, 20, 15, 0.92);
-      border: 1px solid rgba(212, 175, 55, 0.55);
-      border-radius: 16px;
-      padding: 10px 12px;
-      box-shadow: var(--shadow);
-    }
-
-    .translate-label {
-      display: block;
-      color: var(--gold-soft);
-      font-size: 0.72rem;
-      letter-spacing: 1px;
-      margin-bottom: 6px;
-      text-transform: uppercase;
-    }
-
-    #google_translate_element select {
-      background: #06140f;
-      color: var(--cream);
-      border: 1px solid rgba(212, 175, 55, 0.35);
-      border-radius: 8px;
-      padding: 6px;
-      max-width: 190px;
-    }
-
-    .goog-te-banner-frame.skiptranslate,
-    .goog-te-gadget-icon {
-      display: none !important;
-    }
-
-    body {
-      top: 0 !important;
-    }
-
-    .goog-te-gadget {
-      color: transparent !important;
-      font-size: 0 !important;
-    }
-
-    /* Modals */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.82);
-      backdrop-filter: blur(8px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 99999;
-      padding: 18px;
-    }
-
-    .modal-overlay.active {
-      display: flex;
-    }
-
-    .modal-box {
-      width: min(92vw, 540px);
-      max-height: 86vh;
-      overflow-y: auto;
-      background: linear-gradient(145deg, #06140f, #0b2018);
-      border: 1px solid rgba(212, 175, 55, 0.65);
-      border-radius: 18px;
-      padding: 34px 28px;
-      text-align: center;
-      color: var(--cream);
-      box-shadow: 0 0 35px rgba(212, 175, 55, 0.25);
-      position: relative;
-    }
-
-    .modal-box.wide {
-      width: min(94vw, 760px);
-      text-align: left;
-    }
-
-    .modal-box h2 {
-      color: var(--gold-soft);
-      font-family: "Cinzel", serif;
-      font-size: 2rem;
-      margin-bottom: 14px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      text-align: center;
-    }
-
-    .modal-box p, .modal-box li {
-      font-size: 1rem;
-      line-height: 1.75;
-      color: #e8e0c8;
-      margin-bottom: 12px;
-    }
-
-    .modal-box ul {
-      padding-left: 18px;
-      margin-top: 10px;
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 12px;
-      right: 16px;
-      background: transparent;
-      border: none;
-      color: var(--gold-soft);
-      font-size: 2rem;
-      cursor: pointer;
-    }
-
-    .modal-button {
-      margin-top: 20px;
-      padding: 12px 26px;
-      border: 1px solid var(--gold);
-      background: transparent;
-      color: var(--gold-soft);
-      border-radius: 999px;
-      cursor: pointer;
-      font-weight: 800;
-      letter-spacing: 1px;
-      transition: 0.25s ease;
-    }
-
-    .modal-button:hover {
-      background: var(--gold);
-      color: #07140f;
-      box-shadow: 0 0 18px rgba(212, 175, 55, 0.45);
-    }
-
-    /* Responsive */
-    @media (max-width: 920px) {
-      .desktop-links {
-        display: none;
-      }
-
-      .menu-btn {
-        display: inline-flex;
-      }
-
-      .cards, .tracker, .split, .store-content {
-        grid-template-columns: 1fr;
-      }
-
-      .overlay-menu {
-        grid-template-columns: 1fr;
-      }
-
-      .menu-right {
-        display: none;
-      }
-
-      .image-frame img {
-        height: 320px;
-      }
-    }
-
-    @media (max-width: 560px) {
-      .nav {
-        height: 66px;
-      }
-
-      .brand span {
-        display: none;
-      }
-
-      .section {
-        padding: 72px 0;
-      }
-
-      .hero-values {
-        letter-spacing: 2px;
-        gap: 12px;
-      }
-
-      .translate-box {
-        left: 10px;
-        bottom: 78px;
-        max-width: 190px;
-      }
-
-      .floating-tools {
-        right: 10px;
-        bottom: 10px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .fade-up { opacity: 1; transform: none; transition: none; }
-      .vinyl-wrap { animation: none; }
-    }
-  </style>
-</head>
-
-<body class="page-lock">
-  <audio id="introAudio" src="intro.mp3" preload="none"></audio>
-
-  <div id="introScreen">
-    <div class="intro-inner">
-      <div class="vinyl-wrap" id="vinylButton" role="button" tabindex="0" aria-label="Enter Vedenism website">
-        <img src="vinyl.png" alt="Vedenism vinyl intro" />
-      </div>
-      <div class="intro-title">VEDENISM</div>
-      <div class="intro-subtitle">Nature • Knowledge • Balance</div>
-      <div class="intro-hint">Click the emblem to enter</div>
-      <button class="skip-intro" id="skipIntro">Skip intro</button>
-    </div>
-  </div>
-
-  <header>
-    <nav class="nav">
-      <a href="#home" class="brand" aria-label="Vedenism home">
-        <img src="images/logo.png" alt="Vedenism logo" />
-        <span>VEDENISM<span class="tm">™</span></span>
-      </a>
-
-      <div class="desktop-links">
-        <a href="#about">About</a>
-        <a href="#roots">Roots</a>
-        <a href="#mission">Mission</a>
-        <a href="#values">Values</a>
-        <a href="#projects">Projects</a>
-        <a href="#store">Store</a>
-        <a href="#contact">Contact</a>
-      </div>
-
-      <div class="nav-actions">
-        <button class="icon-btn" id="muteBtn" aria-label="Mute or unmute sound">🔊</button>
-        <button class="menu-btn" onclick="openMenu()">MENU</button>
-      </div>
-    </nav>
-  </header>
-
-  <div class="overlay-menu" id="overlayMenu">
-    <div class="menu-left">
-      <div>
-        <div class="menu-list">
-          <a href="#home" onclick="closeMenu()">Home</a>
-          <a href="#about" onclick="closeMenu()">About</a>
-          <a href="#roots" onclick="closeMenu()">Roots</a>
-          <a href="#mission" onclick="closeMenu()">Mission</a>
-          <a href="#values" onclick="closeMenu()">Values</a>
-          <a href="#projects" onclick="closeMenu()">Projects</a>
-          <a href="#store" onclick="closeMenu()">Store</a>
-          <a href="#contact" onclick="closeMenu()">Contact</a>
-        </div>
-      </div>
-
-      <div class="menu-socials">
-        <span>Justice</span>
-        <span>Freedom</span>
-        <span>Peace</span>
-      </div>
-    </div>
-
-    <div class="menu-right">
-      <button class="close-menu" onclick="closeMenu()" aria-label="Close menu">×</button>
-      <div class="menu-center-mark">
-        <img src="images/logo.png" alt="Vedenism emblem" />
-        <h2>VEDENISM</h2>
-      </div>
-    </div>
-  </div>
-
-  <main>
-    <section id="home" class="hero">
-      <div class="hero-content fade-up">
-        <img class="hero-logo" src="images/logo.png" alt="Vedenism logo" />
-        <h1>VEDENISM<span class="tm">™</span></h1>
-        <p class="hero-motto">Unity in Diversity, Harmony in Existence</p>
-        <p class="hero-line">A philosophical movement for justice, freedom, and peace, built on critical thinking and open to people of any belief or none.</p>
-        <div class="hero-values">
-          <span>Nature</span><span>•</span><span>Knowledge</span><span>•</span><span>Balance</span>
-        </div>
-        <div class="hero-actions">
-          <a class="btn primary" href="#about">What is Vedenism?</a>
-          <a class="btn" href="#mission">Explore the Mission</a>
-          <a class="btn" href="https://buymeacoffee.com/skyheart" target="_blank" rel="noopener">Donate</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="section">
-      <div class="container split">
-        <div class="panel fade-up">
-          <h2>What is Vedenism?</h2>
-          <p class="quote">Vedenism is a philosophical movement for justice, freedom, and peace. It is open to people of any belief or none, and it is built on one idea: heaven on earth is not waited for, it is built.</p>
-          <p>The name is V + Eden + ism. Eden is the garden of the old story, a world without cruelty, and the &ldquo;-ism&rdquo; marks it as a living philosophy. It is a combination of many beliefs and philosophies, including Stoicism, Buddhism, the Bible, and secular humanism, and it keeps only what holds up to reason and protects equal worth. Many of its ideas echo older traditions, and you are welcome to trace them.</p>
-          <p>This association is Vedenism's practical arm. It exists to turn the philosophy into visible good works: protecting nature, serving science, and supporting education.</p>
-          <p>Vedenism is not a religion. It has no required beliefs, no clergy, no fees, and no obligation to stay. Anyone may question it, criticize it, or leave at any time.</p>
-        </div>
-        <div class="image-frame fade-up">
-          <img src="images/nature.png" alt="Nature landscape" loading="lazy" />
-        </div>
-      </div>
-    </section>
-
-    <section id="roots" class="section">
-      <div class="container">
-        <h2 class="section-title fade-up">The Roots</h2>
-        <div class="gold-line fade-up"></div>
-        <p class="section-kicker fade-up">Justice is the root, Eden is the tree, freedom is the flame. These roots never change. Everything else can grow and be improved.</p>
-
-        <div class="cards">
-          <article class="card fade-up">
-            <div class="card-content">
-              <h3>Equal Worth</h3>
-              <p>Every soul carries equal worth, whatever they believe, whom they love, or how they live. A soul is a soul, and humans are humans.</p>
-            </div>
-          </article>
-          <article class="card fade-up">
-            <div class="card-content">
-              <h3>No Harm</h3>
-              <p>Be whoever you are, openly and without fear, as long as no one is harmed. Harm means damage to a person's body, safety, freedom, or dignity. Disagreement and criticism are not harm.</p>
-            </div>
-          </article>
-          <article class="card fade-up">
-            <div class="card-content">
-              <h3>Freedom of Conscience</h3>
-              <p>The right to choose, to question, to change your mind, to criticize, and to leave. Belief must be genuinely voluntary.</p>
-            </div>
-          </article>
-          <article class="card fade-up">
-            <div class="card-content">
-              <h3>No Authority Above Question</h3>
-              <p>No person, church, state, or founder is exempt from scrutiny. Ideas are judged by reasons, not by who says them.</p>
-            </div>
-          </article>
-          <article class="card fade-up">
-            <div class="card-content">
-              <h3>Critical Thinking</h3>
-              <p>Logic, reason, and evidence come first. Question every claim, including ours, and never accept something just because it is old, popular, or comes from authority. We keep apart what we know, what we believe, and what we only speculate about.</p>
-            </div>
-          </article>
-          <article class="card fade-up">
-            <div class="card-content">
-              <h3>Growth</h3>
-              <p>Vedenism does not ask for perfection. It asks you to recognize mistakes, take responsibility, repair what you can, and do better. Strict with habits, gentle with your worth.</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="thinking" class="section">
-      <div class="container">
-        <h2 class="section-title fade-up">Think Clearly</h2>
-        <div class="gold-line fade-up"></div>
-        <p class="section-kicker fade-up">Critical thinking is at the heart of Vedenism. Think clearly. Examine honestly. Keep improving.</p>
-
-        <div class="cards">
-          <article class="card fade-up">
-            <div class="card-content">
-              <h3>Logic</h3>
-              <p>Examine arguments, look for contradictions, and seek consistency. A claim is not true because it is popular, traditional, or comes from an authority.</p>
-            </div>
-          </article>
-          <article class="card fade-up">
-            <div class="card-content">
-              <h3>Reason &amp; Evidence</h3>
-              <p>Weigh the evidence, consider other views, and think through the consequences. Science helps us understand the world, and ethics helps us decide what to do with that understanding.</p>
-            </div>
-          </article>
-          <article class="card fade-up">
-            <div class="card-content">
-              <h3>Question Everything</h3>
-              <p>That includes Vedenism itself. We keep apart what we know, what we believe, and what we only speculate about, and any change to Vedenism must be logical.</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="growth" class="section">
-      <div class="container split">
-        <div class="panel fade-up">
-          <h2>Growth &amp; Discipline</h2>
-          <p>Vedenism does not ask you to be perfect. It asks you to grow. When you make a mistake:</p>
-          <ol>
-            <li>Recognize it.</li>
-            <li>Take responsibility.</li>
-            <li>Understand why it happened.</li>
-            <li>Repair the damage where you can.</li>
-            <li>Change what you do next time.</li>
-            <li>Keep improving.</li>
-          </ol>
-          <p class="quote">Your past does not have to define you, but it should teach you. Do not strive to be perfect. Strive to be better.</p>
-        </div>
-        <div class="panel fade-up">
-          <h2>Hardship</h2>
-          <p>Discipline is choosing the right path over the easy one, again and again. Be strict with your habits and gentle with your worth.</p>
-          <p>When life is hard, feel it, name it, then choose your next step. Step back from your emotions, then act. Good times show your character, and bad times show your strength.</p>
-          <p>Reason is a useful tool, and it works best alongside support, not instead of it. Seeking a doctor, a counselor, or a trusted friend is strength, not failure.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="paths" class="section">
-      <div class="container">
-        <div class="panel fade-up">
-          <h2>Three Paths on Belief</h2>
-          <p>Vedenism does not tell you what to believe about God. You may follow a religion, believe in God without one, or not believe at all. All three are welcome, and none stands above the others.</p>
-          <p>What unites us is not what we believe about heaven, but how we live on earth: with justice, freedom, and peace.</p>
-          <p>Vedenism does not oppose religion or government. It opposes their corruption: coercion, exploitation, persecution, punishing people for leaving or doubting, and using fear or power to silence others. It stands with the people who suffer under oppression, never against them.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="origin" class="section">
-      <div class="container split">
-        <div class="image-frame fade-up">
-          <img src="images/knowledge.png" alt="Knowledge and study" loading="lazy" />
-        </div>
-        <div class="panel fade-up">
-          <h2>Origin</h2>
-          <p>Vedenism began as a child's anger at injustice. Its founder, Alexander Jacob Skyheart, saw how unfair the world could be and saw no one fixing it. He was mocked because his father was a welder. He decided not to wait for someone else.</p>
-          <p>In a high school computing class he started designing a logically possible, just world, with clear rules, equal dignity, and help for people in need. Later, working a job and short of money, he printed the first beta pages of his book at his workplace. He never gave up on finishing it.</p>
-          <p>Later, after the death of his pet bird, grieving and crying out to every god he could name, he burned a piece of paper on marble. It left a V with a line or dot above it that never came off. He chose the V for the name because of the mark. Whether it was a sign, a coincidence, or grief shaping what the eye wanted to see, we leave for each person to decide.</p>
-          <p class="quote">No paradise falls from the sky. Everything worth having is earned. If we want a world governed by justice, we must build it, one fair act at a time.</p>
-          <p>The founder holds no special authority. If you find a contradiction or harm in his words, say so. It will be answered with reasons, and changed if you are right.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="purpose" class="section">
-      <div class="container">
-        <div class="panel fade-up">
-          <h2>Our Purpose</h2>
-          <p>Vedenism began as a philosophy of self-reflection and self-improvement. Over time it grew to ask a larger question: what kind of world should people live in? Our answer is a world at peace, where countries promote justice and ethical rules and are not corrupted by greed or fear, where the vulnerable are protected, and where nature is cared for.</p>
-          <p>We start with ourselves, because a fair society is built by people who can question themselves and learn from their mistakes. Then we work outward, by showing a better model, speaking up for it, and helping in practice.</p>
-          <p>Vedenism offers guidance and support for people seeking to live by goodness, justice, and personal growth. It promotes tolerance and respect for diversity, rejects harmful ideas, and aims to teach discipline, morality, handling emotions, and peaceful conflict resolution, so people can meet life's challenges with wisdom and compassion.</p>
-          <p>Racism and every form of discrimination break our first root: every soul has equal worth. We oppose corruption, coercion, and harmful ideas, never people. Poverty should never decide who gets to learn, and we advocate for the young, peacefully and with evidence.</p>
-          <p>Vedenism offers free courses, mentoring, and guidance on self-improvement, discipline, and handling hardship. This is education and peer support, not therapy or medical treatment. For mental health conditions, we encourage seeing a doctor or licensed counselor.</p>
-          <p>There is no membership, no fee, and no obligation. Learning is free. Donations are voluntary, and they help us grow toward planting trees, giving away books, and supporting education.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="mission" class="section">
-      <div class="container">
-        <h2 class="section-title fade-up">Our Mission</h2>
-        <div class="gold-line fade-up"></div>
-        <p class="section-kicker fade-up">To protect nature, serve science, support education, and build awareness for a more balanced future.</p>
-
-        <div class="cards">
-          <article class="card fade-up">
-            <div class="card-image"><img src="images/trees.png" alt="Trees and reforestation" loading="lazy" /></div>
-            <div class="card-content">
-              <h3>Planting Trees</h3>
-              <p>We aim to begin with tree planting projects, especially in areas damaged by wildfires. This creates visible action, public awareness, and a direct contribution to ecological recovery.</p>
-            </div>
-          </article>
-
-          <article class="card fade-up">
-            <div class="card-image"><img src="images/science.png" alt="Science-based awareness" loading="lazy" /></div>
-            <div class="card-content">
-              <h3>Serving Science</h3>
-              <p>Vedenism promotes science-based awareness, critical thinking, and public education that helps people tell evidence from misinformation, and welcomes honest questions.</p>
-            </div>
-          </article>
-
-          <article class="card fade-up">
-            <div class="card-image"><img src="images/education.png" alt="Education support" loading="lazy" /></div>
-            <div class="card-content">
-              <h3>Better Education</h3>
-              <p>Education is treated as a foundation for human dignity. Future projects may include book donations, literacy support, learning materials, and cultural education.</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="values" class="section">
-      <div class="container">
-        <h2 class="section-title fade-up">Values of Vedenism</h2>
-        <div class="gold-line fade-up"></div>
-        <p class="section-kicker fade-up">Guided by Nature. Empowered by Knowledge. Driven by Balance.</p>
-
-        <div class="cards">
-          <article class="card fade-up">
-            <div class="card-image"><img src="images/balance.png" alt="Balance and harmony" loading="lazy" /></div>
-            <div class="card-content">
-              <h3>Balance</h3>
-              <p>Balance means avoiding extremism, protecting harmony, and making decisions with both reason and empathy.</p>
-            </div>
-          </article>
-
-          <article class="card fade-up">
-            <div class="card-image"><img src="images/knowledge.png" alt="Knowledge and study" loading="lazy" /></div>
-            <div class="card-content">
-              <h3>Knowledge</h3>
-              <p>Knowledge is the light that lets society question what it inherits. Books, science, philosophy, and education are central to the mission. Everyone's worth is equal, whatever they know.</p>
-            </div>
-          </article>
-
-          <article class="card fade-up">
-            <div class="card-image"><img src="images/animals.png" alt="Animals in forest" loading="lazy" /></div>
-            <div class="card-content">
-              <h3>Life</h3>
-              <p>Nature and animals are not decorations of the world; they are part of the living system humanity depends on and must protect. Nature belongs to all of us.</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="projects" class="section">
-      <div class="container split">
-        <div class="image-frame fade-up">
-          <img src="images/philosophy.png" alt="Philosophy and books" loading="lazy" />
-        </div>
-        <div class="panel fade-up">
-          <h2>Project Path</h2>
-          <p><strong>Phase 1:</strong> Launch awareness through the website and a visible public identity.</p>
-          <p><strong>Phase 2:</strong> Begin nature-focused campaigns, especially tree planting in burned areas of Turkey.</p>
-          <p><strong>Phase 3:</strong> Expand toward literacy, book donations, science-based awareness, and educational support. Donation shirts may follow once the first project is under way.</p>
-          <p><strong>Phase 4:</strong> Build a long-term platform that can grow internationally while keeping its roots in practical good works.</p>
-
-          <div class="tracker">
-            <div class="stat"><strong id="treeCounter">0</strong><span>Trees Targeted</span></div>
-            <div class="stat"><strong>1</strong><span>Website</span></div>
-            <div class="stat"><strong>4</strong><span>Shirt Concepts</span></div>
-            <div class="stat"><strong>∞</strong><span>Future Work</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="store" class="section">
-      <div class="container">
-        <h2 class="section-title fade-up">Store</h2>
-        <div class="gold-line fade-up"></div>
-        <p class="section-kicker fade-up">Donation shirts and symbolic items are planned for the future. For now, this section presents the concept.</p>
-
-        <div class="store-showcase fade-up">
-          <div class="store-image">
-            <img src="images/donation-shirts.png" alt="Vedenism donation shirt concepts" loading="lazy" />
-          </div>
-          <div class="store-content">
-            <div>
-              <span class="coming-pill">Coming Soon</span>
-              <h3>Vedenism Donation Shirts</h3>
-              <p>Future shirts may support environmental and educational projects. Designs are planned around forest green, black, ivory, gold print, and the main Vedenism symbol.</p>
-            </div>
-            <div>
-              <a class="btn primary" href="mailto:vedenism@hotmail.com?subject=Vedenism%20updates">Ask for updates</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="section">
-      <div class="container split">
-        <div class="panel fade-up">
-          <h2>Contact</h2>
-          <p><strong>Email:</strong> vedenism@hotmail.com</p>
-          <p><strong>Website:</strong> Vedenism Project GitHub Pages</p>
-          <p><strong>Public focus:</strong> Nature, science, education, awareness, and humanitarian work.</p>
-          <a class="btn primary" href="mailto:vedenism@hotmail.com">Send Email</a>
-        </div>
-        <div class="panel fade-up">
-          <h2>Support the Project</h2>
-          <p>Support may help future awareness work, design materials, website improvements, and eventual nature or education projects. Donations are voluntary, and no donation is needed to take part or to share these ideas.</p>
-          <a class="btn" href="https://buymeacoffee.com/skyheart" target="_blank" rel="noopener">Donate via Buy Me a Coffee</a>
-          <p class="note">Vedenism is currently an unregistered project. How donations are used will be published openly before any project begins.</p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-      <button class="copyright-link" onclick="openTextModal('copyright')">© 2026 Vedenism Project. Vedenism™ and the Vedenism emblem are trademarks of the project.</button>
-      <div class="footer-links">
-        <button onclick="openTextModal('terms')">Terms of Use</button>
-        <button onclick="openTextModal('privacy')">Privacy Policy</button>
-        <button onclick="openTextModal('cookies')">Cookies Policy</button>
-        <a href="mailto:vedenism@hotmail.com">Contact</a>
-        <button onclick="openTextModal('faq')">FAQ</button>
-        <button onclick="openTextModal('version')">Version History</button>
-      </div>
-    </div>
-  </footer>
-
-  <div class="translate-box">
-    <span class="translate-label">Translate</span>
-    <div id="google_translate_element"></div>
-  </div>
-
-  <div class="floating-tools">
-    <a href="#home" aria-label="Back to top">↑</a>
-  </div>
-
-  <div id="textModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="textModalTitle">
-    <div class="modal-box wide">
-      <button class="modal-close" onclick="closeModal('textModal')" aria-label="Close">×</button>
-      <h2 id="textModalTitle">Information</h2>
-      <div id="textModalBody"></div>
-      <button class="modal-button" onclick="closeModal('textModal')">Close</button>
-    </div>
-  </div>
-
-  <script>
-    const introScreen = document.getElementById("introScreen");
-    const vinylButton = document.getElementById("vinylButton");
-    const skipIntro = document.getElementById("skipIntro");
-    const introAudio = document.getElementById("introAudio");
-    const muteBtn = document.getElementById("muteBtn");
-    let muted = false;
-
-    function updateMuteIcons() {
-      if (!muteBtn || !introAudio) return;
-      muteBtn.textContent = muted ? "🔇" : "🔊";
-      introAudio.muted = muted;
-    }
-
-    function toggleMute() {
-      muted = !muted;
-      updateMuteIcons();
-    }
-
-    if (muteBtn) muteBtn.addEventListener("click", toggleMute);
-
-    function enterSite() {
-      if (introScreen) introScreen.classList.add("hidden");
-      document.body.classList.remove("page-lock");
-    }
-
-    async function playAndEnter() {
-      if (!vinylButton) return enterSite();
-      vinylButton.classList.add("spinning");
-      try {
-        if (introAudio) {
-          introAudio.currentTime = 0;
-          introAudio.muted = muted;
-          await introAudio.play();
-        }
-      } catch (error) {}
-      setTimeout(enterSite, 1350);
-    }
-
-    if (vinylButton) {
-      vinylButton.addEventListener("click", playAndEnter);
-      vinylButton.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); playAndEnter(); }
-      });
-    }
-    if (skipIntro) skipIntro.addEventListener("click", enterSite);
-
-    function openMenu() {
-      document.getElementById("overlayMenu")?.classList.add("active");
-      document.body.classList.add("page-lock");
-    }
-
-    function closeMenu() {
-      document.getElementById("overlayMenu")?.classList.remove("active");
-      if (!introScreen || introScreen.classList.contains("hidden")) {
-        document.body.classList.remove("page-lock");
-      }
-    }
-
-    function closeModal(id) {
-      document.getElementById(id)?.classList.remove("active");
-    }
-
-    const modalContent = {
-      copyright: {
-        title: "Copyright Notice",
-        body: `<p>© 2026 Vedenism Project.</p><p>Vedenism™ and the Vedenism emblem are claimed trademarks and protected project assets. Please do not copy, alter, or use the name or logos, including on products or in a way that suggests you represent the project, without written permission.</p><p>The written ideas on this site are meant to be shared. You may quote them with credit to Vedenism.</p>`
-      },
-      terms: {
-        title: "Terms of Use",
-        body: `<p>This website presents the Vedenism project, its philosophy, its values, and its planned public work.</p><p>Content is provided for informational and project-development purposes. Store and product functions are currently marked as coming soon. Vedenism is currently an unregistered project.</p>`
-      },
-      privacy: {
-        title: "Privacy Policy",
-        body: `<p>This static website does not operate a user account system, payment system, or order tracking system, and does not collect personal data itself.</p><p>Third-party services may receive technical data such as your IP address when you load the page: Google Fonts (for typefaces) and Google Translate (if you use translation). Donations are handled by Buy Me a Coffee under its own privacy policy.</p><p>If forms, accounts, donations, or store functions are added later, a more complete privacy policy will be published before any personal data is collected.</p>`
-      },
-      cookies: {
-        title: "Cookies Policy",
-        body: `<p>This website does not set its own cookies. Third-party services such as Google Translate may use cookies or external scripts to provide translation features.</p><p>No advertising cookies are intentionally implemented.</p>`
-      },
-      version: {
-        title: "Version History",
-        body: `<p>Vedenism grows with the people who practice it. When something changes, we say what changed and why.</p><p><strong>v1.5 (17 October 2026):</strong> Added what Vedenism offers: guidance and support, tolerance, and the skills it aims to teach.</p><p><strong>v1.4 (17 October 2026):</strong> Added Growth &amp; Discipline.</p><p><strong>v1.3 (17 October 2026):</strong> Made critical thinking, logic, and reason a headline idea on the site.</p><p><strong>v1.2 (17 October 2026):</strong> Added free mentoring and courses to Our Purpose.</p><p><strong>v1.1 (17 October 2026):</strong> Added Our Purpose.</p><p><strong>v1.0 (17 October 2026):</strong> First public version, and the starting point for every later change. It sets out the three paths on belief, the fixed roots, self-discipline and growth, the definition of harm, and the amendment rule.</p><p>Later changes will be listed here, newest first.</p>`
-      },
-      faq: {
-        title: "FAQ",
-        body: `<ul>
-          <li><strong>Is Vedenism a religion?</strong> No. It is a philosophical movement. You may follow a religion, believe in God without one, or not believe at all.</li>
-          <li><strong>Do I have to join?</strong> No. There is no membership, no fee, and no clergy. You may question, criticize, or leave at any time.</li>
-          <li><strong>Is Vedenism therapy?</strong> No. It is a philosophy and an educational project. For mental health concerns, please see a doctor or licensed counselor, and if someone is in danger, contact your local emergency number.</li>
-          <li><strong>What is the mission?</strong> Nature protection, science-based awareness, education, tree planting, and humanitarian values.</li>
-          <li><strong>Is the store open?</strong> Not yet. Donation shirts are coming soon.</li>
-          <li><strong>How can I support?</strong> Share the ideas, use the donation button, or contact the project by email.</li>
-        </ul>`
-      }
-    };
-
-    function openTextModal(type) {
-      const content = modalContent[type] || modalContent.faq;
-      const title = document.getElementById("textModalTitle");
-      const body = document.getElementById("textModalBody");
-      const modal = document.getElementById("textModal");
-      if (!title || !body || !modal) return;
-      title.textContent = content.title;
-      body.innerHTML = content.body;
-      modal.classList.add("active");
-    }
-
-    document.querySelectorAll(".modal-overlay").forEach((overlay) => {
-      overlay.addEventListener("click", function(event) {
-        if (event.target === this) this.classList.remove("active");
-      });
-    });
-
-    document.querySelectorAll("img").forEach((img) => img.setAttribute("draggable", "false"));
-    document.addEventListener("dragstart", (event) => {
-      if (event.target && event.target.tagName === "IMG") event.preventDefault();
-    });
-
-    document.addEventListener("contextmenu", (event) => {
-      event.preventDefault();
-    });
-
-    document.addEventListener("keydown", (event) => {
-      const key = event.key.toLowerCase();
-
-      if (event.key === "Escape") {
-        closeMenu();
-        closeModal("textModal");
-      }
-
-      if (
-        event.key === "F12" ||
-        (event.ctrlKey && event.shiftKey && ["i", "j", "c"].includes(key)) ||
-        (event.ctrlKey && ["u", "s"].includes(key)) ||
-        (event.metaKey && event.altKey && ["i", "j", "c", "u"].includes(key)) ||
-        (event.metaKey && ["u", "s"].includes(key))
-      ) {
-        event.preventDefault();
-      }
-    });
-
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add("visible");
-      });
-    }, { threshold: 0.12 });
-
-    document.querySelectorAll(".fade-up").forEach((el) => revealObserver.observe(el));
-
-    function animateCounter(id, target) {
-      const element = document.getElementById(id);
-      if (!element) return;
-      let value = 0;
-      const step = Math.max(1, Math.floor(target / 120));
-      const timer = setInterval(() => {
-        value += step;
-        if (value >= target) {
-          value = target;
-          clearInterval(timer);
-        }
-        element.textContent = value.toLocaleString();
-      }, 18);
-    }
-
-    const treeCounter = document.getElementById("treeCounter");
-    if (treeCounter) {
-      const counterObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            animateCounter("treeCounter", 1000);
-            counterObserver.disconnect();
-          }
-        });
-      }, { threshold: 0.4 });
-      counterObserver.observe(treeCounter);
-    }
-
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement({
-        pageLanguage: "en",
-        includedLanguages: "en,tr,de,fr,es,it,pt,ru,ar,el,ja,ko,zh-CN",
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-        autoDisplay: false
-      }, "google_translate_element");
-    }
-  </script>
-
-  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-</body>
-</html> 
+# Vedenism
+
+*Justice, freedom, and peace. Heaven on earth, built by us.*
+
+**Vedenism is a philosophical movement for justice, freedom, and peace.** It is open to people of any belief or none, and it is built on one idea: heaven on earth is not waited for, it is built.
+
+---
+
+## 1. Name and Symbol
+
+**Vedenism** is **V + Eden + ism**. Eden is the garden of the old story, the picture of a world without cruelty. The **-ism** marks it as a living philosophy. The V stands at the start of the name and at the heart of the symbol.
+
+Vedenism is a combination of many beliefs and philosophies. It draws on Stoicism, Buddhism, the Bible, Hellenic thought, and secular humanism, among others, and keeps only what protects equal worth, reduces harm, respects freedom of belief, and holds up to reason. Many ideas here echo older traditions, and you are welcome to trace them. Where an idea is Vedenism's own, we say so.
+
+**The symbol** tells the whole philosophy in one picture:
+
+- **The roots** hold a sword and scales. Justice is the foundation, and it has the strength to protect the vulnerable.
+- **The tree** is Eden and the Tree of Life. Its trunk is twisted from two strands woven together: those who believe and those who do not, growing as one.
+- **The V and the torch** carry a flame: freedom and the light of understanding.
+- **The Greek key border** never breaks. It points to the Greek and Stoic roots, and to unity with no beginning and no end.
+
+> Justice is the root. Eden is the tree. Freedom is the flame.
+
+---
+
+## 2. Origin
+
+Vedenism did not begin in a single moment. It grew piece by piece.
+
+It began as a child's anger at injustice. The founder saw how unfair the world could be and saw no one fixing it. He was mocked because his father was a welder and other families had government jobs. He decided not to wait for someone else. One day in high school, waiting for the school bell and looking at the sky through the window of the computing class, something sparked in him. He started designing a logically possible, just world: one with clear rules, equal dignity, and help for people in need.
+
+Later, after the death of his pet bird, grieving and crying out to every god he could name, he burned a piece of paper on marble. It left a V with a line or dot above it that never came off. He chose the V for the name because of the mark. Whether it was a sign, a coincidence, or grief shaping what the eye wanted to see, we leave for each person to decide.
+
+Later, working a job and short of money, he printed the first beta pages of his book, *The Path of Harmony: Teachings for a Better Life*, at his workplace. He never gave up on finishing it.
+
+Vedenism is a philosophy. It welcomes people of any belief and requires none. It keeps learning from its own past, which is the principle it is built on.
+
+> No paradise falls from the sky. Everything worth having is earned, by us or by those who came before us. If we want a world governed by justice, we must build it, one fair act at a time.
+
+---
+
+## Our Purpose
+
+Vedenism began as a philosophy of self-reflection and self-improvement. Over time it grew to ask a larger question: what kind of world should people live in? Our answer is a world at peace, where countries promote justice and ethical rules and are not corrupted by greed or fear, where the vulnerable are protected, and where nature is cared for.
+
+We start with ourselves, because a fair society is built by people who can question themselves and learn from their mistakes. Then we work outward, by showing a better model, speaking up for it, and helping in practice. Vedenism is the work of years and does not claim to be perfect. It claims to keep improving, and it invites anyone to help.
+
+**What we offer.** Vedenism offers guidance and support for people seeking to live by goodness, justice, and personal growth. It promotes tolerance and respect for diversity, rejects harmful ideas, and aims to teach discipline, morality, handling emotions, and peaceful conflict resolution, so people can meet life's challenges with wisdom and compassion.
+
+**Against racism and discrimination.** Racism and every form of discrimination break the first root: every soul has equal worth. One voice is easy to ignore, and many together are heard. Anyone who shares this goal, of any belief or none, is welcome to stand with us peacefully.
+
+**Against corruption and harmful ideas, never against people.** We oppose corruption, coercion, and ideas that cause harm. We do not attack anyone for who they are.
+
+**For the young.** Poverty should never decide who gets to learn. We advocate for a fair safety net for students and jobseekers, open to everyone on the same terms, and we make our case with evidence and peacefully.
+
+**Guidance and courses.** Vedenism offers free courses, mentoring, and guidance on self-improvement, discipline, handling hardship, and learning from mistakes. This is education and peer support, not therapy or medical treatment. For mental health conditions, we encourage seeing a doctor or licensed counselor, and we can help you find one.
+
+**Need help?** Vedenism is a philosophy and an educational project, not therapy, medical care, or an emergency service. If someone is in danger, contact your local emergency number right away. If you are struggling, tell someone you trust and consider a doctor or licensed counselor.
+
+**Open doors.** There is no membership, no fee, and no obligation. Learning is free. Donations are voluntary, and they help us grow toward planting trees, giving away books, and supporting education.
+
+---
+
+## 3. Three Paths on Belief
+
+Vedenism does not tell you what to believe about God. You may:
+
+1. **Follow a religion.**
+2. **Believe in God without a religion.**
+3. **Not believe at all.**
+
+All three are welcome, and none stands above the others. What unites us is not what we believe about heaven, but how we live on earth: with justice, freedom, and peace.
+
+**We do not know what lies beyond what humans can perceive.** No one can prove or disprove God. So a Vedenist keeps three things apart: what we know, what we believe, and what we only speculate about.
+
+**Scripture is wisdom, not authority.** Vedenism draws on Stoicism and the Bible alike, as sources of wisdom to be tested by reason.
+
+**Goodness that does not depend on threats.** Fear of punishment after death weighs most on the gentle and the conscientious, while those who do real harm are rarely stopped by it. Vedenism asks for goodness that does not depend on threats, and holds that accountability for harm belongs to justice in this life.
+
+**A just God would not wait to be asked** before helping the suffering, and neither should we. Vedenism measures a life not by its prayers but by its mercy. Vedenism does not require prayer or ritual. Those who pray are welcome to.
+
+**What some Vedenists believe about the afterlife** (reincarnation, heaven, a self-made hell with unlocked doors, and others) is personal belief. It sits outside the core and binds no one.
+
+---
+
+## 4. Fixed Roots and Living Practice
+
+Vedenism has two layers.
+
+**Fixed roots (never change):**
+
+1. Justice, freedom, and peace.
+2. **Equal worth of every soul.** A soul is a soul, and humans are humans.
+3. **No harm.** Freedom of belief and identity, for as long as no one is harmed.
+4. **Freedom of conscience:** the right to choose, question, change your mind, criticize, and **leave**.
+5. **No authority is exempt from scrutiny**, including the founder.
+6. **Critical thinking and reason:** logic and evidence come first. Claims are judged by reasons, not by who says them or how old or popular they are. We keep apart what we know, what we believe, and what we only speculate about, and we question everything, including Vedenism itself.
+
+**Living practice (open to change):** the list of universal wrongs, daily practices, customs, ceremonies, and how communities organize.
+
+**Protecting the vulnerable.** Vedenism protects the believer and the doubter, the one who follows a religion and the one who follows none, the straight and the LGBTQ. No one should be judged, hunted, or silenced for living peacefully.
+
+**Humility is for everyone.** Be whoever you are, openly and without fear. Do no harm, and do not use who you are to belittle others.
+
+**Against corruption, not against belief.** Vedenism does not oppose religion or government. It opposes their corruption: coercion, exploitation, persecution, punishing people for leaving or doubting, and using fear or power to silence others. Any institution, sacred or secular, answers to the same test. Vedenism opposes oppression wherever it appears, and stands with the people who suffer under it, never against them.
+
+**Peace is not passivity.** Vedenists answer harm with justice, not vengeance, and defend the vulnerable without becoming what they oppose. Self-defense against a real and immediate threat is allowed. Wars of conquest and holy wars are not. Try peace first, always.
+
+**Culture.** Differences should dazzle, not be destroyed. Faith is for people, not for governing systems.
+
+---
+
+**Think clearly.** Logic examines our thinking, reason evaluates evidence and consequences, and self-improvement puts what we learn into practice. Science tells us what happens under a policy, but it does not decide every moral question, so we also need ethical reasoning about fairness, freedom, harm, and dignity. A simple test for any claim: *would I believe this if I had been born somewhere else?* *Think clearly. Examine honestly. Keep improving.*
+
+---
+
+## 5. Self-Discipline and Growth
+
+A just world is built by people who keep working on themselves. Vedenism does not ask you to be perfect. It asks you to grow.
+
+**Learning from mistakes.** When you make a mistake:
+
+1. Recognize it.
+2. Take responsibility.
+3. Understand why it happened.
+4. Repair the damage where you can.
+5. Change what you do next time.
+6. Keep improving.
+
+Your past does not have to define you, but it should teach you. Do not strive to be perfect. Strive to be better.
+
+**Self-discipline.** Discipline is choosing the right path over the easy one, again and again. It is not harshness toward yourself. Be strict with your habits and gentle with your worth.
+
+**Hardship.** Hardship is part of life, and limits are what give effort its meaning. Endure it by feeling it, naming it, and then choosing your response. Step back from your emotions, then act. Good times show your character. Bad times show your strength. Asking for help is part of strength.
+
+**Impermanence.** The only thing that is permanent is change. Good times and bad times both pass, so enjoy the first fully and trust that the second will end. Do not cling to what is temporary. Cherish it.
+
+**Reason.** Use logic and evidence, ask questions, keep learning, and stay close to reality. Read, write, and question so ignorance does not rule you. Never let anyone's lack of knowledge lower their worth.
+
+**The virtues:** wisdom, temperance, justice, courage, humility, and reason.
+
+**A daily habit (optional):** each evening, ask yourself, *Did I act justly today? What did I learn? What will I do better tomorrow?*
+
+---
+
+## 6. Harm and the Universal Wrongs
+
+**What counts as harm:** Harm is anything that damages a person's body, safety, freedom, or dignity, through violence, abuse, threats, harassment, coercion, manipulation, or deliberate cruelty.
+
+**Mental harm** is deliberately damaging a person's peace, safety, or dignity through bullying, harassment, threats, humiliation, manipulation, coercion, stalking, or isolating them. Disagreement, criticism, honest hard truths, and being offended are **not** harm.
+
+Three tests keep it fair:
+
+1. **Intent or recklessness:** did they mean to hurt, or ignore obvious damage?
+2. **Targeting:** is it aimed at a person, not at an idea or belief?
+3. **Pattern or severity:** is it repeated or serious, not a single awkward remark?
+
+**The universal wrongs.** An item belongs on this list only if it harms someone or violates their freedom or dignity. Thoughts and private states are not wrongs. Only actions are.
+
+*Harm to people*
+- Violence, except in genuine self-defense
+- Abuse, molestation, and sexual offenses, especially against children and family members
+- Bullying, harassment, and cruelty
+- Threats and inciting violence
+
+*Abuse of power and freedom*
+- Slavery and forced labor
+- Coercion, exploitation, and forced marriage
+- Discrimination, including by gender, race, belief, or orientation
+- Wars of aggression
+- Destroying a people's culture or heritage
+
+*Dishonesty and betrayal*
+- Slander and deliberate deception that harms (a lie that saves a life is not a wrong)
+- Theft and fraud
+- Betraying trust
+
+*The vulnerable and the earth*
+- Cruelty to animals
+- Abandoning someone in need when you could easily help
+- Needless destruction of nature
+
+**Repentance.** If you wrong someone, apologize and repair what you can. If you cannot, change your future actions. Only the person you wronged can forgive you.
+
+**Seek your rights.** If someone wrongs you, do not stay silent.
+
+**Rules prevent mistakes.** Unjust rules must be challenged peacefully.
+
+---
+
+## 7. Food and Body Care
+
+*Living practice. Safety advice, not a commandment on diet. Food customs belong to each culture.*
+
+Care for the body that carries you. Eat only food that is clean, fresh, and safe.
+
+- Throw out moldy food immediately, without a second thought.
+- Do not eat spoiled or infested food, or infested plants.
+- Wild insects, snails, slugs, and other wild animals can carry parasites and diseases. Do not eat them unless they are properly prepared, cooked, and known to be safe.
+- If you are not sure a plant, mushroom, or animal is safe, do not eat it. Research it first, or leave it.
+- Never eat anything on a dare.
+- Be cautious. Where food is grown, raised, and stored matters as much as the food itself.
+
+Drinking, tattoos, and similar choices are fine in moderation and harmful in excess. Treat your body with respect, and treat your own pain with care, not shame.
+
+---
+
+## 8. Sharing the Ideas and the Amendment Rule
+
+**Founder.** Vedenism was founded by Alexander Jacob Skyheart, and its words began as his own. No one, including the founder, stands above question. If you find a contradiction or harm in the founder's words, say so. It will be answered with reasons, and changed if you are right.
+
+**Sharing.** Anyone may share Vedenism's ideas. No one who does so has special authority, and their words are tested by logic and care like anyone's. Share by explaining, not pressuring. Answer questions, accept "no" gracefully, and never harass, deceive, or shame anyone. Someone who does so does not speak for Vedenism.
+
+**Not a cult, by design.** No fees, no required beliefs, no clergy, no secrets, and no obligation to stay. Anyone may question, criticize, or leave at any time, without penalty or shunning.
+
+**No worship, no hierarchy.** Gratitude is welcome. Devotion to a person is not.
+
+**Amendments.** Vedenists may reshape any living practice through honest discussion, evidence, and care for the vulnerable, as long as the roots remain. Any change must:
+
+1. Protect equal worth.
+2. Reduce harm, or at least add none.
+3. Respect freedom of belief.
+4. Be logical: consistent with the roots, backed by reasons or evidence, and free of contradiction.
+
+It is judged by reasons, not by who proposes it. A proposal that seems illogical is answered with reasons, and the person may answer back.
+
+Changes are proposed openly, discussed publicly, and judged by whether they reduce harm. If any teaching ever contradicts science, search for the truth and replace the error.
+
+**Branches.** Vedenism is meant to be practiced in many ways, like the many schools of Stoicism. A Vedenist in a city, a village, or a century we cannot imagine may live it differently, and that is not a split but a sign it is alive. A branch is valid if it passes the test above.
+
+> We plant the roots. Those who come after grow the branches.
+
+**Gatherings.** Where people meet, doors are open and seats form a circle with no head. There is a library and a garden. People gather to learn, talk, celebrate, and help those in need. No fighting, hatred, or harsh language inside. Prayer or meditation is welcome for those who want it. Volunteers can listen and point people to professional help.
+
+---
+
+## 9. A Personal Pledge (optional)
+
+> I will do no harm.
+> I will treat every soul as equal in worth.
+> I will seek justice, defend freedom, and keep the peace.
+> I will question myself as I question others, and I will learn from my mistakes.
+> Long live Vedenism, let there be peace and justice.
+
+**Greeting (optional):** a hand over the heart, then slowly lowered.
+
+---
+
+## Practice Pages (site plan)
+
+*Living practice. Written for everyone, and each page ties back to a root.*
+
+**Suggested menu:** Roots · Growth · Justice · Skills · Body & Health · Relationships · Questions · Sayings
+
+| Page | What it holds |
+|---|---|
+| **Body & Strength** | Moving your body, training discipline, rest. Strength is care for yourself, not a measure of worth. |
+| **Health** | Sleep, mental health, getting help early. Defer to doctors and trained professionals. No diet or weight targets. |
+| **Food & Body Care** | The food-safety rules above. |
+| **Speaking & Listening** | Respectful debate, nonviolent communication, saying "no" kindly. |
+| **Etiquette** | Respect, no harsh language, no unwanted touch, consent. |
+| **Friendship** | Loyalty, trust, and honesty. |
+| **Love & Relationships** | Consent, honesty, no cheating, no coercion. Love is not a sin, and it applies to everyone. |
+| **Partnership & Family** | Respect in the home, no domestic violence, raising children with care. |
+| **Outdoor Skills** | Making a fire safely, leaving no trace, finding safe water, basic first aid, navigating without a phone. |
+| **Questions** | Optional speculation: afterlife beliefs, Liminal Solipsism. Marked as speculation, with the line that whatever the answer, we treat everyone as real. |
+
+### Social Skills (draft)
+
+*Know your ground. Decide what you will accept and what you will not, and say so calmly and clearly. A limit is not an attack. It is information.*
+
+*Speak to people the way you would speak to someone you care about: honestly, warmly, and without performing. Listen as though they matter, because they do.*
+
+*Genuine does not mean careless. Kindness and honesty work together. Say the true thing in a way that respects the person hearing it.*
+
+*Be open to others, and keep your ground. Without limits, openness can be used against you. Without openness, limits become walls.*
+
+---
+
+## Sayings
+
+- *Treat others as you wish to be treated, and remember that they may wish to be treated differently. Ask, listen, and respect their freedom.*
+- *Determination, Work, Happiness.*
+- *The only thing that is permanent is change.*
+- *Good times show your character. Bad times show your strength.*
+- *Step back from your emotions, then respond.*
+- *If you want to prevent murder, be nicer. Care for one another as family.*
+- *If someone stands against another, do not stand idly by when you can save them.*
+- *Do not harm nature. It belongs to all of us.*
+- *Do not wait for God to reward good deeds. Reward each other.*
+- *Everyone deserves a chance at redemption. Do not judge all people by one person's mistake.*
+- *Mercy is measured by what you do for others, not by what you say to the sky.*
+- *Do not chase dreams that cannot be real. Use reality and science, because some people will try to deceive you.*
+
+---
+
+## Version History
+
+Vedenism grows with the people who practice it. When something changes, we say what changed and why.
+
+**v1.6 (27 October 2026):** Added a FAQ entry on the Path of Harmony book to the site, the "born somewhere else" test, and the school-window moment to the origin.
+
+**v1.5 (17 October 2026):** Added what Vedenism offers: guidance and support, tolerance and respect for diversity, and the skills it aims to teach.
+
+**v1.4 (17 October 2026):** Gave Growth & Discipline its own section on the site.
+
+**v1.3 (17 October 2026):** Made critical thinking, logic, and reason a headline root: examine arguments for contradictions, weigh evidence, question every claim, and keep knowledge, belief, and speculation apart.
+
+**v1.2 (17 October 2026):** Added Guidance and Courses to Our Purpose: free mentoring, coaching, and teaching, clearly separate from therapy or medical treatment.
+
+**v1.1 (17 October 2026):** Added Our Purpose: how Vedenism grew from self-improvement to a vision of a fair society, its stand against racism and discrimination, against corruption and harmful ideas (never against people), support for the young, and open doors with voluntary donations.
+
+**v1.0 (17 October 2026):** First public version, and the starting point for every later change. It contains the name and symbol, the origin, the three paths on belief, the fixed roots and the living practice, self-discipline and growth, harm and the universal wrongs, food and body care, the amendment rule, the personal pledge, and the practice-page plan.
+
+*Later changes will be listed above, newest first.*
