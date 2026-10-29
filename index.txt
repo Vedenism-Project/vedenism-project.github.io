@@ -155,30 +155,51 @@ Three tests keep it fair:
 2. **Targeting:** is it aimed at a person, not at an idea or belief?
 3. **Pattern or severity:** is it repeated or serious, not a single awkward remark?
 
-**The universal wrongs.** An item belongs on this list only if it harms someone or violates their freedom or dignity. Thoughts and private states are not wrongs. Only actions are.
+**The Scale of Harm.** A way to see how serious a wrong is, from good to worst:
+
+- **-1 Good deeds:** kindness, generosity, service
+- **0 Neutral:** everyday life
+- **1 Lapses:** small mistakes, to be learned from, not punished
+- **2 Dishonesty and betrayal**
+- **3 Harm:** violence, cruelty, neglect
+- **4 Injustice:** discrimination, persecution, coercion
+- **5 Abuse of power:** exploitation, oppression, slavery
+- **6 Mass harm:** genocide, terrorism, mass murder
+
+**The universal wrongs.** A wrong belongs on this list only if it harms someone or violates their freedom or dignity. Thoughts, feelings, private states, and beliefs are never wrongs. Only actions are.
 
 *Harm to people*
-- Violence, except in genuine self-defense
-- Abuse, molestation, and sexual offenses, especially against children and family members
-- Bullying, harassment, and cruelty
-- Threats and inciting violence
+1. Violence, except genuine self-defense or defending others from immediate harm
+2. Murder and torture
+3. Abuse, including domestic abuse and abuse of children
+4. Any sexual act without consent, and any sexual act involving a child
+5. Bullying and cruelty, physical or mental
+6. Threats, stalking, and inciting violence
+7. Recklessly endangering others, such as driving drunk
 
 *Abuse of power and freedom*
-- Slavery and forced labor
-- Coercion, exploitation, and forced marriage
-- Discrimination, including by gender, race, belief, or orientation
-- Wars of aggression
-- Destroying a people's culture or heritage
+8. Slavery, forced labor, and human trafficking
+9. Coercion, including forced marriage and forced conversion
+10. Exploiting the vulnerable
+11. Discrimination or persecution because of race, gender, orientation, belief, or background
+12. Wars of aggression, terrorism, and genocide
+13. Corruption and abuse of office
+14. Punishing people for leaving, doubting, or questioning
 
 *Dishonesty and betrayal*
-- Slander and deliberate deception that harms (a lie that saves a life is not a wrong)
-- Theft and fraud
-- Betraying trust
+15. Slander and deliberate deception that harms (a lie that saves a life is not a wrong)
+16. Theft, fraud, and extortion
+17. Giving false witness
+18. Betraying trust or breaking a serious promise
 
 *The vulnerable and the earth*
-- Cruelty to animals
-- Abandoning someone in need when you could easily help
-- Needless destruction of nature
+19. Cruelty to animals
+20. Neglecting those who depend on you, such as children and elders
+21. Abandoning someone in need when you could easily help
+22. Needless destruction of nature
+23. Destroying cultural heritage or places of worship
+
+If an act harms someone and is not named here, the general rule still applies: harm is a wrong. Harming yourself is not a wrong to punish. It calls for compassion and help.
 
 **Repentance.** If you wrong someone, apologize and repair what you can. If you cannot, change your future actions. Only the person you wronged can forgive you.
 
@@ -297,6 +318,10 @@ Changes are proposed openly, discussed publicly, and judged by whether they redu
 ## Version History
 
 Vedenism grows with the people who practice it. When something changes, we say what changed and why.
+
+**v1.8 (27 October 2026):** Added a reader for Chapter 3 of the book, Growth and Discipline, on the site.
+
+**v1.7 (27 October 2026):** Replaced the draft list with a clean cut of 23 universal wrongs and the Scale of Harm, each tied to harm, freedom, or dignity.
 
 **v1.6 (27 October 2026):** Added a FAQ entry on the Path of Harmony book to the site, the "born somewhere else" test, and the school-window moment to the origin.
 
