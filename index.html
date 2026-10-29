@@ -932,6 +932,27 @@
       margin-top: 10px;
     }
 
+    .modal-box.wide h3 {
+      font-family: "Cinzel", serif;
+      color: var(--gold-soft);
+      font-size: 1.15rem;
+      letter-spacing: 1px;
+      margin: 22px 0 8px;
+    }
+
+    .modal-box blockquote {
+      border-left: 2px solid var(--gold);
+      padding-left: 14px;
+      margin: 14px 0;
+      font-style: italic;
+      color: var(--cream);
+    }
+
+    .modal-box ol {
+      padding-left: 22px;
+      margin-top: 10px;
+    }
+
     .modal-close {
       position: absolute;
       top: 12px;
@@ -1220,6 +1241,7 @@
             <li>Keep improving.</li>
           </ol>
           <p class="quote">Your past does not have to define you, but it should teach you. Do not strive to be perfect. Strive to be better.</p>
+          <button class="btn" onclick="openTextModal('chapter3')">Read Chapter 3 of the book</button>
         </div>
         <div class="panel fade-up">
           <h2>Hardship</h2>
@@ -1516,16 +1538,56 @@
         title: "Cookies Policy",
         body: `<p>This website does not set its own cookies. Third-party services such as Google Translate may use cookies or external scripts to provide translation features.</p><p>No advertising cookies are intentionally implemented.</p>`
       },
+      chapter3: {
+        title: "Chapter 3: Growth and Discipline",
+        body: `<p><em>From The Path of Harmony: Teachings for a Better Life. Draft. This is education and guidance, not therapy or medical advice.</em></p>
+        <h3>You will make mistakes</h3>
+        <p>Everyone does. You will say something you regret, give up on something you meant to finish, or hurt someone without meaning to. Vedenism does not ask you to be perfect. It asks you to grow.</p>
+        <p>A person who demands perfection of themselves breaks at the first failure. A person who aims to grow treats failure as information. One of them quits. The other learns, repairs, and goes on.</p>
+        <blockquote>Your past does not have to define you, but it should teach you. Do not strive to be perfect. Strive to be better.</blockquote>
+        <h3>The six steps</h3>
+        <ol>
+          <li><strong>Recognize it.</strong> Say plainly what happened, without excuses and without drama. A mistake you refuse to see cannot be fixed.</li>
+          <li><strong>Take responsibility.</strong> It was your choice, even if others played a part. This is not self-blame. It is where your power returns, because you can only change what you own.</li>
+          <li><strong>Understand why.</strong> Were you tired, afraid, rushed, angry, or copying someone else? You are not looking for an excuse. You are looking for the pattern, because patterns can be changed.</li>
+          <li><strong>Repair the damage.</strong> If you hurt someone, apologize and make it right where you can. If you cannot, change your future actions. Only the person you wronged can forgive you.</li>
+          <li><strong>Change what you do next time.</strong> Pick one concrete change, small enough to actually do. Vague promises fade, and specific ones stick.</li>
+          <li><strong>Keep improving.</strong> Growth is not a place you arrive at. It is the direction you walk.</li>
+        </ol>
+        <h3>What discipline is</h3>
+        <p>Discipline is choosing the right path over the easy one, again and again. It is not harshness, and it is not punishing yourself. <strong>Be strict with your habits and gentle with your worth.</strong> Keep the promises you make to yourself, even in small things, and remember that a bad day does not make you a bad person. Cruelty toward yourself does not last, because it makes you want to run from yourself. Steady, kind firmness does.</p>
+        <h3>Start small</h3>
+        <ul>
+          <li>Make the first step so small it feels almost silly: five minutes, one page, one glass of water.</li>
+          <li>Do it at the same time each day, tied to something you already do.</li>
+          <li>When you miss a day, return the next day. Two missed days in a row is the thing to avoid, not one.</li>
+        </ul>
+        <p>Small steps repeated are stronger than big steps abandoned. If your attention drifts easily, shorter tasks, clear steps, and a visible checklist help many people.</p>
+        <h3>Compete with your past self</h3>
+        <p>Someone will always be faster, richer, or more talented. The only comparison that helps is with the person you were yesterday. Are you a little kinder, more honest, and more patient than before?</p>
+        <h3>The evening review</h3>
+        <p>Many people across history have ended the day with a short look back. Seneca, the Roman Stoic, described the habit, and it is older than he was. You do not need any belief to use it. Ask three questions: <strong>What went well today? What did I learn? What will I do better tomorrow?</strong> Keep it short and kind. It is for learning, not for judgment.</p>
+        <h3>When things are hard</h3>
+        <p>Discipline does not mean hiding what you feel. Feel it, name it, then choose your next step. Good times show your character, and bad times show your strength. The only thing that is permanent is change.</p>
+        <p>If a low feeling lasts, returns, or makes daily life hard, do not wait to see whether willpower is enough. Talk to a doctor or a counselor. Asking for help is part of strength.</p>
+        <h3>Try this week</h3>
+        <ol>
+          <li>Pick one small habit and do it for five minutes a day for seven days.</li>
+          <li>Do the evening review on three nights.</li>
+          <li>Walk the six steps once, on a small mistake from this week.</li>
+        </ol>
+        <p><em>Vedenism combines many beliefs and philosophies. The evening review echoes Stoic practice, and the six steps are Vedenism's own way of putting older ideas together. You are welcome to trace the sources and to improve on this chapter.</em></p>`
+      },
       version: {
         title: "Version History",
-        body: `<p>Vedenism grows with the people who practice it. When something changes, we say what changed and why.</p><p><strong>v1.6 (27 October 2026):</strong> Added a FAQ entry on the Path of Harmony book, the &ldquo;born somewhere else&rdquo; test, and the school-window moment to the origin.</p><p><strong>v1.5 (17 October 2026):</strong> Added what Vedenism offers: guidance and support, tolerance, and the skills it aims to teach.</p><p><strong>v1.4 (17 October 2026):</strong> Added Growth &amp; Discipline.</p><p><strong>v1.3 (17 October 2026):</strong> Made critical thinking, logic, and reason a headline idea on the site.</p><p><strong>v1.2 (17 October 2026):</strong> Added free mentoring and courses to Our Purpose.</p><p><strong>v1.1 (17 October 2026):</strong> Added Our Purpose.</p><p><strong>v1.0 (17 October 2026):</strong> First public version, and the starting point for every later change. It sets out the three paths on belief, the fixed roots, self-discipline and growth, the definition of harm, and the amendment rule.</p><p>Later changes will be listed here, newest first.</p>`
+        body: `<p>Vedenism grows with the people who practice it. When something changes, we say what changed and why.</p><p><strong>v1.8 (27 October 2026):</strong> Added a reader for Chapter 3 of the book, Growth and Discipline.</p><p><strong>v1.6 (27 October 2026):</strong> Added a FAQ entry on the Path of Harmony book, the &ldquo;born somewhere else&rdquo; test, and the school-window moment to the origin.</p><p><strong>v1.5 (17 October 2026):</strong> Added what Vedenism offers: guidance and support, tolerance, and the skills it aims to teach.</p><p><strong>v1.4 (17 October 2026):</strong> Added Growth &amp; Discipline.</p><p><strong>v1.3 (17 October 2026):</strong> Made critical thinking, logic, and reason a headline idea on the site.</p><p><strong>v1.2 (17 October 2026):</strong> Added free mentoring and courses to Our Purpose.</p><p><strong>v1.1 (17 October 2026):</strong> Added Our Purpose.</p><p><strong>v1.0 (17 October 2026):</strong> First public version, and the starting point for every later change. It sets out the three paths on belief, the fixed roots, self-discipline and growth, the definition of harm, and the amendment rule.</p><p>Later changes will be listed here, newest first.</p>`
       },
       faq: {
         title: "FAQ",
         body: `<ul>
           <li><strong>Is Vedenism a religion?</strong> No. It is a philosophical movement. You may follow a religion, believe in God without one, or not believe at all.</li>
           <li><strong>Do I have to join?</strong> No. There is no membership, no fee, and no clergy. You may question, criticize, or leave at any time.</li>
-          <li><strong>What is The Path of Harmony?</strong> It is the book behind Vedenism, subtitled <em>Teachings for a Better Life</em>: a practical guide to living with justice, freedom, and peace. Its first pages were printed by hand at a workplace, and it is still being written. Planned chapters cover the roots, thinking clearly, growth and discipline, facing hardship, harm and justice, body and daily life, relationships and community, nature, and many paths on belief. It will be free to read when it is finished, and it is education, not therapy.</li>
+          <li><strong>What is The Path of Harmony?</strong> It is the book behind Vedenism, subtitled <em>Teachings for a Better Life</em>: a practical guide to living with justice, freedom, and peace. Its first pages were printed by hand at a workplace, and it is still being written. Planned chapters cover the roots, thinking clearly, growth and discipline, facing hardship, harm and justice, body and daily life, relationships and community, nature, and many paths on belief. It will be free to read when it is finished, and it is education, not therapy. You can already read Chapter 3 in the Growth &amp; Discipline section.</li>
           <li><strong>Is Vedenism therapy?</strong> No. It is a philosophy and an educational project. For mental health concerns, please see a doctor or licensed counselor, and if someone is in danger, contact your local emergency number.</li>
           <li><strong>What is the mission?</strong> Nature protection, science-based awareness, education, tree planting, and humanitarian values.</li>
           <li><strong>Is the store open?</strong> Not yet. Donation shirts are coming soon.</li>
