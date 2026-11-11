@@ -49,8 +49,17 @@
       --shadow: 0 20px 70px rgba(0, 0, 0, 0.55);
       --glow: 0 0 30px rgba(212, 175, 55, 0.28);
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: "Inter", system-ui, sans-serif;
       background:
@@ -59,287 +68,1000 @@
       color: var(--cream);
       overflow-x: hidden;
     }
-    img { max-width: 100%; display: block; -webkit-user-drag: none; user-drag: none; }
-    .tm { font-size: 0.28em; letter-spacing: 0; vertical-align: super; margin-left: 2px; }
-    a { color: inherit; text-decoration: none; }
-    button, a, input, textarea, select { font-family: inherit; }
-    .page-lock { overflow: hidden; }
+
+    img {
+      max-width: 100%;
+      display: block;
+      -webkit-user-drag: none;
+      user-drag: none;
+    }
+
+    .tm {
+      font-size: 0.28em;
+      letter-spacing: 0;
+      vertical-align: super;
+      margin-left: 2px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, a, input, textarea, select {
+      font-family: inherit;
+    }
+
+    .page-lock {
+      overflow: hidden;
+    }
 
     /* Intro */
     #introScreen {
-      position: fixed; inset: 0; z-index: 100000;
-      display: flex; align-items: center; justify-content: center;
-      background: radial-gradient(circle at center, rgba(20, 65, 42, 0.95), rgba(1, 7, 4, 0.98) 62%), #020503;
+      position: fixed;
+      inset: 0;
+      z-index: 100000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(circle at center, rgba(20, 65, 42, 0.95), rgba(1, 7, 4, 0.98) 62%),
+        #020503;
       transition: opacity 0.9s ease, visibility 0.9s ease;
     }
-    #introScreen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-    .intro-inner { text-align: center; padding: 32px; }
+
+    #introScreen.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .intro-inner {
+      text-align: center;
+      padding: 32px;
+    }
+
     .vinyl-wrap {
-      width: min(54vw, 260px); aspect-ratio: 1; margin: 0 auto 28px; border-radius: 50%;
+      width: min(54vw, 260px);
+      aspect-ratio: 1;
+      margin: 0 auto 28px;
+      border-radius: 50%;
       border: 2px solid rgba(212, 175, 55, 0.45);
       box-shadow: 0 0 50px rgba(212, 175, 55, 0.2), inset 0 0 20px rgba(0, 0, 0, 0.6);
-      display: grid; place-items: center; cursor: pointer;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
       animation: breathe 2.5s ease-in-out infinite;
     }
-    .vinyl-wrap.spinning { animation: spin 1.2s linear infinite; }
-    .vinyl-wrap.spinning img { animation: none; }
-    .vinyl-wrap img { width: 100%; height: 100%; object-fit: contain; border-radius: 50%; }
+
+    .vinyl-wrap.spinning {
+      animation: spin 1.2s linear infinite;
+    }
+
+    .vinyl-wrap.spinning img {
+      animation: none;
+    }
+
+    .vinyl-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
     .intro-title {
-      font-family: "Cinzel", serif; letter-spacing: 8px; color: var(--gold-soft);
-      text-shadow: var(--glow); font-size: clamp(2.1rem, 7vw, 5.2rem); margin-bottom: 10px;
+      font-family: "Cinzel", serif;
+      letter-spacing: 8px;
+      color: var(--gold-soft);
+      text-shadow: var(--glow);
+      font-size: clamp(2.1rem, 7vw, 5.2rem);
+      margin-bottom: 10px;
     }
-    .intro-subtitle { color: var(--muted); letter-spacing: 4px; text-transform: uppercase; font-size: 0.86rem; }
-    .intro-hint { margin-top: 20px; color: rgba(245, 240, 221, 0.72); font-size: 0.95rem; }
+
+    .intro-subtitle {
+      color: var(--muted);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-size: 0.86rem;
+    }
+
+    .intro-hint {
+      margin-top: 20px;
+      color: rgba(245, 240, 221, 0.72);
+      font-size: 0.95rem;
+    }
+
     .skip-intro {
-      margin-top: 18px; background: transparent; border: none; color: var(--gold-soft);
-      letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem; cursor: pointer;
-      text-decoration: underline; text-underline-offset: 4px;
+      margin-top: 18px;
+      background: transparent;
+      border: none;
+      color: var(--gold-soft);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 4px;
     }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    @keyframes breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.035); } }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes breathe {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.035); }
+    }
 
     /* Header */
     header {
-      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-      background: rgba(3, 8, 5, 0.78); border-bottom: 1px solid rgba(212, 175, 55, 0.22);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(3, 8, 5, 0.78);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.22);
       backdrop-filter: blur(14px);
     }
+
     .nav {
-      width: min(1180px, calc(100% - 32px)); margin: 0 auto; height: 74px;
-      display: flex; align-items: center; justify-content: space-between; gap: 22px;
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
     }
-    .brand { display: flex; align-items: center; gap: 12px; min-width: 180px; }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 180px;
+    }
+
     .brand img {
-      width: 46px; height: 46px; object-fit: contain; border-radius: 50%;
+      width: 46px;
+      height: 46px;
+      object-fit: contain;
+      border-radius: 50%;
       filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.35));
     }
-    .brand span { font-family: "Cinzel", serif; letter-spacing: 3px; font-weight: 800; color: var(--gold-soft); }
+
+    .brand span {
+      font-family: "Cinzel", serif;
+      letter-spacing: 3px;
+      font-weight: 800;
+      color: var(--gold-soft);
+    }
+
     .desktop-links {
-      display: flex; align-items: center; gap: 16px; color: var(--cream);
-      font-size: 0.86rem; letter-spacing: 1px; text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: var(--cream);
+      font-size: 0.86rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
     }
-    .desktop-links a { opacity: 0.82; transition: 0.25s ease; }
-    .desktop-links a:hover { color: var(--gold-soft); opacity: 1; text-shadow: var(--glow); }
-    .nav-actions { display: flex; align-items: center; gap: 10px; }
+
+    .desktop-links a {
+      opacity: 0.82;
+      transition: 0.25s ease;
+    }
+
+    .desktop-links a:hover {
+      color: var(--gold-soft);
+      opacity: 1;
+      text-shadow: var(--glow);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
     .icon-btn, .menu-btn {
-      border: 1px solid rgba(212, 175, 55, 0.48); background: rgba(7, 20, 15, 0.72);
-      color: var(--gold-soft); border-radius: 999px; padding: 10px 14px; cursor: pointer; transition: 0.25s ease;
+      border: 1px solid rgba(212, 175, 55, 0.48);
+      background: rgba(7, 20, 15, 0.72);
+      color: var(--gold-soft);
+      border-radius: 999px;
+      padding: 10px 14px;
+      cursor: pointer;
+      transition: 0.25s ease;
     }
-    .icon-btn:hover, .menu-btn:hover { background: rgba(212, 175, 55, 0.12); box-shadow: var(--glow); }
-    .menu-btn { display: none; font-weight: 800; letter-spacing: 1px; }
+
+    .icon-btn:hover, .menu-btn:hover {
+      background: rgba(212, 175, 55, 0.12);
+      box-shadow: var(--glow);
+    }
+
+    .menu-btn {
+      display: none;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
 
     /* Overlay Menu */
     .overlay-menu {
-      position: fixed; inset: 0; z-index: 5000; display: none;
-      grid-template-columns: minmax(280px, 42%) 1fr; background: rgba(2, 5, 3, 0.96);
+      position: fixed;
+      inset: 0;
+      z-index: 5000;
+      display: none;
+      grid-template-columns: minmax(280px, 42%) 1fr;
+      background: rgba(2, 5, 3, 0.96);
     }
-    .overlay-menu.active { display: grid; }
+
+    .overlay-menu.active {
+      display: grid;
+    }
+
     .menu-left {
       padding: 86px 38px 38px;
-      background: radial-gradient(circle at top left, rgba(212, 175, 55, 0.12), transparent 35%), rgba(4, 10, 7, 0.9);
+      background:
+        radial-gradient(circle at top left, rgba(212, 175, 55, 0.12), transparent 35%),
+        rgba(4, 10, 7, 0.9);
       border-right: 1px solid rgba(212, 175, 55, 0.22);
-      display: flex; flex-direction: column; justify-content: space-between; overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow-y: auto;
     }
-    .menu-list { display: grid; gap: 16px; }
+
+    .menu-list {
+      display: grid;
+      gap: 16px;
+    }
+
     .menu-list a {
-      font-family: "Cinzel", serif; font-size: clamp(1.8rem, 4.4vw, 3.6rem); font-weight: 900;
-      line-height: 0.95; letter-spacing: 2px; color: rgba(245, 240, 221, 0.92); transition: 0.25s ease;
+      font-family: "Cinzel", serif;
+      font-size: clamp(1.8rem, 4.4vw, 3.6rem);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: 2px;
+      color: rgba(245, 240, 221, 0.92);
+      transition: 0.25s ease;
     }
-    .menu-list a:hover { color: var(--gold-soft); transform: translateX(8px); text-shadow: var(--glow); }
-    .menu-socials { display: flex; gap: 14px; color: var(--gold-soft); flex-wrap: wrap; font-weight: 800; margin-top: 28px; }
+
+    .menu-list a:hover {
+      color: var(--gold-soft);
+      transform: translateX(8px);
+      text-shadow: var(--glow);
+    }
+
+    .menu-socials {
+      display: flex;
+      gap: 14px;
+      color: var(--gold-soft);
+      flex-wrap: wrap;
+      font-weight: 800;
+      margin-top: 28px;
+    }
+
     .menu-right {
-      position: relative; display: grid; place-items: center; overflow: hidden;
-      background: linear-gradient(rgba(4, 8, 5, 0.2), rgba(4, 8, 5, 0.78)), url("images/nature.png") center/cover no-repeat;
+      position: relative;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(4, 8, 5, 0.2), rgba(4, 8, 5, 0.78)),
+        url("images/nature.png") center/cover no-repeat;
     }
+
     .menu-right::after {
-      content: ""; position: absolute; inset: 0;
+      content: "";
+      position: absolute;
+      inset: 0;
       background: radial-gradient(circle, transparent 20%, rgba(0, 0, 0, 0.62) 82%);
     }
+
     .close-menu {
-      position: absolute; right: 28px; top: 28px; z-index: 2; width: 58px; height: 58px;
-      background: var(--cream); color: #020503; border: none; font-size: 2.4rem; line-height: 1; cursor: pointer;
+      position: absolute;
+      right: 28px;
+      top: 28px;
+      z-index: 2;
+      width: 58px;
+      height: 58px;
+      background: var(--cream);
+      color: #020503;
+      border: none;
+      font-size: 2.4rem;
+      line-height: 1;
+      cursor: pointer;
     }
-    .menu-center-mark { position: relative; z-index: 2; text-align: center; }
-    .menu-center-mark img { width: min(32vw, 260px); margin: 0 auto 18px; filter: drop-shadow(0 0 26px rgba(212, 175, 55, 0.45)); }
-    .menu-center-mark h2 { font-family: "Cinzel", serif; color: var(--gold-soft); font-size: clamp(2rem, 5vw, 4rem); letter-spacing: 6px; }
+
+    .menu-center-mark {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .menu-center-mark img {
+      width: min(32vw, 260px);
+      margin: 0 auto 18px;
+      filter: drop-shadow(0 0 26px rgba(212, 175, 55, 0.45));
+    }
+
+    .menu-center-mark h2 {
+      font-family: "Cinzel", serif;
+      color: var(--gold-soft);
+      font-size: clamp(2rem, 5vw, 4rem);
+      letter-spacing: 6px;
+    }
 
     /* Utility */
-    .container { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
-    .section { padding: 96px 0; position: relative; }
-    .section-title {
-      font-family: "Cinzel", serif; color: var(--gold-soft); font-size: clamp(2rem, 5vw, 4.2rem);
-      letter-spacing: 4px; text-align: center; margin-bottom: 16px; text-shadow: var(--glow);
+    .container {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
     }
-    .section-kicker { text-align: center; color: var(--muted); max-width: 790px; margin: 0 auto 46px; line-height: 1.8; font-size: 1.04rem; }
-    .gold-line { width: 140px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 18px auto 28px; }
-    .fade-up { opacity: 0; transform: translateY(32px); transition: opacity 0.8s ease, transform 0.8s ease; }
-    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    .section {
+      padding: 96px 0;
+      position: relative;
+    }
+
+    .section-title {
+      font-family: "Cinzel", serif;
+      color: var(--gold-soft);
+      font-size: clamp(2rem, 5vw, 4.2rem);
+      letter-spacing: 4px;
+      text-align: center;
+      margin-bottom: 16px;
+      text-shadow: var(--glow);
+    }
+
+    .section-kicker {
+      text-align: center;
+      color: var(--muted);
+      max-width: 790px;
+      margin: 0 auto 46px;
+      line-height: 1.8;
+      font-size: 1.04rem;
+    }
+
+    .gold-line {
+      width: 140px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 18px auto 28px;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     /* Hero */
-    .hero { min-height: 100vh; display: grid; place-items: center; padding-top: 110px; position: relative; overflow: hidden; }
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding-top: 110px;
+      position: relative;
+      overflow: hidden;
+    }
+
     .hero::before {
-      content: ""; position: absolute; inset: 0;
-      background: linear-gradient(rgba(3, 8, 5, 0.35), rgba(3, 8, 5, 0.92)), url("images/trees.png") center/cover no-repeat;
-      opacity: 0.42; transform: scale(1.04);
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(3, 8, 5, 0.35), rgba(3, 8, 5, 0.92)),
+        url("images/trees.png") center/cover no-repeat;
+      opacity: 0.42;
+      transform: scale(1.04);
     }
-    .hero-content { position: relative; z-index: 1; text-align: center; max-width: 980px; padding: 40px 0; }
-    .hero-logo { width: min(34vw, 230px); margin: 0 auto 22px; filter: drop-shadow(0 0 24px rgba(212, 175, 55, 0.42)); border-radius: 50%; }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 980px;
+      padding: 40px 0;
+    }
+
+    .hero-logo {
+      width: min(34vw, 230px);
+      margin: 0 auto 22px;
+      filter: drop-shadow(0 0 24px rgba(212, 175, 55, 0.42));
+      border-radius: 50%;
+    }
+
     .hero h1 {
-      font-family: "Cinzel", serif; font-size: clamp(3rem, 10vw, 8.6rem); letter-spacing: clamp(5px, 1.5vw, 18px);
-      color: var(--gold-soft); text-shadow: 0 0 28px rgba(212, 175, 55, 0.38), 0 10px 30px rgba(0, 0, 0, 0.75);
+      font-family: "Cinzel", serif;
+      font-size: clamp(3rem, 10vw, 8.6rem);
+      letter-spacing: clamp(5px, 1.5vw, 18px);
+      color: var(--gold-soft);
+      text-shadow: 0 0 28px rgba(212, 175, 55, 0.38), 0 10px 30px rgba(0, 0, 0, 0.75);
     }
-    .hero-motto { font-family: "Cinzel", serif; font-size: clamp(1rem, 2.2vw, 1.55rem); color: var(--cream); margin-top: 18px; letter-spacing: 1px; }
-    .hero-line { max-width: 720px; margin: 16px auto 0; color: var(--muted); line-height: 1.75; font-size: 1.02rem; }
+
+    .hero-motto {
+      font-family: "Cinzel", serif;
+      font-size: clamp(1rem, 2.2vw, 1.55rem);
+      color: var(--cream);
+      margin-top: 18px;
+      letter-spacing: 1px;
+    }
+
+    .hero-line {
+      max-width: 720px;
+      margin: 16px auto 0;
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 1.02rem;
+    }
+
     .hero-values {
-      display: flex; justify-content: center; gap: 22px; flex-wrap: wrap; margin-top: 24px;
-      color: var(--gold-soft); font-family: "Cinzel", serif; letter-spacing: 4px; text-transform: uppercase;
+      display: flex;
+      justify-content: center;
+      gap: 22px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      color: var(--gold-soft);
+      font-family: "Cinzel", serif;
+      letter-spacing: 4px;
+      text-transform: uppercase;
     }
-    .hero-actions { margin-top: 38px; display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+
+    .hero-actions {
+      margin-top: 38px;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
     .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 24px;
-      border-radius: 999px; border: 1px solid rgba(212, 175, 55, 0.64); background: rgba(212, 175, 55, 0.12);
-      color: var(--gold-soft); font-weight: 800; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 24px;
+      border-radius: 999px;
+      border: 1px solid rgba(212, 175, 55, 0.64);
+      background: rgba(212, 175, 55, 0.12);
+      color: var(--gold-soft);
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: 0.25s ease;
     }
-    .btn:hover { transform: translateY(-3px); box-shadow: var(--glow); background: rgba(212, 175, 55, 0.18); }
-    .btn.primary { background: linear-gradient(135deg, #b98a18, #f1d77a, #b98a18); color: #06140f; border: none; }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--glow);
+      background: rgba(212, 175, 55, 0.18);
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, #b98a18, #f1d77a, #b98a18);
+      color: #06140f;
+      border: none;
+    }
 
     /* Cards */
-    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-    .card {
-      background: var(--bg-card); border: 1px solid rgba(212, 175, 55, 0.28); border-radius: 24px;
-      overflow: hidden; box-shadow: var(--shadow); transition: 0.35s ease;
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
     }
-    .card:hover { transform: translateY(-7px); border-color: rgba(212, 175, 55, 0.62); box-shadow: var(--shadow), var(--glow); }
-    .card-image { height: 210px; overflow: hidden; background: var(--green); }
-    .card-image img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s ease; }
-    .card:hover .card-image img { transform: scale(1.06); }
-    .card-content { padding: 24px; }
-    .card-content h3 { font-family: "Cinzel", serif; color: var(--gold-soft); letter-spacing: 1.4px; margin-bottom: 12px; font-size: 1.22rem; }
-    .card-content p { color: var(--muted); line-height: 1.75; font-size: 0.97rem; }
 
-    /* Seven roots */
-    .cards.roots-grid .card:last-child { grid-column: 2; }
-    .root-num { display: block; color: var(--gold); font-family: "Cinzel", serif; font-size: 0.8rem; letter-spacing: 3px; margin-bottom: 8px; }
-    .root-quote { margin-top: 14px; padding-left: 14px; border-left: 2px solid var(--gold); color: var(--cream) !important; font-style: italic; }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid rgba(212, 175, 55, 0.28);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: 0.35s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(212, 175, 55, 0.62);
+      box-shadow: var(--shadow), var(--glow);
+    }
+
+    .card-image {
+      height: 210px;
+      overflow: hidden;
+      background: var(--green);
+    }
+
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.5s ease;
+    }
+
+    .card:hover .card-image img {
+      transform: scale(1.06);
+    }
+
+    .card-content {
+      padding: 24px;
+    }
+
+    .card-content h3 {
+      font-family: "Cinzel", serif;
+      color: var(--gold-soft);
+      letter-spacing: 1.4px;
+      margin-bottom: 12px;
+      font-size: 1.22rem;
+    }
+
+    .card-content p {
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 0.97rem;
+    }
+
+    .cards.roots-grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+
+    .cards.roots-grid .card {
+      grid-column: span 2;
+    }
+
+    .cards.roots-grid .card:nth-child(7) {
+      grid-column: 2 / span 2;
+    }
+
+    .cards.roots-grid .card:nth-child(8) {
+      grid-column: 4 / span 2;
+    }
 
     /* Split */
-    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 42px; align-items: center; }
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 42px;
+      align-items: center;
+    }
+
     .panel {
       background: linear-gradient(145deg, rgba(8, 24, 17, 0.9), rgba(4, 10, 7, 0.94));
-      border: 1px solid rgba(212, 175, 55, 0.30); border-radius: 28px; padding: clamp(24px, 4vw, 46px); box-shadow: var(--shadow);
+      border: 1px solid rgba(212, 175, 55, 0.30);
+      border-radius: 28px;
+      padding: clamp(24px, 4vw, 46px);
+      box-shadow: var(--shadow);
     }
-    .panel h2 { font-family: "Cinzel", serif; color: var(--gold-soft); font-size: clamp(1.7rem, 4vw, 3.3rem); margin-bottom: 18px; letter-spacing: 2px; }
-    .panel p { color: var(--muted); line-height: 1.85; margin-bottom: 16px; }
-    .panel ol { color: var(--muted); line-height: 1.85; margin: 0 0 16px 22px; }
+
+    .panel h2 {
+      font-family: "Cinzel", serif;
+      color: var(--gold-soft);
+      font-size: clamp(1.7rem, 4vw, 3.3rem);
+      margin-bottom: 18px;
+      letter-spacing: 2px;
+    }
+
+    .panel p {
+      color: var(--muted);
+      line-height: 1.85;
+      margin-bottom: 16px;
+    }
+
+    .panel ol {
+      color: var(--muted);
+      line-height: 1.85;
+      margin: 0 0 16px 22px;
+    }
+
     .panel .quote {
-      border-left: 2px solid var(--gold); padding-left: 16px; color: var(--cream);
-      font-family: "Cinzel", serif; line-height: 1.7; margin: 8px 0 18px;
+      border-left: 2px solid var(--gold);
+      padding-left: 16px;
+      color: var(--cream);
+      font-family: "Cinzel", serif;
+      line-height: 1.7;
+      margin: 8px 0 18px;
     }
-    .image-frame { border-radius: 30px; overflow: hidden; border: 1px solid rgba(212, 175, 55, 0.38); box-shadow: var(--shadow), var(--glow); }
-    .image-frame img { width: 100%; height: 460px; object-fit: cover; }
+
+    .image-frame {
+      border-radius: 30px;
+      overflow: hidden;
+      border: 1px solid rgba(212, 175, 55, 0.38);
+      box-shadow: var(--shadow), var(--glow);
+    }
+
+    .image-frame img {
+      width: 100%;
+      height: 460px;
+      object-fit: cover;
+    }
 
     /* Tracker */
-    .tracker { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 36px; }
-    .stat { text-align: center; background: rgba(7, 20, 15, 0.78); border: 1px solid rgba(212, 175, 55, 0.28); border-radius: 22px; padding: 26px 18px; }
-    .stat strong { display: block; font-family: "Cinzel", serif; color: var(--gold-soft); font-size: 2rem; margin-bottom: 8px; }
-    .stat span { color: var(--muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+    .tracker {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-top: 36px;
+    }
+
+    .stat {
+      text-align: center;
+      background: rgba(7, 20, 15, 0.78);
+      border: 1px solid rgba(212, 175, 55, 0.28);
+      border-radius: 22px;
+      padding: 26px 18px;
+    }
+
+    .stat strong {
+      display: block;
+      font-family: "Cinzel", serif;
+      color: var(--gold-soft);
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
 
     /* Store */
     .store-showcase {
-      background: radial-gradient(circle at center, rgba(212, 175, 55, 0.08), transparent 55%), rgba(4, 10, 7, 0.84);
-      border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 28px; overflow: hidden; box-shadow: var(--shadow);
+      background:
+        radial-gradient(circle at center, rgba(212, 175, 55, 0.08), transparent 55%),
+        rgba(4, 10, 7, 0.84);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
     }
-    .store-image img { width: 100%; height: auto; }
-    .store-content { padding: 32px; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 28px; align-items: center; }
-    .store-content h3 { font-family: "Cinzel", serif; color: var(--gold-soft); font-size: clamp(1.6rem, 4vw, 3rem); margin-bottom: 12px; }
-    .store-content p { color: var(--muted); line-height: 1.8; }
+
+    .store-image img {
+      width: 100%;
+      height: auto;
+    }
+
+    .store-content {
+      padding: 32px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .store-content h3 {
+      font-family: "Cinzel", serif;
+      color: var(--gold-soft);
+      font-size: clamp(1.6rem, 4vw, 3rem);
+      margin-bottom: 12px;
+    }
+
+    .store-content p {
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
     .coming-pill {
-      display: inline-flex; width: fit-content; margin-bottom: 14px; padding: 8px 14px;
-      border: 1px solid rgba(212, 175, 55, 0.55); border-radius: 999px; color: var(--gold-soft);
-      text-transform: uppercase; letter-spacing: 1.5px; font-weight: 800; font-size: 0.82rem;
+      display: inline-flex;
+      width: fit-content;
+      margin-bottom: 14px;
+      padding: 8px 14px;
+      border: 1px solid rgba(212, 175, 55, 0.55);
+      border-radius: 999px;
+      color: var(--gold-soft);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 800;
+      font-size: 0.82rem;
     }
-    .note { margin-top: 18px; color: var(--muted); font-size: 0.9rem; line-height: 1.7; }
+
+    .note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
 
     /* Footer */
-    footer { border-top: 1px solid rgba(212, 175, 55, 0.24); background: rgba(1, 4, 2, 0.92); padding: 26px 0; }
-    .footer-inner {
-      width: min(1180px, calc(100% - 32px)); margin: 0 auto; display: flex; align-items: center;
-      justify-content: space-between; gap: 22px; flex-wrap: wrap; color: rgba(245, 240, 221, 0.78); font-size: 0.9rem;
+    footer {
+      border-top: 1px solid rgba(212, 175, 55, 0.24);
+      background: rgba(1, 4, 2, 0.92);
+      padding: 26px 0;
     }
-    .footer-links { display: flex; gap: 18px; flex-wrap: wrap; }
-    .copyright-link { background: transparent; border: none; color: rgba(245, 240, 221, 0.78); cursor: pointer; font-size: 0.9rem; text-align: left; }
-    .copyright-link:hover { color: var(--gold-soft); text-shadow: var(--glow); }
-    .footer-links button, .footer-links a { background: transparent; border: none; color: rgba(245, 240, 221, 0.84); cursor: pointer; font-size: 0.9rem; padding: 0; }
-    .footer-links button:hover, .footer-links a:hover { color: var(--gold-soft); }
+
+    .footer-inner {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+      flex-wrap: wrap;
+      color: rgba(245, 240, 221, 0.78);
+      font-size: 0.9rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .copyright-link {
+      background: transparent;
+      border: none;
+      color: rgba(245, 240, 221, 0.78);
+      cursor: pointer;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+
+    .copyright-link:hover {
+      color: var(--gold-soft);
+      text-shadow: var(--glow);
+    }
+
+    .footer-links button,
+    .footer-links a {
+      background: transparent;
+      border: none;
+      color: rgba(245, 240, 221, 0.84);
+      cursor: pointer;
+      font-size: 0.9rem;
+      padding: 0;
+    }
+
+    .footer-links button:hover, .footer-links a:hover {
+      color: var(--gold-soft);
+    }
 
     /* Floating */
-    .floating-tools { position: fixed; right: 18px; bottom: 18px; z-index: 4000; display: grid; gap: 10px; }
+    .floating-tools {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 4000;
+      display: grid;
+      gap: 10px;
+    }
+
     .floating-tools button, .floating-tools a {
-      width: 48px; height: 48px; display: grid; place-items: center; border-radius: 50%;
-      border: 1px solid rgba(212, 175, 55, 0.55); background: rgba(7, 20, 15, 0.9); color: var(--gold-soft);
-      cursor: pointer; box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35); font-weight: 900;
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: 1px solid rgba(212, 175, 55, 0.55);
+      background: rgba(7, 20, 15, 0.9);
+      color: var(--gold-soft);
+      cursor: pointer;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+      font-weight: 900;
     }
+
     .translate-box {
-      position: fixed; right: 18px; bottom: 78px; left: auto; z-index: 3500;
-      background: rgba(7, 20, 15, 0.92); border: 1px solid rgba(212, 175, 55, 0.55);
-      border-radius: 16px; padding: 10px 12px; box-shadow: var(--shadow);
+      position: fixed;
+      right: 18px;
+      bottom: 78px;
+      left: auto;
+      z-index: 3500;
+      background: rgba(7, 20, 15, 0.92);
+      border: 1px solid rgba(212, 175, 55, 0.55);
+      border-radius: 16px;
+      padding: 10px 12px;
+      box-shadow: var(--shadow);
     }
-    .translate-label { display: block; color: var(--gold-soft); font-size: 0.72rem; letter-spacing: 1px; margin-bottom: 6px; text-transform: uppercase; }
+
+    .translate-label {
+      display: block;
+      color: var(--gold-soft);
+      font-size: 0.72rem;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
     #google_translate_element select {
-      background: #06140f; color: var(--cream); border: 1px solid rgba(212, 175, 55, 0.35);
-      border-radius: 8px; padding: 6px; max-width: 190px;
+      background: #06140f;
+      color: var(--cream);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      border-radius: 8px;
+      padding: 6px;
+      max-width: 190px;
     }
-    .goog-te-banner-frame.skiptranslate, .goog-te-gadget-icon { display: none !important; }
-    body { top: 0 !important; }
-    .goog-te-gadget { color: transparent !important; font-size: 0 !important; }
+
+    .goog-te-banner-frame.skiptranslate,
+    .goog-te-gadget-icon {
+      display: none !important;
+    }
+
+    body {
+      top: 0 !important;
+    }
+
+    .goog-te-gadget {
+      color: transparent !important;
+      font-size: 0 !important;
+    }
 
     /* Modals */
     .modal-overlay {
-      position: fixed; inset: 0; background: rgba(0, 0, 0, 0.82); backdrop-filter: blur(8px);
-      display: none; align-items: center; justify-content: center; z-index: 99999; padding: 18px;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.82);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      padding: 18px;
     }
-    .modal-overlay.active { display: flex; }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
     .modal-box {
-      width: min(92vw, 540px); max-height: 86vh; overflow-y: auto;
-      background: linear-gradient(145deg, #06140f, #0b2018); border: 1px solid rgba(212, 175, 55, 0.65);
-      border-radius: 18px; padding: 34px 28px; text-align: center; color: var(--cream);
-      box-shadow: 0 0 35px rgba(212, 175, 55, 0.25); position: relative;
+      width: min(92vw, 540px);
+      max-height: 86vh;
+      overflow-y: auto;
+      background: linear-gradient(145deg, #06140f, #0b2018);
+      border: 1px solid rgba(212, 175, 55, 0.65);
+      border-radius: 18px;
+      padding: 34px 28px;
+      text-align: center;
+      color: var(--cream);
+      box-shadow: 0 0 35px rgba(212, 175, 55, 0.25);
+      position: relative;
     }
-    .modal-box.wide { width: min(94vw, 760px); text-align: left; }
+
+    .modal-box.wide {
+      width: min(94vw, 760px);
+      text-align: left;
+    }
+
     .modal-box h2 {
-      color: var(--gold-soft); font-family: "Cinzel", serif; font-size: 2rem; margin-bottom: 14px;
-      letter-spacing: 2px; text-transform: uppercase; text-align: center;
+      color: var(--gold-soft);
+      font-family: "Cinzel", serif;
+      font-size: 2rem;
+      margin-bottom: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-align: center;
     }
-    .modal-box p, .modal-box li { font-size: 1rem; line-height: 1.75; color: #e8e0c8; margin-bottom: 12px; }
-    .modal-box ul { padding-left: 18px; margin-top: 10px; }
-    .modal-box.wide h3 { font-family: "Cinzel", serif; color: var(--gold-soft); font-size: 1.15rem; letter-spacing: 1px; margin: 22px 0 8px; }
-    .modal-box blockquote { border-left: 2px solid var(--gold); padding-left: 14px; margin: 14px 0; font-style: italic; color: var(--cream); }
-    .modal-box ol { padding-left: 22px; margin-top: 10px; }
-    .modal-close { position: absolute; top: 12px; right: 16px; background: transparent; border: none; color: var(--gold-soft); font-size: 2rem; cursor: pointer; }
+
+    .modal-box p, .modal-box li {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: #e8e0c8;
+      margin-bottom: 12px;
+    }
+
+    .modal-box ul {
+      padding-left: 18px;
+      margin-top: 10px;
+    }
+
+    .modal-box.wide h3 {
+      font-family: "Cinzel", serif;
+      color: var(--gold-soft);
+      font-size: 1.15rem;
+      letter-spacing: 1px;
+      margin: 22px 0 8px;
+    }
+
+    .modal-box blockquote {
+      border-left: 2px solid var(--gold);
+      padding-left: 14px;
+      margin: 14px 0;
+      font-style: italic;
+      color: var(--cream);
+    }
+
+    .modal-box ol {
+      padding-left: 22px;
+      margin-top: 10px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      background: transparent;
+      border: none;
+      color: var(--gold-soft);
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
     .modal-button {
-      margin-top: 20px; padding: 12px 26px; border: 1px solid var(--gold); background: transparent;
-      color: var(--gold-soft); border-radius: 999px; cursor: pointer; font-weight: 800; letter-spacing: 1px; transition: 0.25s ease;
+      margin-top: 20px;
+      padding: 12px 26px;
+      border: 1px solid var(--gold);
+      background: transparent;
+      color: var(--gold-soft);
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 800;
+      letter-spacing: 1px;
+      transition: 0.25s ease;
     }
-    .modal-button:hover { background: var(--gold); color: #07140f; box-shadow: 0 0 18px rgba(212, 175, 55, 0.45); }
+
+    .modal-button:hover {
+      background: var(--gold);
+      color: #07140f;
+      box-shadow: 0 0 18px rgba(212, 175, 55, 0.45);
+    }
 
     /* Responsive */
     @media (max-width: 920px) {
-      .desktop-links { display: none; }
-      .menu-btn { display: inline-flex; }
-      .cards, .tracker, .split, .store-content { grid-template-columns: 1fr; }
-      .overlay-menu { grid-template-columns: 1fr; }
-      .menu-right { display: none; }
-      .image-frame img { height: 320px; }
-      .cards.roots-grid .card:last-child { grid-column: auto; }
+      .desktop-links {
+        display: none;
+      }
+
+      .menu-btn {
+        display: inline-flex;
+      }
+
+      .cards, .tracker, .split, .store-content {
+        grid-template-columns: 1fr;
+      }
+
+      .cards.roots-grid .card,
+      .cards.roots-grid .card:nth-child(7),
+      .cards.roots-grid .card:nth-child(8) {
+        grid-column: auto;
+      }
+
+      .overlay-menu {
+        grid-template-columns: 1fr;
+      }
+
+      .menu-right {
+        display: none;
+      }
+
+      .image-frame img {
+        height: 320px;
+      }
     }
+
     @media (max-width: 560px) {
-      .nav { height: 66px; }
-      .brand span { display: none; }
-      .section { padding: 72px 0; }
-      .hero-values { letter-spacing: 2px; gap: 12px; }
-      .translate-box { left: 10px; bottom: 78px; max-width: 190px; }
-      .floating-tools { right: 10px; bottom: 10px; }
+      .nav {
+        height: 66px;
+      }
+
+      .brand span {
+        display: none;
+      }
+
+      .section {
+        padding: 72px 0;
+      }
+
+      .hero-values {
+        letter-spacing: 2px;
+        gap: 12px;
+      }
+
+      .translate-box {
+        left: 10px;
+        bottom: 78px;
+        max-width: 190px;
+      }
+
+      .floating-tools {
+        right: 10px;
+        bottom: 10px;
+      }
     }
+
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .fade-up { opacity: 1; transform: none; transition: none; }
@@ -347,6 +1069,7 @@
     }
   </style>
 </head>
+
 <body class="page-lock">
   <audio id="introAudio" src="intro.mp3" preload="none"></audio>
 
@@ -368,6 +1091,7 @@
         <img src="images/logo.png" alt="Vedenism logo" />
         <span>VEDENISM<span class="tm">™</span></span>
       </a>
+
       <div class="desktop-links">
         <a href="#about">About</a>
         <a href="#roots">Roots</a>
@@ -377,6 +1101,7 @@
         <a href="#store">Store</a>
         <a href="#contact">Contact</a>
       </div>
+
       <div class="nav-actions">
         <button class="icon-btn" id="muteBtn" aria-label="Mute or unmute sound">🔊</button>
         <button class="menu-btn" onclick="openMenu()">MENU</button>
@@ -398,12 +1123,14 @@
           <a href="#contact" onclick="closeMenu()">Contact</a>
         </div>
       </div>
+
       <div class="menu-socials">
         <span>Justice</span>
         <span>Freedom</span>
         <span>Peace</span>
       </div>
     </div>
+
     <div class="menu-right">
       <button class="close-menu" onclick="closeMenu()" aria-label="Close menu">×</button>
       <div class="menu-center-mark">
@@ -450,57 +1177,55 @@
       <div class="container">
         <h2 class="section-title fade-up">The Roots</h2>
         <div class="gold-line fade-up"></div>
-        <p class="section-kicker fade-up">Justice is the root, Eden is the tree, freedom is the flame. These roots never change. Everything else can grow and be improved.</p>
+        <p class="section-kicker fade-up">Justice is the root, Eden is the tree, freedom is the flame. These eight roots never change. Everything else can grow and be improved.</p>
 
         <div class="cards roots-grid">
           <article class="card fade-up">
             <div class="card-content">
-              <span class="root-num">ROOT 1</span>
               <h3>Justice, Freedom, and Peace</h3>
-              <p>A fair society where people can live freely and peacefully. Heaven on earth is not waited for, it is built.</p>
+              <p>A fair society where people can live freely and peacefully. Justice answers wrongs fairly, freedom protects your choices, and peace settles conflict without violence.</p>
             </div>
           </article>
           <article class="card fade-up">
             <div class="card-content">
-              <span class="root-num">ROOT 2</span>
               <h3>Equal Worth and Human Dignity</h3>
-              <p>Every soul carries equal worth, whatever they believe, whom they love, or how they live. A soul is a soul, and humans are humans.</p>
+              <p>Every person has equal worth, whatever they believe, whom they love, or how they live. A soul is a soul, and a human is a human.</p>
             </div>
           </article>
           <article class="card fade-up">
             <div class="card-content">
-              <span class="root-num">ROOT 3</span>
               <h3>Prevention of Harm</h3>
-              <p>Protection against cruelty, violence, abuse, exploitation, coercion, and unnecessary suffering. Be whoever you are, openly and without fear, as long as no one is harmed. Disagreement and criticism are not harm.</p>
+              <p>Protect people and other living beings from cruelty, violence, abuse, exploitation, coercion, and needless suffering. Disagreement and criticism are not harm.</p>
             </div>
           </article>
           <article class="card fade-up">
             <div class="card-content">
-              <span class="root-num">ROOT 4</span>
               <h3>Freedom of Conscience</h3>
-              <p>The right to believe, disbelieve, question, practice, change your mind, criticize, and leave. Belief must be genuinely voluntary.</p>
+              <p>The right to believe or not believe, to question, to practice, to change your mind, to criticize, and to leave.</p>
             </div>
           </article>
           <article class="card fade-up">
             <div class="card-content">
-              <span class="root-num">ROOT 5</span>
-              <h3>Accountability and the Right to Question</h3>
-              <p>Everyone answers for their actions and their consequences. No person, church, state, founder, tradition, or doctrine is exempt from scrutiny. Ideas are judged by reasons, not by who says them.</p>
-              <p class="root-quote">&ldquo;The less power someone has, the more important it is to protect them from abuse. The more power someone has, the more important it is to scrutinize their use of it.&rdquo;</p>
+              <h3>Accountability and Responsibility</h3>
+              <p>We answer for what we do and for what follows from it. Individuals and institutions alike can be held to account.</p>
             </div>
           </article>
           <article class="card fade-up">
             <div class="card-content">
-              <span class="root-num">ROOT 6</span>
+              <h3>No Authority Above Question</h3>
+              <p>No founder, leader, institution, tradition, or text is beyond criticism. That includes Vedenism and this site.</p>
+            </div>
+          </article>
+          <article class="card fade-up">
+            <div class="card-content">
               <h3>Reason and Intellectual Honesty</h3>
-              <p>Logic, reason, and evidence come first. Question every claim, including ours, and admit uncertainty. We keep apart what we know, what we believe, and what we only speculate about.</p>
+              <p>Logic, evidence, and critical thinking come first, and we say plainly what we do not know. We keep apart what we know, what we believe, and what we only guess.</p>
             </div>
           </article>
           <article class="card fade-up">
             <div class="card-content">
-              <span class="root-num">ROOT 7</span>
               <h3>Growth and Self-Improvement</h3>
-              <p>Lifelong learning and the courage to correct mistakes. Vedenism does not ask for perfection. It asks you to recognize mistakes, take responsibility, repair what you can, and do better. Strict with habits, gentle with your worth.</p>
+              <p>Lifelong learning, correcting our mistakes, and helping humanity improve. No one is perfect, and no one has to be.</p>
             </div>
           </article>
         </div>
@@ -551,6 +1276,7 @@
           </ol>
           <p class="quote">Your past does not have to define you, but it should teach you. Do not strive to be perfect. Strive to be better.</p>
           <button class="btn" onclick="openTextModal('chapter3')">Read Chapter 3 of the book</button>
+          <button class="btn" onclick="openTextModal('urges')">Understanding Urges &amp; Self-Control</button>
         </div>
         <div class="panel fade-up">
           <h2>Hardship</h2>
@@ -595,7 +1321,7 @@
           <p>Vedenism began as a philosophy of self-reflection and self-improvement. Over time it grew to ask a larger question: what kind of world should people live in? Our answer is a world at peace, where countries promote justice and ethical rules and are not corrupted by greed or fear, where the vulnerable are protected, and where nature is cared for.</p>
           <p>We start with ourselves, because a fair society is built by people who can question themselves and learn from their mistakes. Then we work outward, by showing a better model, speaking up for it, and helping in practice.</p>
           <p>Vedenism offers guidance and support for people seeking to live by goodness, justice, and personal growth. It promotes tolerance and respect for diversity, rejects harmful ideas, and aims to teach discipline, morality, handling emotions, and peaceful conflict resolution, so people can meet life's challenges with wisdom and compassion.</p>
-          <p>Racism and every form of discrimination break our root of equal worth: every soul has equal worth. We oppose corruption, coercion, and harmful ideas, never people. Poverty should never decide who gets to learn, and we advocate for the young, peacefully and with evidence.</p>
+          <p>Racism and every form of discrimination break our first root: every soul has equal worth. We oppose corruption, coercion, and harmful ideas, never people. Poverty should never decide who gets to learn, and we advocate for the young, peacefully and with evidence.</p>
           <p>Vedenism offers free courses, mentoring, and guidance on self-improvement, discipline, and handling hardship. This is education and peer support, not therapy or medical treatment. For mental health conditions, we encourage seeing a doctor or licensed counselor.</p>
           <p>There is no membership, no fee, and no obligation. Learning is free. Donations are voluntary, and they help us grow toward planting trees, giving away books, and supporting education.</p>
         </div>
@@ -616,6 +1342,7 @@
               <p>We aim to begin with tree planting projects, especially in areas damaged by wildfires. This creates visible action, public awareness, and a direct contribution to ecological recovery.</p>
             </div>
           </article>
+
           <article class="card fade-up">
             <div class="card-image"><img src="images/science.png" alt="Science-based awareness" loading="lazy" /></div>
             <div class="card-content">
@@ -623,6 +1350,7 @@
               <p>Vedenism promotes science-based awareness, critical thinking, and public education that helps people tell evidence from misinformation, and welcomes honest questions.</p>
             </div>
           </article>
+
           <article class="card fade-up">
             <div class="card-image"><img src="images/education.png" alt="Education support" loading="lazy" /></div>
             <div class="card-content">
@@ -648,6 +1376,7 @@
               <p>Balance means avoiding extremism, protecting harmony, and making decisions with both reason and empathy.</p>
             </div>
           </article>
+
           <article class="card fade-up">
             <div class="card-image"><img src="images/knowledge.png" alt="Knowledge and study" loading="lazy" /></div>
             <div class="card-content">
@@ -655,6 +1384,7 @@
               <p>Knowledge is the light that lets society question what it inherits. Books, science, philosophy, and education are central to the mission. Everyone's worth is equal, whatever they know.</p>
             </div>
           </article>
+
           <article class="card fade-up">
             <div class="card-image"><img src="images/animals.png" alt="Animals in forest" loading="lazy" /></div>
             <div class="card-content">
@@ -739,6 +1469,7 @@
         <button onclick="openTextModal('privacy')">Privacy Policy</button>
         <button onclick="openTextModal('cookies')">Cookies Policy</button>
         <a href="mailto:vedenism@hotmail.com">Contact</a>
+        <button onclick="openTextModal('declaration')">Declaration</button>
         <button onclick="openTextModal('faq')">FAQ</button>
         <button onclick="openTextModal('version')">Version History</button>
       </div>
@@ -883,9 +1614,67 @@
         </ol>
         <p><em>Vedenism combines many beliefs and philosophies. The evening review echoes Stoic practice, and the six steps are Vedenism's own way of putting older ideas together. You are welcome to trace the sources and to improve on this chapter.</em></p>`
       },
+      declaration: {
+        title: "Declaration of Principles",
+        body: `<p><em>Unity without uniformity. Respect without compulsory agreement. Freedom without persecution.</em></p>
+        <p><strong>The central principle.</strong> Vedenism stands for freedom of conscience and individuality. Every person has the right to believe, disbelieve, question, criticize, express themselves, and live according to their identity, provided they respect the equal rights and dignity of others. No one should face persecution or discrimination for who they are or what they believe.</p>
+        <ol>
+          <li><strong>Unity without uniformity.</strong> We share common ground: equal worth, no harm, and freedom of conscience. No one must give up their language, nationality, culture, or traditions. English is our common language, chosen for simplicity only. Anyone may speak, write, and practice in any language they like.</li>
+          <li><strong>Freedom of thought is not freedom from criticism.</strong> It is freedom from persecution for what you think. Anyone may criticize any worldview, including Vedenism, and others may defend, challenge, or reject that criticism. We criticize ideas and never persecute people. Disagreement must never become intimidation, violence, harassment, or discrimination.</li>
+          <li><strong>Freedom without coercion.</strong> Believe, doubt, change your mind, or leave. No one is forced to join, stay, or believe.</li>
+          <li><strong>Diversity without discrimination.</strong> People of every religion or none, every orientation, and every background are welcome.</li>
+          <li><strong>Accountability for all.</strong> The less power someone has, the more important it is to protect them from abuse. The more power someone has, the more important it is to scrutinize their use of it.</li>
+          <li><strong>Vedenism stays open to criticism.</strong> It must never demand unquestioning loyalty.</li>
+          <li><strong>A label is a choice.</strong> &ldquo;Vedenist&rdquo; is a name someone may take, never a requirement for respect or help.</li>
+        </ol>`
+      },
+      urges: {
+        title: "Understanding Urges and Self-Control",
+        body: `<p><em>From The Path of Harmony: Discipline and Personal Development. This is education and guidance, not therapy or medical advice.</em></p>
+        <h3>Having an urge is not a flaw</h3>
+        <p>Everyone has urges: to eat, to snap at someone, to check a phone, to run away from a hard task, to do something we know will not help us. Having an urge does not make you weak or bad. A thought, a feeling, or an impulse is not a wrong. What matters is what you choose to do next.</p>
+        <p>Vedenism does not shame people for having urges or for struggling with them. It teaches how to regain control, one step at a time.</p>
+        <h3>The four steps</h3>
+        <blockquote>Recognize the impulse. Understand its origin. Consider its consequences. Choose your response.</blockquote>
+        <ol>
+          <li><strong>Recognize it.</strong> Pause and say it plainly: &ldquo;I notice I want to&hellip;&rdquo; Naming an urge gives you a little distance from it.</li>
+          <li><strong>Understand its origin.</strong> What set it off? Often it is being tired, hungry, bored, lonely, stressed, or angry. Meeting that need is often easier than fighting the urge.</li>
+          <li><strong>Consider the consequences.</strong> What happens in an hour, tomorrow, and next month? Who else is affected?</li>
+          <li><strong>Choose your response.</strong> You can act, wait, replace it with something else, or ask for help. Any of these is a choice, and the choice is yours.</li>
+        </ol>
+        <h3>Impulse control: learning to pause</h3>
+        <p>Urges rise, peak, and usually fade, often within minutes. You do not have to fight an urge for hours. You only have to wait it out. Try a delay rule: <strong>wait ten minutes before acting</strong>, and breathe slowly while you wait. Many urges pass in that time, and if it is still there, you can decide calmly.</p>
+        <ul>
+          <li><strong>Add friction.</strong> Make the harmful habit harder to reach: remove the app, move the item out of the house, unsubscribe, or put the phone in another room.</li>
+          <li><strong>Make an if-then plan.</strong> &ldquo;If I feel the urge to quit, then I will do five minutes first.&rdquo;</li>
+          <li><strong>Replace, do not only resist.</strong> Have a better thing ready to do: a walk, a call, a glass of water, a short task.</li>
+        </ul>
+        <h3>Emotional regulation</h3>
+        <p>Managing emotions does not mean suppressing them. Feel it, name it, then choose. Suppressed feelings tend to come back stronger. Slow breathing, a short walk, writing it down, or talking to someone you trust helps feelings settle.</p>
+        <h3>Patience</h3>
+        <p>A temporary desire should not make your decisions. Practise small waits: pause before replying when you are angry, sleep on a big purchase, and finish one small task before the reward. Patience is a skill that grows with use.</p>
+        <h3>Compulsive habits and addiction</h3>
+        <p>Some patterns, such as alcohol, drugs, gambling, compulsive eating, or endless scrolling, are stronger than willpower alone. This is a health matter, not a moral failing. Shame tends to make it worse, and support makes it easier.</p>
+        <ul>
+          <li><strong>Tell someone.</strong> A doctor, a counselor, a support group, or a trusted person.</li>
+          <li><strong>Do not stop some substances suddenly on your own.</strong> Stopping alcohol or certain medicines abruptly can be dangerous. Ask a doctor first.</li>
+          <li><strong>Expect slips.</strong> A slip is information, not the end. Walk the six steps from the Growth chapter: recognize it, take responsibility, understand why, repair what you can, change one thing, and continue.</li>
+          <li><strong>For eating, drinking, or other patterns that cause harm,</strong> a professional can help in ways a page cannot.</li>
+        </ul>
+        <h3>Self-discipline</h3>
+        <p>Discipline is healthier habits built by repetition. Start small, keep regular sleep, food, movement, and rest, and be strict with habits and gentle with your worth. If your attention drifts easily or impulses feel very strong, that is not a character flaw. Talk to a doctor, because support exists.</p>
+        <h3>Try this week</h3>
+        <ol>
+          <li>Notice one urge a day and say, &ldquo;I notice I want to&hellip;&rdquo;</li>
+          <li>Use the ten-minute delay once, and see what happens.</li>
+          <li>Pick one trigger, such as tiredness or boredom, and plan one better response.</li>
+        </ol>
+        <p>If an urge ever leads you toward hurting yourself or someone else, contact your local emergency number or a crisis line right away, and tell someone near you.</p>
+        <p><em>Vedenism combines many beliefs and philosophies. These ideas echo Stoic practice and modern psychology, and you are welcome to trace the sources and to improve on this page.</em></p>`
+      },
       version: {
         title: "Version History",
-        body: `<p>Vedenism grows with the people who practice it. When something changes, we say what changed and why.</p><p><strong>v1.9 (6 November 2026):</strong> The Roots now number seven, with justice, freedom and peace, accountability, and intellectual honesty made explicit. Added Hindi, Armenian, and Balkan languages to the translator.</p><p><strong>v1.8 (27 October 2026):</strong> Added a reader for Chapter 3 of the book, Growth and Discipline.</p><p><strong>v1.6 (27 October 2026):</strong> Added a FAQ entry on the Path of Harmony book, the &ldquo;born somewhere else&rdquo; test, and the school-window moment to the origin.</p><p><strong>v1.5 (17 October 2026):</strong> Added what Vedenism offers: guidance and support, tolerance, and the skills it aims to teach.</p><p><strong>v1.4 (17 October 2026):</strong> Added Growth &amp; Discipline.</p><p><strong>v1.3 (17 October 2026):</strong> Made critical thinking, logic, and reason a headline idea on the site.</p><p><strong>v1.2 (17 October 2026):</strong> Added free mentoring and courses to Our Purpose.</p><p><strong>v1.1 (17 October 2026):</strong> Added Our Purpose.</p><p><strong>v1.0 (17 October 2026):</strong> First public version, and the starting point for every later change. It sets out the three paths on belief, the fixed roots, self-discipline and growth, the definition of harm, and the amendment rule.</p><p>Later changes will be listed here, newest first.</p>`
+        body: `<p>Vedenism grows with the people who practice it. When something changes, we say what changed and why.</p><p><strong>v2.2 (12 November 2026):</strong> Added a page on understanding urges and self-control, under Growth &amp; Discipline.</p><p><strong>v2.1 (11 November 2026):</strong> Clarified what &ldquo;heaven on earth&rdquo; means.</p><p><strong>v2.0 (11 November 2026):</strong> Added the Declaration of Principles, in the footer, with English as a common language for simplicity only.</p><p><strong>v1.9 (1 November 2026):</strong> The roots are now eight: justice, freedom, and peace; equal worth; prevention of harm; freedom of conscience; accountability; no authority above question; reason and intellectual honesty; and growth.</p><p><strong>v1.8 (27 October 2026):</strong> Added a reader for Chapter 3 of the book, Growth and Discipline.</p><p><strong>v1.6 (27 October 2026):</strong> Added a FAQ entry on the Path of Harmony book, the &ldquo;born somewhere else&rdquo; test, and the school-window moment to the origin.</p><p><strong>v1.5 (17 October 2026):</strong> Added what Vedenism offers: guidance and support, tolerance, and the skills it aims to teach.</p><p><strong>v1.4 (17 October 2026):</strong> Added Growth &amp; Discipline.</p><p><strong>v1.3 (17 October 2026):</strong> Made critical thinking, logic, and reason a headline idea on the site.</p><p><strong>v1.2 (17 October 2026):</strong> Added free mentoring and courses to Our Purpose.</p><p><strong>v1.1 (17 October 2026):</strong> Added Our Purpose.</p><p><strong>v1.0 (17 October 2026):</strong> First public version, and the starting point for every later change. It sets out the three paths on belief, the fixed roots, self-discipline and growth, the definition of harm, and the amendment rule.</p><p>Later changes will be listed here, newest first.</p>`
       },
       faq: {
         title: "FAQ",
@@ -893,6 +1682,8 @@
           <li><strong>Is Vedenism a religion?</strong> No. It is a philosophical movement. You may follow a religion, believe in God without one, or not believe at all.</li>
           <li><strong>Do I have to join?</strong> No. There is no membership, no fee, and no clergy. You may question, criticize, or leave at any time.</li>
           <li><strong>What is The Path of Harmony?</strong> It is the book behind Vedenism, subtitled <em>Teachings for a Better Life</em>: a practical guide to living with justice, freedom, and peace. Its first pages were printed by hand at a workplace, and it is still being written. Planned chapters cover the roots, thinking clearly, growth and discipline, facing hardship, harm and justice, body and daily life, relationships and community, nature, and many paths on belief. It will be free to read when it is finished, and it is education, not therapy. You can already read Chapter 3 in the Growth &amp; Discipline section.</li>
+          <li><strong>Does &ldquo;heaven on earth&rdquo; mean a perfect society?</strong> No. It is a hope, not a promise: improving real human conditions step by step, with less cruelty, fairer treatment, safer lives, more learning, and a cared-for planet. Vedenism does not aim to rule or replace any government or to impose any governing body. It works through education, example, and practical help, and improvements are judged by evidence and by whether they reduce harm.</li>
+          <li><strong>What language does Vedenism use?</strong> English is the common language, chosen for simplicity only. It is not a requirement: anyone may speak, write, and practice in any language they like, and the site has a translate option.</li>
           <li><strong>Is Vedenism therapy?</strong> No. It is a philosophy and an educational project. For mental health concerns, please see a doctor or licensed counselor, and if someone is in danger, contact your local emergency number.</li>
           <li><strong>What is the mission?</strong> Nature protection, science-based awareness, education, tree planting, and humanitarian values.</li>
           <li><strong>Is the store open?</strong> Not yet. Donation shirts are coming soon.</li>
@@ -985,7 +1776,7 @@
     function googleTranslateElementInit() {
       new google.translate.TranslateElement({
         pageLanguage: "en",
-        includedLanguages: "en,tr,de,fr,es,it,pt,ru,ar,el,ja,ko,zh-CN,hi,hy,sq,bs,bg,hr,mk,ro,sr,sl",
+        includedLanguages: "en,tr,de,fr,es,it,pt,ru,ar,el,ja,ko,zh-CN",
         layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
         autoDisplay: false
       }, "google_translate_element");
