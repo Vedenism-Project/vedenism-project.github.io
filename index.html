@@ -845,17 +845,53 @@
       font-weight: 900;
     }
 
-    .translate-box {
+    .translate-toggle {
       position: fixed;
       right: 18px;
       bottom: 78px;
+      z-index: 3500;
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: 1px solid rgba(212, 175, 55, 0.55);
+      background: rgba(7, 20, 15, 0.9);
+      color: var(--gold-soft);
+      font-size: 1.25rem;
+      cursor: pointer;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+    }
+
+    .translate-box {
+      position: fixed;
+      right: 18px;
+      bottom: 136px;
       left: auto;
       z-index: 3500;
-      background: rgba(7, 20, 15, 0.92);
+      width: min(230px, calc(100vw - 36px));
+      background: rgba(7, 20, 15, 0.95);
       border: 1px solid rgba(212, 175, 55, 0.55);
-      border-radius: 16px;
-      padding: 10px 12px;
+      border-radius: 14px;
+      padding: 12px 14px 12px;
       box-shadow: var(--shadow);
+    }
+
+    .translate-box[hidden] {
+      display: none;
+    }
+
+    .translate-close {
+      position: absolute;
+      top: 2px;
+      right: 8px;
+      background: transparent;
+      border: none;
+      color: var(--gold-soft);
+      font-size: 1.5rem;
+      line-height: 1;
+      padding: 4px;
+      cursor: pointer;
     }
 
     .translate-label {
@@ -1013,6 +1049,10 @@
         grid-template-columns: 1fr;
       }
 
+      .cards.roots-grid {
+        grid-template-columns: 1fr;
+      }
+
       .cards.roots-grid .card,
       .cards.roots-grid .card:nth-child(7),
       .cards.roots-grid .card:nth-child(8) {
@@ -1050,10 +1090,16 @@
         gap: 12px;
       }
 
+      .translate-toggle {
+        right: 10px;
+        bottom: 70px;
+      }
+
       .translate-box {
-        left: 10px;
-        bottom: 78px;
-        max-width: 190px;
+        right: 10px;
+        left: auto;
+        bottom: 126px;
+        width: min(220px, calc(100vw - 20px));
       }
 
       .floating-tools {
@@ -1195,7 +1241,7 @@
           <article class="card fade-up">
             <div class="card-content">
               <h3>Prevention of Harm</h3>
-              <p>Protect people and other living beings from cruelty, violence, abuse, exploitation, coercion, and needless suffering. Disagreement and criticism are not harm.</p>
+              <p>Protect people and other living beings from cruelty, violence, abuse, exploitation, coercion, and needless suffering. Everyone is free to be who they are and to think what they like, up to the point where it harms someone else. Disagreement and criticism are not harm.</p>
             </div>
           </article>
           <article class="card fade-up">
@@ -1476,7 +1522,9 @@
     </div>
   </footer>
 
-  <div class="translate-box">
+  <button class="translate-toggle" id="translateToggle" aria-label="Translate this page" aria-expanded="false">🌐</button>
+  <div class="translate-box" id="translateBox" hidden>
+    <button class="translate-close" id="translateClose" aria-label="Close translate">×</button>
     <span class="translate-label">Translate</span>
     <div id="google_translate_element"></div>
   </div>
@@ -1674,7 +1722,7 @@
       },
       version: {
         title: "Version History",
-        body: `<p>Vedenism grows with the people who practice it. When something changes, we say what changed and why.</p><p><strong>v2.2 (12 November 2026):</strong> Added a page on understanding urges and self-control, under Growth &amp; Discipline.</p><p><strong>v2.1 (11 November 2026):</strong> Clarified what &ldquo;heaven on earth&rdquo; means.</p><p><strong>v2.0 (11 November 2026):</strong> Added the Declaration of Principles, in the footer, with English as a common language for simplicity only.</p><p><strong>v1.9 (1 November 2026):</strong> The roots are now eight: justice, freedom, and peace; equal worth; prevention of harm; freedom of conscience; accountability; no authority above question; reason and intellectual honesty; and growth.</p><p><strong>v1.8 (27 October 2026):</strong> Added a reader for Chapter 3 of the book, Growth and Discipline.</p><p><strong>v1.6 (27 October 2026):</strong> Added a FAQ entry on the Path of Harmony book, the &ldquo;born somewhere else&rdquo; test, and the school-window moment to the origin.</p><p><strong>v1.5 (17 October 2026):</strong> Added what Vedenism offers: guidance and support, tolerance, and the skills it aims to teach.</p><p><strong>v1.4 (17 October 2026):</strong> Added Growth &amp; Discipline.</p><p><strong>v1.3 (17 October 2026):</strong> Made critical thinking, logic, and reason a headline idea on the site.</p><p><strong>v1.2 (17 October 2026):</strong> Added free mentoring and courses to Our Purpose.</p><p><strong>v1.1 (17 October 2026):</strong> Added Our Purpose.</p><p><strong>v1.0 (17 October 2026):</strong> First public version, and the starting point for every later change. It sets out the three paths on belief, the fixed roots, self-discipline and growth, the definition of harm, and the amendment rule.</p><p>Later changes will be listed here, newest first.</p>`
+        body: `<p>Vedenism grows with the people who practice it. When something changes, we say what changed and why.</p><p><strong>v2.4 (12 November 2026):</strong> Made the limit on freedom explicit in the Prevention of Harm root.</p><p><strong>v2.3 (12 November 2026):</strong> Fixed the Roots layout on phones and made the translate control a small button with a close (×).</p><p><strong>v2.2 (12 November 2026):</strong> Added a page on understanding urges and self-control, under Growth &amp; Discipline.</p><p><strong>v2.1 (11 November 2026):</strong> Clarified what &ldquo;heaven on earth&rdquo; means.</p><p><strong>v2.0 (11 November 2026):</strong> Added the Declaration of Principles, in the footer, with English as a common language for simplicity only.</p><p><strong>v1.9 (1 November 2026):</strong> The roots are now eight: justice, freedom, and peace; equal worth; prevention of harm; freedom of conscience; accountability; no authority above question; reason and intellectual honesty; and growth.</p><p><strong>v1.8 (27 October 2026):</strong> Added a reader for Chapter 3 of the book, Growth and Discipline.</p><p><strong>v1.6 (27 October 2026):</strong> Added a FAQ entry on the Path of Harmony book, the &ldquo;born somewhere else&rdquo; test, and the school-window moment to the origin.</p><p><strong>v1.5 (17 October 2026):</strong> Added what Vedenism offers: guidance and support, tolerance, and the skills it aims to teach.</p><p><strong>v1.4 (17 October 2026):</strong> Added Growth &amp; Discipline.</p><p><strong>v1.3 (17 October 2026):</strong> Made critical thinking, logic, and reason a headline idea on the site.</p><p><strong>v1.2 (17 October 2026):</strong> Added free mentoring and courses to Our Purpose.</p><p><strong>v1.1 (17 October 2026):</strong> Added Our Purpose.</p><p><strong>v1.0 (17 October 2026):</strong> First public version, and the starting point for every later change. It sets out the three paths on belief, the fixed roots, self-discipline and growth, the definition of harm, and the amendment rule.</p><p>Later changes will be listed here, newest first.</p>`
       },
       faq: {
         title: "FAQ",
@@ -1772,6 +1820,18 @@
       }, { threshold: 0.4 });
       counterObserver.observe(treeCounter);
     }
+
+    const translateBox = document.getElementById("translateBox");
+    const translateToggle = document.getElementById("translateToggle");
+    const translateClose = document.getElementById("translateClose");
+    function setTranslate(open) {
+      if (!translateBox) return;
+      translateBox.hidden = !open;
+      if (translateToggle) translateToggle.setAttribute("aria-expanded", String(open));
+    }
+    if (translateToggle) translateToggle.addEventListener("click", () => setTranslate(translateBox.hidden));
+    if (translateClose) translateClose.addEventListener("click", () => setTranslate(false));
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") setTranslate(false); });
 
     function googleTranslateElementInit() {
       new google.translate.TranslateElement({
