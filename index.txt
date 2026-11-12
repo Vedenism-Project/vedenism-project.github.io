@@ -341,6 +341,10 @@ Changes are proposed openly, discussed publicly, and judged by whether they redu
 
 Vedenism grows with the people who practice it. When something changes, we say what changed and why.
 
+**v2.4 (12 November 2026):** Made the limit on freedom explicit in the Prevention of Harm root on the site: everyone is free to be and think as they like, up to the point where it harms someone else.
+
+**v2.3 (12 November 2026):** Fixed the Roots layout on phones and made the site's translate control a small button with a close (×).
+
 **v2.2 (12 November 2026):** Added a page on understanding urges and self-control (recognize, understand, consider, choose), under Growth & Discipline.
 
 **v2.1 (11 November 2026):** Clarified what "heaven on earth" means: a hope to improve real human conditions step by step, not a promise of a perfect society and not a governing body.
